@@ -35,6 +35,6 @@ Estrutura de documentação organizada conforme orientação passada em aula (ma
 Todo o texto de RN/RF/RNF/UC foi extraído sem alteração do documento de especificação de requisitos enviado pelo grupo (31/08/2026); apenas foi reorganizado por módulo. Nenhum requisito foi inventado.
 
 ## Pendências para confirmar com o professor
-- Se cada módulo também precisa de um `agents.md` (Rildo levantou essa hipótese no grupo, mas não foi confirmada — o quadro só mostrava `spec.md`).
+- Se cada módulo também precisa de um `agents.md` (foi levantada essa hipótese no grupo, mas não foi confirmada — o quadro só mostrava `spec.md`).
 - A "tabela de variações por entidade" citada em `MODULOS/cadastros-base/spec.md` (RF-01) não veio completa no material — falta preencher ator/campos/duplicidade de cada uma das 5 entidades.
 - Se `SPECS/` deve ganhar também `frontend/` e `database/`, seguindo o mesmo padrão de `backend/`.
