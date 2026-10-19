@@ -37,3 +37,5 @@ O sistema deve permitir realizar o CRUD das filas de atendimento por especialida
 ## Dependências / Observações
 - Depende de `triagem-e-senha` (a senha e sua prioridade já devem existir).
 - Alimenta o módulo `chamada-e-alocacao` (a "próxima senha" chamada é definida pela ordenação aqui).
+- A consulta do paciente (UC-08) é atendida pela aplicação pública, tela W-10; a consulta da equipe é atendida pelo painel de fila, tela W-08 (ver `MODULOS/acesso-publico` e `SPECS/frontend/spec.md`).
+- Há uma única fila ativa por especialidade, garantida por restrição do banco (`_md/01-das.md` §7.4).

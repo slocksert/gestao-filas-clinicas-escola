@@ -58,10 +58,13 @@ O sistema deve permitir a consulta aos registros de auditoria das operações re
 **Pós-condição:** Registros de auditoria exibidos conforme o filtro selecionado.
 
 ## Entidades relacionadas
-- Indicador
+- Indicador (agregação calculada no banco, sem tabela própria — DAS §6.6)
 - Alerta de SLA
+- Medida de escalonamento
 - Registro de Auditoria
 
 ## Dependências / Observações
 - Consome dados de praticamente todos os demais módulos (fila, atendimento, ausências/desistências).
 - Relaciona-se com **RNF-05** (rastreabilidade e auditoria) — ver `SPECS/requisitos-nao-funcionais.md`.
+- O alerta tem duas origens: "Tempo de espera excedido" e "Fila bloqueada por ausência de supervisor" (`_md/pages-inv.txt`, tabela 20; `_md/01-das.md` §9.11).
+- Toda exportação, de indicador ou de auditoria, gera ela própria um evento na trilha, inclusive a exportação da trilha (`_md/01-das.md` §9.11).

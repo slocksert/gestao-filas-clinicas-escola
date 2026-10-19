@@ -51,6 +51,8 @@ O sistema deve permitir realizar o CRUD das alocações de atendimento, possibil
 
 **Pós-condição:** Senha com status "chamada", exibida no painel público de atendimento.
 
+> Nota (D-15): o passo 4 deste caso de uso cita "(paciente, senha)", mas a premissa P-03 de `_md/04-especificacao-ui.md` e o DAS (§6.3 e §9.12) limitam o painel público a número da senha, especialidade e local, e nunca nome do paciente. O texto do caso de uso foi mantido como no documento do grupo; vale a decisão posterior.
+
 ### UC-10 | Alocar recursos ao atendimento (estudante, supervisor e sala)
 **Atores:** Atendente / Sistema
 
@@ -77,7 +79,13 @@ O sistema deve permitir realizar o CRUD das alocações de atendimento, possibil
 - Estudante/Atendente
 - Supervisor
 - Sala
+- Chamada
+- Alocação
 
 ## Dependências / Observações
 - Depende de `fila` (para saber qual é a "próxima senha") e de `cadastros-base` (Estudante/Atendente, Supervisor, Sala).
 - Alimenta o módulo `atendimento` (o início do atendimento exige recursos já alocados aqui).
+- O status de senha "Aguardando recurso" (D-09) corresponde à chave "aguardando alocação" de P-01 em `_md/04-especificacao-ui.md` e ao termo "aguardando alocação de recurso" do UC-10.
+- O bloqueio por ausência de supervisor (RN-10, premissa P-04) se manifesta em três lugares ao mesmo tempo — aviso permanente na fila, recusa da operação de chamada e item na lista de alertas de gestão —, todos alimentados por um único estado no servidor (`_md/01-das.md` §3.3 e §9.6).
+- A chamada e a alocação aceitam chave de idempotência: a repetição da mesma chave dentro de dez minutos devolve a resposta original sem executar de novo (`_md/01-das.md` §6.1).
+- O painel público (telão) é parte do módulo `acesso-publico`.

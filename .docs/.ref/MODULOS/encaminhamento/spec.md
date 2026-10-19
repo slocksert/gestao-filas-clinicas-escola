@@ -46,3 +46,5 @@ O sistema deve permitir registrar encaminhamentos internos e externos ao final d
 ## Dependências / Observações
 - Disparado a partir do módulo `atendimento` (UC-13, desfecho de encerramento).
 - Encaminhamento interno realimenta o módulo `fila` (nova entrada vinculada ao atendimento original).
+- Uma especialidade de destino com bloqueio ativo por ausência de supervisor não impede o encaminhamento: apenas informa que a chamada está suspensa naquela fila (`_md/01-das.md` §9.9; `_md/04-especificacao-ui.md` T-14). Especialidade de destino inativa recusa o encaminhamento interno.
+- A senha gerada no encaminhamento interno fica vinculada à senha de origem pelo campo `senhaOrigem` (`_md/pages-inv.txt`, tabela 11).

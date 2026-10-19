@@ -35,7 +35,14 @@ O sistema deve permitir realizar o CRUD de perfis de usuário, definindo as oper
 ## Entidades relacionadas
 - Perfil de Usuário
 - Usuário (vínculo com os demais cadastros: Estudante/Atendente, Supervisor, Administrador, Recepcionista/Atendente, Gestão)
+- Unidade
+- Parâmetro de unidade
+- Permissão de perfil
 
 ## Dependências / Observações
 - É pré-requisito lógico para todos os outros módulos, já que RNF-01 exige controle de acesso baseado em perfil em todo o sistema.
 - Dados de saúde (ligados ao módulo `triagem-e-senha`) exigem restrição de acesso definida aqui (ver RNF-02 em `SPECS/requisitos-nao-funcionais.md`).
+- Perfis de exemplo nos wireframes (`_md/05-wireframes.md`, W-05): Administrador (sistema), Recepção, Triagem, Estudante, Supervisão, Gestão.
+- Perfil do sistema não é editável nem removível; a exclusão de um perfil é recusada enquanto houver usuário vinculado (`_md/01-das.md` §9.3).
+- Permissão é formada por módulo e operação, e o perfil é um conjunto dessas permissões; a interface nunca decide permissão por nome de perfil (`_md/01-das.md` §9.2 e §9.14). O catálogo de permissões está no DAS §9.14 (divergência D-12: `_md/04-especificacao-ui.md` T-05 descreve quatro colunas por módulo — consultar, criar, editar, excluir — e o DAS acrescenta operações próprias, como chamar, validar, reclassificar, exportar, reconhecer, escalonar e consultar informação sensível; segue-se o DAS, mais recente).
+- Autenticação e sessão (credencial de 15 minutos e de renovação de 8 horas, bloqueio após 5 tentativas): ver `SPECS/backend/api.md`, §9.2. Dados de usuário, perfil e parâmetros: `SPECS/database/spec.md` (tabelas 6 a 8).

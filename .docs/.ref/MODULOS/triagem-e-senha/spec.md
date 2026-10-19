@@ -84,8 +84,12 @@ O sistema deve permitir registrar a triagem inicial do paciente, coletando o mot
 - Paciente
 - Triagem
 - Senha
+- Reclassificação de prioridade
 
 ## Dependências / Observações
 - Depende de `cadastros-base` (Paciente, Especialidade/Serviço) já existirem.
 - Alimenta diretamente o módulo `fila` (RN-04 usa a prioridade definida aqui como 1º critério de ordenação).
 - Dados de saúde tratados aqui exigem controle de acesso do módulo `usuarios-e-permissoes` (RNF-01/RNF-02).
+- Rastreabilidade (D-07): o DAS (`_md/01-das.md` §5.3, §9.5 e §13.1) associa UC-06 e UC-07 também a RF-04 (módulo "Triagem e senha": RF-03, RF-04), enquanto `_md/04-especificacao-ui.md` (T-08) associa UC-07 a RF-03. O texto dos requisitos acima não muda.
+- A senha tem três projeções (pública, resumo e detalhe); dado de saúde e motivo do atendimento ficam fora de listas, painéis e telão, e só a projeção de detalhe registra evento de consulta a informação sensível (P-03; `_md/01-das.md` §9.15). Ver `SPECS/backend/api.md`.
+- A reincidência de ausências é um aviso na resposta da busca de paciente e não bloqueia a triagem (`_md/01-das.md` §9.10).

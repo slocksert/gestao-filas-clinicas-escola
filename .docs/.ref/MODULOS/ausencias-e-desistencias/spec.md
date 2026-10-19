@@ -50,7 +50,11 @@ O sistema deve permitir registrar a ausência (no-show) de pacientes chamados e 
 ## Entidades relacionadas
 - Senha
 - Paciente
+- Ausência
+- Desistência
 
 ## Dependências / Observações
 - Depende de `fila` e `chamada-e-alocacao` (para liberar recursos ao registrar ausência).
 - Alimenta o módulo `indicadores-alertas-auditoria` (taxa de ausência, quantidade de desistências).
+- Ausência e desistência são tabelas separadas porque alimentam indicadores distintos (`_md/01-das.md` §7.2).
+- Nota de divergência (D-16): a pré-condição do UC-17 cita senha com status "aguardando" ou "em atendimento", mas a máquina de estados do DAS (§7.3) também permite a desistência a partir de "Chamada" e "Aguardando recurso". O texto do caso de uso foi mantido como no documento do grupo (ver `SPECS/database/spec.md`).

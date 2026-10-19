@@ -70,7 +70,11 @@ O sistema deve permitir realizar o CRUD dos registros de atendimento, possibilit
 - Atendimento
 - Senha
 - Supervisor
+- Pausa de atendimento
+- Alocação
 
 ## Dependências / Observações
 - Depende de `chamada-e-alocacao` (recursos já alocados).
 - O desfecho definido no encerramento (UC-13) dispara o módulo `encaminhamento`.
+- A exigência de validação do supervisor é copiada da especialidade para o atendimento no momento em que ele começa; a recusa da validação não devolve o atendimento ao estado anterior, que permanece "pendente de validação" com o parecer do supervisor registrado (`_md/01-das.md` §9.8).
+- Cada pausa é uma linha por ocorrência; o tempo efetivo de atendimento desconta a soma das pausas nos indicadores (`_md/01-das.md` §7.2).
