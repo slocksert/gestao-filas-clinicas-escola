@@ -1,0 +1,4002 @@
+
+
+===== Index/CalculationEngine.iwa (223462 bytes) =====
+
+America/Maceioj
+categoria
+consultado
+descricao
+possiveis
+respostas
+$023BFAF7-D4F4-46FF-AFAC-6179AB4A1EFA
+Tabela 1H
+$A2866AB0-793C-4B41-8393-AB27DE9ECCC8
+Tabela 2H
+$44C1559F-4F6C-4865-A57F-E16A77A3F4B2
+Tabela 3H
+$75FAE225-9DA6-4F34-8C05-DD03E6821CFD
+Tabela 4H
+$D0D6B720-96FF-4D99-9D37-9BFB7E7DCF6F
+Tabela 5H
+$BECBB404-0BD1-4AE4-BCCB-BC040C728F9B
+Tabela 6H
+$6F7CE106-E47E-4EFE-AC88-BF37F4B474C2
+Tabela 7H
+$8321CA93-9E64-4386-A1DF-8D4083F007F9
+Tabela 8H
+$69FF77BA-B0C5-4B26-8C4A-3D62FDD5ED59
+Tabela 9H
+$14E76465-1E97-436F-9F8C-1D5055F72F30
+Tabela 10H
+$B6F426F1-E95A-4C40-BBC3-AD087226D2C0
+Tabela 11H
+$71093201-091A-436F-9E58-0B88B5766A9E
+Tabela 12H
+$2868838B-4105-42C3-AA6F-737E93FA6FDC
+Tabela 13H
+$1CF05F01-E9E8-45F5-9A6F-61091AC4905E
+Tabela 14H
+$0F306A70-FF7B-4615-811E-51206F9B3BFA
+Tabela 15H
+$437E137D-308E-41A8-9B04-8024FFAE10BE
+Tabela 16H
+$8D71DD2D-8B61-435F-B230-2CC560DD6F56
+Tabela 17H
+$4F46014A-E8BF-4C24-A133-AE618AECFA4F
+Tabela 18H
+$1754D372-309C-4028-8A9A-889F60FC0D85
+Tabela 19H
+$94C0E3B9-7890-493A-B3BD-33BAFB6D08AE
+Tabela 20H
+$621B50F2-4087-44F0-8E77-2BFCE2078DF4
+Tabela 21H
+$C7A36785-5280-4F53-BA38-D7F14BC1F756
+Tabela 22H
+$26E298FD-4834-44CD-9565-8C72D33FAA6B
+Tabela 23H
+$CCE69CCF-4978-4978-8B12-34B7CE70910F
+Tabela 24H
+
+
+===== Index/Document.iwa (24542 bytes) =====
+
+gregorian
+janeiro"
+fevereiro"
+setembro"
+outubro"
+novembro"
+dezembro*
+janeiro*
+fevereiro*
+setembro*
+outubro*
+novembro*
+dezembro2
+domingoB
+segunda-feiraB
+terça-feiraB
+quarta-feiraB
+quinta-feiraB
+sexta-feiraB
+domingoJ
+segunda-feiraJ
+terça-feiraJ
+quarta-feiraJ
+quinta-feiraJ
+sexta-feiraJ
+1º trimestre
+2º trimestre
+3º trimestre
+4º trimestre
+1º trimestre
+2º trimestre
+3º trimestre
+4º trimestre
+antes de Cristo
+depois de Cristo
+d 'de' MMM 'de' y
+d 'de' MMMM 'de' y
+EEEE, d 'de' MMMM 'de' y
+HH:mm:ss
+HH:mm:ss z
+HH:mm:ss zzzz
+Formato Personalizado 1
+%?%VVV?-dcc?5
+>Sistema de Gestão de Filas para Atendimento em Clínicas-Escola
+Inventário de Dados
+Inventário de Dados
+Esta seção destina-se a listar e descrever os dados relevantes para a realização do objetivo da aplicação. Além disto, servirá de guia para a determinação das métricas que substanciarão a análise estatística para tomada de decisão baseada em evidência, prevista no módulo de indicadores. Os dados são coletados pela aplicação e enviados para armazenamento em banco de dados relacional em servidor da instituição.
+Os dados estão organizados por módulo, na mesma ordem do fluxo de atendimento: cadastros base, acesso, triagem, fila, chamada, alocação, atendimento, encaminhamento, ausências, gestão e auditoria. Cada tabela apresenta o identificador do dado dentro do módulo, o nome pelo qual ele é referenciado no sistema, a descrição do que se destina a registrar e as respostas possíveis.
+Alguns dados são condicionais, isto é, só são coletados quando outro dado assume determinado valor. Nesses casos a descrição indica a referência da qual o dado depende, no formato ID seguido do número, dentro da mesma tabela.
+Os dados que constituem informação de saúde estão assinalados na descrição e relacionados na última seção deste documento. Eles recebem tratamento distinto: não aparecem em listagens, painéis ou telas públicas, e toda consulta a eles gera registro na trilha de auditoria.
+1. Cadastros base
+As cinco entidades a seguir precisam estar cadastradas antes de serem referenciadas pelos módulos de triagem, fila e alocação de recursos. A tabela 1 mostra os dados do paciente, pessoa atendida pela clínica-escola.
+Tabela 1 – Dados de cadastro do paciente.
+A tabela 2 mostra os dados do estudante ou atendente, pessoa que conduz o atendimento.
+Tabela 2 – Dados de cadastro do estudante ou atendente.
+A tabela 3 mostra os dados do supervisor, docente responsável por acompanhar o atendimento quando a especialidade assim exigir.
+Tabela 3 – Dados de cadastro do supervisor.
+A tabela 4 mostra os dados da sala, espaço físico onde o atendimento é realizado.
+Tabela 4 – Dados de cadastro da sala.
+A tabela 5 mostra os dados da especialidade ou serviço, que define o comportamento do atendimento e origina a fila.
+Tabela 5 – Dados de cadastro da especialidade ou serviço.
+As habilitações, os procedimentos e os recursos citados nas tabelas 2 a 5 são cadastros de apoio, compostos apenas de identificador e nome. Existem como cadastro, e não como texto livre, porque a verificação de compatibilidade entre estudante, supervisor, sala e procedimento compara conjuntos, o que seria inviável sobre texto digitado livremente.
+2. Acesso e permissões
+A tabela 6 mostra os dados do usuário do sistema, pessoa que opera a aplicação. Diferentemente do paciente, o usuário se autentica e tem suas ações registradas na trilha de auditoria.
+Tabela 6 – Dados de cadastro do usuário do sistema.
+A tabela 7 mostra os dados do perfil, conjunto de permissões atribuído a um ou mais usuários.
+Tabela 7 – Dados do perfil de usuário e suas permissões.
+A tabela 8 mostra os parâmetros de funcionamento que dependem de definição da unidade. Nenhum deles é fixo no sistema: todos são editáveis pela administração, e um valor definido para uma especialidade específica sobrepõe o valor geral da unidade.
+Tabela 8 – Parâmetros de funcionamento da unidade.
+3. Triagem
+A tabela 9 mostra os dados coletados na triagem do paciente. É o módulo que concentra a informação de saúde do sistema: os dados assinalados como sensíveis não aparecem em listagens, painéis ou na tela pública, e cada consulta a eles gera registro na trilha de auditoria.
+Tabela 9 – Dados da triagem do paciente.
+4. Fila, senha e chamada
+A tabela 10 mostra os dados da fila, uma por especialidade e unidade.
+Tabela 10 – Dados da fila de atendimento.
+A tabela 11 mostra os dados da senha, registro que representa a passagem do paciente pela fila e concentra o ciclo do atendimento.
+Tabela 11 – Dados da senha.
+A tabela 12 mostra os dados da reclassificação de prioridade, registrada sempre que a prioridade de uma senha já emitida é alterada.
+Tabela 12 – Dados da reclassificação de prioridade da senha.
+A tabela 13 mostra os dados da chamada, que alimenta a tela pública da sala de espera e o controle do prazo de tolerância.
+Tabela 13 – Dados da chamada de senha.
+5. Alocação e atendimento
+A tabela 14 mostra os dados da alocação, que associa à senha os três recursos necessários ao atendimento.
+Tabela 14 – Dados da alocação de recursos ao atendimento.
+A tabela 15 mostra os dados do atendimento propriamente dito.
+Tabela 15 – Dados do atendimento.
+A tabela 16 mostra os dados da pausa, registrada uma vez por interrupção. O tempo total das pausas é descontado da duração efetiva do atendimento nos indicadores.
+Tabela 16 – Dados da pausa do atendimento.
+A tabela 17 mostra os dados do encaminhamento, registrado quando o desfecho do atendimento assim determina. O encaminhamento interno gera automaticamente nova senha na especialidade de destino; o externo é apenas registrado.
+Tabela 17 – Dados do encaminhamento.
+6. Ausências e desistências
+A tabela 18 mostra os dados da ausência, registrada quando o paciente chamado não comparece dentro do prazo de tolerância. A tabela 19 mostra os dados da desistência, saída voluntária do paciente. As duas situações são mantidas em registros distintos porque alimentam indicadores diferentes: a primeira, a taxa de ausência; a segunda, o número de desistências.
+Tabela 18 – Dados do registro de ausência.
+Tabela 19 – Dados do registro de desistência voluntária.
+7. Alertas e escalonamento
+A tabela 20 mostra os dados do alerta gerado para a gestão da unidade, e a tabela 21, os dados da medida de escalonamento acionada em resposta.
+Tabela 20 – Dados do alerta de gestão.
+Tabela 21 – Dados da medida de escalonamento.
+8. Trilha de auditoria
+A tabela 22 mostra os dados registrados a cada operação relevante realizada no sistema. O registro é gerado automaticamente, sem intervenção de quem opera, e é somente leitura em qualquer circunstância: as permissões de alteração e remoção são revogadas no próprio banco de dados. A exportação da trilha gera, ela própria, um registro na trilha.
+Tabela 22 – Dados do registro de auditoria.
+9. Relação dos dados sensíveis de saúde
+Os dados relacionados na tabela 23 constituem informação de saúde de pessoa identificável e recebem tratamento distinto dos demais: não são incluídos em nenhuma resposta de listagem, painel de fila ou tela pública; exigem permissão específica de consulta; e toda abertura gera registro na trilha de auditoria com a marcação correspondente.
+Tabela 23 – Dados sensíveis de saúde e onde podem ser consultados.
+O nome completo do paciente, embora não seja dado de saúde, também não sai do sistema em consulta de listagem: a abreviação para iniciais é feita no servidor, e não na tela. Na tela pública da sala de espera nenhum dado de paciente é exibido, apenas número da senha, especialidade e local de atendimento.
+10. Retenção dos dados
+A tabela 24 mostra por quanto tempo cada categoria de dado é mantida e o que ocorre ao fim do prazo.
+Tabela 24 – Prazos de retenção por categoria de dado.
+Três definições ainda dependem da coordenação da clínica-escola e estão registradas como pendência do projeto: a base legal do tratamento dos dados de triagem e atendimento, considerando que a clínica-escola combina prestação de cuidado e formação acadêmica; o prazo de retenção desses registros; e a política de resposta a solicitação do titular dos dados, incluindo quem responde e em que prazo. Enquanto isso, nenhum dado real de paciente é utilizado em ambiente de desenvolvimento ou de homologação.*
+Capítulo 1
+
+
+===== Index/DocumentMetadata.iwa (352 bytes) =====
+
+#Aj:s)BeH
+
+
+===== Index/DocumentStylesheet.iwa (388443 bytes) =====
+
+'captions-0-shapestyle-Legenda do Objeto
+$captions-0-shapestyle-Object Caption
+"captions-0-shapestyle-Object Title
+'captions-0-shapestyle-Título do Objeto
+character-style-hyperlink
+character-style-null
+chart-0-categoryaxis_0
+chart-0-chart
+chart-0-legend
+chart-0-paragraphStyle_0
+chart-0-paragraphStyle_1
+chart-0-paragraphStyle_10
+chart-0-paragraphStyle_11
+chart-0-paragraphStyle_12
+chart-0-paragraphStyle_13
+chart-0-paragraphStyle_14
+chart-0-paragraphStyle_15
+chart-0-paragraphStyle_16
+chart-0-paragraphStyle_17
+chart-0-paragraphStyle_18
+chart-0-paragraphStyle_19
+chart-0-paragraphStyle_2
+chart-0-paragraphStyle_20
+chart-0-paragraphStyle_21
+chart-0-paragraphStyle_22
+chart-0-paragraphStyle_23
+chart-0-paragraphStyle_24
+chart-0-paragraphStyle_25
+chart-0-paragraphStyle_26
+chart-0-paragraphStyle_27
+chart-0-paragraphStyle_28
+chart-0-paragraphStyle_29
+chart-0-paragraphStyle_3
+chart-0-paragraphStyle_4
+chart-0-paragraphStyle_5
+chart-0-paragraphStyle_6
+chart-0-paragraphStyle_7
+chart-0-paragraphStyle_8
+chart-0-paragraphStyle_9
+chart-0-referenceLine_0
+chart-0-series_0
+chart-0-series_1
+chart-0-series_2
+chart-0-series_3
+chart-0-series_4
+chart-0-series_5
+chart-0-valueaxis_0
+chart-0-valueaxis_1
+chart-1-categoryaxis_0
+chart-1-chart
+chart-1-legend
+chart-1-paragraphStyle_0
+chart-1-paragraphStyle_1
+chart-1-paragraphStyle_10
+chart-1-paragraphStyle_11
+chart-1-paragraphStyle_12
+chart-1-paragraphStyle_13
+chart-1-paragraphStyle_14
+chart-1-paragraphStyle_15
+chart-1-paragraphStyle_16
+chart-1-paragraphStyle_17
+chart-1-paragraphStyle_18
+chart-1-paragraphStyle_19
+chart-1-paragraphStyle_2
+chart-1-paragraphStyle_20
+chart-1-paragraphStyle_21
+chart-1-paragraphStyle_22
+chart-1-paragraphStyle_23
+chart-1-paragraphStyle_24
+chart-1-paragraphStyle_25
+chart-1-paragraphStyle_26
+chart-1-paragraphStyle_27
+chart-1-paragraphStyle_28
+chart-1-paragraphStyle_29
+chart-1-paragraphStyle_3
+chart-1-paragraphStyle_4
+chart-1-paragraphStyle_5
+chart-1-paragraphStyle_6
+chart-1-paragraphStyle_7
+chart-1-paragraphStyle_8
+chart-1-paragraphStyle_9
+chart-1-referenceLine_0
+chart-1-series_0
+chart-1-series_1
+chart-1-series_2
+chart-1-series_3
+chart-1-series_4
+chart-1-series_5
+chart-1-valueaxis_0
+chart-1-valueaxis_1
+chart-2-categoryaxis_0
+chart-2-chart
+chart-2-legend
+chart-2-paragraphStyle_0
+chart-2-paragraphStyle_1
+chart-2-paragraphStyle_10
+chart-2-paragraphStyle_11
+chart-2-paragraphStyle_12
+chart-2-paragraphStyle_13
+chart-2-paragraphStyle_14
+chart-2-paragraphStyle_15
+chart-2-paragraphStyle_16
+chart-2-paragraphStyle_17
+chart-2-paragraphStyle_18
+chart-2-paragraphStyle_19
+chart-2-paragraphStyle_2
+chart-2-paragraphStyle_20
+chart-2-paragraphStyle_21
+chart-2-paragraphStyle_22
+chart-2-paragraphStyle_23
+chart-2-paragraphStyle_24
+chart-2-paragraphStyle_25
+chart-2-paragraphStyle_26
+chart-2-paragraphStyle_27
+chart-2-paragraphStyle_28
+chart-2-paragraphStyle_29
+chart-2-paragraphStyle_3
+chart-2-paragraphStyle_4
+chart-2-paragraphStyle_5
+chart-2-paragraphStyle_6
+chart-2-paragraphStyle_7
+chart-2-paragraphStyle_8
+chart-2-paragraphStyle_9
+chart-2-referenceLine_0
+chart-2-series_0
+chart-2-series_1
+chart-2-series_2
+chart-2-series_3
+chart-2-series_4
+chart-2-series_5
+chart-2-valueaxis_0
+chart-2-valueaxis_1
+chart-3-categoryaxis_0
+chart-3-chart
+chart-3-legend
+chart-3-paragraphStyle_0
+chart-3-paragraphStyle_1
+chart-3-paragraphStyle_10
+chart-3-paragraphStyle_11
+chart-3-paragraphStyle_12
+chart-3-paragraphStyle_13
+chart-3-paragraphStyle_14
+chart-3-paragraphStyle_15
+chart-3-paragraphStyle_16
+chart-3-paragraphStyle_17
+chart-3-paragraphStyle_18
+chart-3-paragraphStyle_19
+chart-3-paragraphStyle_2
+chart-3-paragraphStyle_20
+chart-3-paragraphStyle_21
+chart-3-paragraphStyle_22
+chart-3-paragraphStyle_23
+chart-3-paragraphStyle_24
+chart-3-paragraphStyle_25
+chart-3-paragraphStyle_26
+chart-3-paragraphStyle_27
+chart-3-paragraphStyle_28
+chart-3-paragraphStyle_29
+chart-3-paragraphStyle_3
+chart-3-paragraphStyle_4
+chart-3-paragraphStyle_5
+chart-3-paragraphStyle_6
+chart-3-paragraphStyle_7
+chart-3-paragraphStyle_8
+chart-3-paragraphStyle_9
+chart-3-referenceLine_0
+chart-3-series_0
+chart-3-series_1
+chart-3-series_2
+chart-3-series_3
+chart-3-series_4
+chart-3-series_5
+chart-3-valueaxis_0
+chart-3-valueaxis_1
+chart-4-categoryaxis_0
+chart-4-chart
+chart-4-legend
+chart-4-paragraphStyle_0
+chart-4-paragraphStyle_1
+chart-4-paragraphStyle_10
+chart-4-paragraphStyle_11
+chart-4-paragraphStyle_12
+chart-4-paragraphStyle_13
+chart-4-paragraphStyle_14
+chart-4-paragraphStyle_15
+chart-4-paragraphStyle_16
+chart-4-paragraphStyle_17
+chart-4-paragraphStyle_18
+chart-4-paragraphStyle_19
+chart-4-paragraphStyle_2
+chart-4-paragraphStyle_20
+chart-4-paragraphStyle_21
+chart-4-paragraphStyle_22
+chart-4-paragraphStyle_23
+chart-4-paragraphStyle_24
+chart-4-paragraphStyle_25
+chart-4-paragraphStyle_26
+chart-4-paragraphStyle_27
+chart-4-paragraphStyle_28
+chart-4-paragraphStyle_29
+chart-4-paragraphStyle_3
+chart-4-paragraphStyle_4
+chart-4-paragraphStyle_5
+chart-4-paragraphStyle_6
+chart-4-paragraphStyle_7
+chart-4-paragraphStyle_8
+chart-4-paragraphStyle_9
+chart-4-referenceLine_0
+chart-4-series_0
+chart-4-series_1
+chart-4-series_2
+chart-4-series_3
+chart-4-series_4
+chart-4-series_5
+chart-4-valueaxis_0
+chart-4-valueaxis_1
+chart-5-categoryaxis_0
+chart-5-chart
+chart-5-legend
+chart-5-paragraphStyle_0
+chart-5-paragraphStyle_1
+chart-5-paragraphStyle_10
+chart-5-paragraphStyle_11
+chart-5-paragraphStyle_12
+chart-5-paragraphStyle_13
+chart-5-paragraphStyle_14
+chart-5-paragraphStyle_15
+chart-5-paragraphStyle_16
+chart-5-paragraphStyle_17
+chart-5-paragraphStyle_18
+chart-5-paragraphStyle_19
+chart-5-paragraphStyle_2
+chart-5-paragraphStyle_20
+chart-5-paragraphStyle_21
+chart-5-paragraphStyle_22
+chart-5-paragraphStyle_23
+chart-5-paragraphStyle_24
+chart-5-paragraphStyle_25
+chart-5-paragraphStyle_26
+chart-5-paragraphStyle_27
+chart-5-paragraphStyle_28
+chart-5-paragraphStyle_29
+chart-5-paragraphStyle_3
+chart-5-paragraphStyle_4
+chart-5-paragraphStyle_5
+chart-5-paragraphStyle_6
+chart-5-paragraphStyle_7
+chart-5-paragraphStyle_8
+chart-5-paragraphStyle_9
+chart-5-referenceLine_0
+chart-5-series_0
+chart-5-series_1
+chart-5-series_2
+chart-5-series_3
+chart-5-series_4
+chart-5-series_5
+chart-5-valueaxis_0
+chart-5-valueaxis_1
+column-style-default
+drawingline-0-drawinglineStyle
+equation-0-imageStyle
+image-0-imageStyle
+image-1-imageStyle
+image-2-imageStyle
+image-3-imageStyle
+image-4-imageStyle
+image-5-imageStyle
+imported-paragraph-style-0
+imported-paragraph-style-10
+imported-paragraph-style-11
+imported-paragraph-style-12
+imported-toc-entry-style-1
+imported-toc-entry-style-2
+imported-toc-entry-style-3
+imported-toc-entry-style-4
+imported-toc-entry-style-5
+imported-toc-entry-style-6
+imported-toc-entry-style-7
+imported-toc-entry-style-8
+imported-toc-entry-style-9
+line-0-shapestyle
+line-1-shapestyle
+line-2-shapestyle
+line-3-shapestyle
+line-4-shapestyle
+line-5-shapestyle
+movie-0-movieStyle
+movie-1-movieStyle
+movie-2-movieStyle
+movie-3-movieStyle
+movie-4-movieStyle
+movie-5-movieStyle
+paragraph-style-default
+shape-0-shapestyle
+shape-1-shapestyle
+shape-2-shapestyle
+shape-3-shapestyle
+shape-4-shapestyle
+shape-5-shapestyle
+!stickyComment-0-paragraphstyle-12
+!stickyComment-0-paragraphstyle-13
+!stickyComment-0-paragraphstyle-14
+!stickyComment-0-paragraphstyle-15
+!stickyComment-0-paragraphstyle-16
+!stickyComment-0-paragraphstyle-18
+!stickyComment-0-paragraphstyle-22
+!stickyComment-0-paragraphstyle-24
+!stickyComment-0-paragraphstyle-28
+stickyComment-0-shapeStyle
+svgimport-0-shapestyle
+table-0-tableStyle
+table-1-tableStyle
+table-2-tableStyle
+table-3-tableStyle
+table-4-tableStyle
+table-5-tableStyle
+tableCell-0-bodyStyle
+tableCell-0-categoryLevel1Row
+tableCell-0-categoryLevel2Row
+tableCell-0-categoryLevel3Row
+tableCell-0-categoryLevel4Row
+tableCell-0-categoryLevel5Row
+tableCell-0-footerRowStyle
+tableCell-0-headerColumnStyle
+tableCell-0-headerRowStyle
+tableCell-0-labelLevel1Row
+tableCell-0-labelLevel2Row
+tableCell-0-labelLevel3Row
+tableCell-0-labelLevel4Row
+tableCell-0-labelLevel5Row
+"tableCell-0-pivotBodySummaryColumn
+tableCell-0-pivotBodySummaryRow
+$tableCell-0-pivotHeaderColumnSummary
+tableCell-1-bodyStyle
+tableCell-1-categoryLevel1Row
+tableCell-1-categoryLevel2Row
+tableCell-1-categoryLevel3Row
+tableCell-1-categoryLevel4Row
+tableCell-1-categoryLevel5Row
+tableCell-1-footerRowStyle
+tableCell-1-headerColumnStyle
+tableCell-1-headerRowStyle
+tableCell-1-labelLevel1Row
+tableCell-1-labelLevel2Row
+tableCell-1-labelLevel3Row
+tableCell-1-labelLevel4Row
+tableCell-1-labelLevel5Row
+"tableCell-1-pivotBodySummaryColumn
+tableCell-1-pivotBodySummaryRow
+$tableCell-1-pivotHeaderColumnSummary
+tableCell-2-bodyStyle
+tableCell-2-categoryLevel1Row
+tableCell-2-categoryLevel2Row
+tableCell-2-categoryLevel3Row
+tableCell-2-categoryLevel4Row
+tableCell-2-categoryLevel5Row
+tableCell-2-footerRowStyle
+tableCell-2-headerColumnStyle
+tableCell-2-headerRowStyle
+tableCell-2-labelLevel1Row
+tableCell-2-labelLevel2Row
+tableCell-2-labelLevel3Row
+tableCell-2-labelLevel4Row
+tableCell-2-labelLevel5Row
+"tableCell-2-pivotBodySummaryColumn
+tableCell-2-pivotBodySummaryRow
+$tableCell-2-pivotHeaderColumnSummary
+tableCell-3-bodyStyle
+tableCell-3-categoryLevel1Row
+tableCell-3-categoryLevel2Row
+tableCell-3-categoryLevel3Row
+tableCell-3-categoryLevel4Row
+tableCell-3-categoryLevel5Row
+tableCell-3-footerRowStyle
+tableCell-3-headerColumnStyle
+tableCell-3-headerRowStyle
+tableCell-3-labelLevel1Row
+tableCell-3-labelLevel2Row
+tableCell-3-labelLevel3Row
+tableCell-3-labelLevel4Row
+tableCell-3-labelLevel5Row
+"tableCell-3-pivotBodySummaryColumn
+tableCell-3-pivotBodySummaryRow
+$tableCell-3-pivotHeaderColumnSummary
+tableCell-4-bodyStyle
+tableCell-4-categoryLevel1Row
+tableCell-4-categoryLevel2Row
+tableCell-4-categoryLevel3Row
+tableCell-4-categoryLevel4Row
+tableCell-4-categoryLevel5Row
+tableCell-4-footerRowStyle
+tableCell-4-headerColumnStyle
+tableCell-4-headerRowStyle
+tableCell-4-labelLevel1Row
+tableCell-4-labelLevel2Row
+tableCell-4-labelLevel3Row
+tableCell-4-labelLevel4Row
+tableCell-4-labelLevel5Row
+"tableCell-4-pivotBodySummaryColumn
+tableCell-4-pivotBodySummaryRow
+$tableCell-4-pivotHeaderColumnSummary
+tableCell-5-bodyStyle
+tableCell-5-categoryLevel1Row
+tableCell-5-categoryLevel2Row
+tableCell-5-categoryLevel3Row
+tableCell-5-categoryLevel4Row
+tableCell-5-categoryLevel5Row
+tableCell-5-footerRowStyle
+tableCell-5-headerColumnStyle
+tableCell-5-headerRowStyle
+tableCell-5-labelLevel1Row
+tableCell-5-labelLevel2Row
+tableCell-5-labelLevel3Row
+tableCell-5-labelLevel4Row
+tableCell-5-labelLevel5Row
+"tableCell-5-pivotBodySummaryColumn
+tableCell-5-pivotBodySummaryRow
+$tableCell-5-pivotHeaderColumnSummary
+tableCellText-0-bodyStyle
+!tableCellText-0-categoryLevel1Row
+!tableCellText-0-categoryLevel2Row
+!tableCellText-0-categoryLevel3Row
+!tableCellText-0-categoryLevel4Row
+!tableCellText-0-categoryLevel5Row
+tableCellText-0-footerRowStyle
+!tableCellText-0-headerColumnStyle
+tableCellText-0-headerRowStyle
+tableCellText-0-labelLevel1Row
+tableCellText-0-labelLevel2Row
+tableCellText-0-labelLevel3Row
+tableCellText-0-labelLevel4Row
+tableCellText-0-labelLevel5Row
+tableCellText-1-bodyStyle
+!tableCellText-1-categoryLevel1Row
+!tableCellText-1-categoryLevel2Row
+!tableCellText-1-categoryLevel3Row
+!tableCellText-1-categoryLevel4Row
+!tableCellText-1-categoryLevel5Row
+tableCellText-1-footerRowStyle
+!tableCellText-1-headerColumnStyle
+tableCellText-1-headerRowStyle
+tableCellText-1-labelLevel1Row
+tableCellText-1-labelLevel2Row
+tableCellText-1-labelLevel3Row
+tableCellText-1-labelLevel4Row
+tableCellText-1-labelLevel5Row
+tableCellText-2-bodyStyle
+!tableCellText-2-categoryLevel1Row
+!tableCellText-2-categoryLevel2Row
+!tableCellText-2-categoryLevel3Row
+!tableCellText-2-categoryLevel4Row
+!tableCellText-2-categoryLevel5Row
+tableCellText-2-footerRowStyle
+!tableCellText-2-headerColumnStyle
+tableCellText-2-headerRowStyle
+tableCellText-2-labelLevel1Row
+tableCellText-2-labelLevel2Row
+tableCellText-2-labelLevel3Row
+tableCellText-2-labelLevel4Row
+tableCellText-2-labelLevel5Row
+tableCellText-3-bodyStyle
+!tableCellText-3-categoryLevel1Row
+!tableCellText-3-categoryLevel2Row
+!tableCellText-3-categoryLevel3Row
+!tableCellText-3-categoryLevel4Row
+!tableCellText-3-categoryLevel5Row
+tableCellText-3-footerRowStyle
+!tableCellText-3-headerColumnStyle
+tableCellText-3-headerRowStyle
+tableCellText-3-labelLevel1Row
+tableCellText-3-labelLevel2Row
+tableCellText-3-labelLevel3Row
+tableCellText-3-labelLevel4Row
+tableCellText-3-labelLevel5Row
+tableCellText-4-bodyStyle
+!tableCellText-4-categoryLevel1Row
+!tableCellText-4-categoryLevel2Row
+!tableCellText-4-categoryLevel3Row
+!tableCellText-4-categoryLevel4Row
+!tableCellText-4-categoryLevel5Row
+tableCellText-4-footerRowStyle
+!tableCellText-4-headerColumnStyle
+tableCellText-4-headerRowStyle
+tableCellText-4-labelLevel1Row
+tableCellText-4-labelLevel2Row
+tableCellText-4-labelLevel3Row
+tableCellText-4-labelLevel4Row
+tableCellText-4-labelLevel5Row
+tableCellText-5-bodyStyle
+!tableCellText-5-categoryLevel1Row
+!tableCellText-5-categoryLevel2Row
+!tableCellText-5-categoryLevel3Row
+!tableCellText-5-categoryLevel4Row
+!tableCellText-5-categoryLevel5Row
+tableCellText-5-footerRowStyle
+!tableCellText-5-headerColumnStyle
+tableCellText-5-headerRowStyle
+tableCellText-5-labelLevel1Row
+tableCellText-5-labelLevel2Row
+tableCellText-5-labelLevel3Row
+tableCellText-5-labelLevel4Row
+tableCellText-5-labelLevel5Row
+tableName-0-shapeStyle
+tableName-0-textStyle
+tableName-1-shapeStyle
+tableName-1-textStyle
+tableName-2-shapeStyle
+tableName-2-textStyle
+tableName-3-shapeStyle
+tableName-3-textStyle
+tableName-4-shapeStyle
+tableName-4-textStyle
+tableName-5-shapeStyle
+tableName-5-textStyle
+text-0-liststyle
+text-0-liststyle-None
+text-0-paragraphstyle-Title
+text-1-liststyle
+text-1-liststyle-Bullet
+text-1-tocentrystyle
+ text-11-paragraphstyle-Heading 1
+ text-12-paragraphstyle-Heading 2
+ text-13-paragraphstyle-Heading 3
+ text-14-paragraphstyle-Heading 4
+text-2-liststyle
+text-2-liststyle-Bullet Big
+text-2-tocentrystyle
+text-20-paragraphstyle-Body 1
+text-23-paragraphstyle
+text-24-paragraphstyle
+text-25-paragraphstyle
+ text-26-paragraphstyle-Caption 3
+&text-29-paragraphstyle-Header & Footer
+text-3-liststyle
+text-3-liststyle-Image
+text-3-tocentrystyle
+$text-31-paragraphstyle-Footnote Text
+text-32-paragraphstyle-Label
+!text-33-paragraphstyle-Label Dark
+$text-34-paragraphstyle-Table Title 1
+$text-35-paragraphstyle-Table Style 1
+$text-36-paragraphstyle-Table Style 2
+$text-37-paragraphstyle-Table Style 3
+$text-38-paragraphstyle-Table Style 4
+$text-39-paragraphstyle-Table Style 5
+text-4-liststyle
+text-4-liststyle-Lettered
+text-4-tocentrystyle
+$text-40-paragraphstyle-Table Style 6
+$text-41-paragraphstyle-Table Style 7
+text-5-liststyle-Numbered
+text-6-liststyle-Harvard
+text-6-paragraphstyle-Subtitle
+text-7-liststyle-Dash
+text-8-liststyle-Note Taking
+textbox-0-shapestyle
+toc-entry-style-default
+drop-cap-style-default
+dropcap-style-0
+dropcap-style-1
+dropcap-style-2
+dropcap-style-3
+dropcap-style-4
+dropcap-style-5
+&captions-0-paragraphstyle-Caption Text
+'captions-0-paragraphstyle-Caption Title
+'captions-0-shapestyle-Legenda do Objeto*
+Legenda do Objeto
+&captions-0-paragraphstyle-Caption Text*
+HelveticaNeue-Light:
+text-0-liststyle-None*
+$captions-0-shapestyle-Object Caption*
+"captions-0-shapestyle-Object Title*
+Título do Objeto
+'captions-0-paragraphstyle-Caption Title*
+HelveticaNeue:
+'captions-0-shapestyle-Título do Objeto*
+character-style-hyperlink*
+character-style-null*
+chart-0-categoryaxis_0*
+chart-0-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-0-legend*
+chart-0-paragraphStyle_0*
+Cambria:
+chart-0-paragraphStyle_1*
+Cambria:
+chart-0-paragraphStyle_10*
+HelveticaNeue:
+chart-0-paragraphStyle_11*
+HelveticaNeue:
+chart-0-paragraphStyle_12*
+HelveticaNeue:
+chart-0-paragraphStyle_13*
+HelveticaNeue:
+chart-0-paragraphStyle_14*
+HelveticaNeue:
+chart-0-paragraphStyle_15*
+HelveticaNeue:
+chart-0-paragraphStyle_16*
+HelveticaNeue:
+chart-0-paragraphStyle_17*
+HelveticaNeue:
+chart-0-paragraphStyle_18*
+HelveticaNeue:
+chart-0-paragraphStyle_19*
+HelveticaNeue:
+chart-0-paragraphStyle_2*
+HelveticaNeue:
+chart-0-paragraphStyle_20*
+HelveticaNeue:
+chart-0-paragraphStyle_21*
+HelveticaNeue:
+chart-0-paragraphStyle_22*
+HelveticaNeue:
+chart-0-paragraphStyle_23*
+HelveticaNeue:
+chart-0-paragraphStyle_24*
+HelveticaNeue:
+chart-0-paragraphStyle_25*
+HelveticaNeue:
+chart-0-paragraphStyle_26*
+HelveticaNeue:
+chart-0-paragraphStyle_27*
+HelveticaNeue:
+chart-0-paragraphStyle_28*
+HelveticaNeue:
+chart-0-paragraphStyle_29*
+HelveticaNeue:
+chart-0-paragraphStyle_3*
+HelveticaNeue:
+chart-0-paragraphStyle_4*
+HelveticaNeue:
+chart-0-paragraphStyle_5*
+HelveticaNeue:
+chart-0-paragraphStyle_6*
+HelveticaNeue:
+chart-0-paragraphStyle_7*
+HelveticaNeue:
+chart-0-paragraphStyle_8*
+HelveticaNeue:
+chart-0-paragraphStyle_9*
+HelveticaNeue:
+chart-0-referenceLine_0*
+chart-0-series_0*
+chart-0-series_1*
+chart-0-series_2*
+chart-0-series_3*
+chart-0-series_4*
+chart-0-series_5*
+chart-0-valueaxis_0*
+chart-0-valueaxis_1*
+chart-1-categoryaxis_0*
+chart-1-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-1-legend*
+chart-1-paragraphStyle_0*
+Cambria:
+chart-1-paragraphStyle_1*
+Cambria:
+chart-1-paragraphStyle_10*
+HelveticaNeue:
+chart-1-paragraphStyle_11*
+HelveticaNeue:
+chart-1-paragraphStyle_12*
+HelveticaNeue:
+chart-1-paragraphStyle_13*
+HelveticaNeue:
+chart-1-paragraphStyle_14*
+HelveticaNeue:
+chart-1-paragraphStyle_15*
+HelveticaNeue:
+chart-1-paragraphStyle_16*
+HelveticaNeue:
+chart-1-paragraphStyle_17*
+HelveticaNeue:
+chart-1-paragraphStyle_18*
+HelveticaNeue:
+chart-1-paragraphStyle_19*
+HelveticaNeue:
+chart-1-paragraphStyle_2*
+HelveticaNeue:
+chart-1-paragraphStyle_20*
+HelveticaNeue:
+chart-1-paragraphStyle_21*
+HelveticaNeue:
+chart-1-paragraphStyle_22*
+HelveticaNeue:
+chart-1-paragraphStyle_23*
+HelveticaNeue:
+chart-1-paragraphStyle_24*
+HelveticaNeue:
+chart-1-paragraphStyle_25*
+HelveticaNeue:
+chart-1-paragraphStyle_26*
+HelveticaNeue:
+chart-1-paragraphStyle_27*
+HelveticaNeue:
+chart-1-paragraphStyle_28*
+HelveticaNeue:
+chart-1-paragraphStyle_29*
+HelveticaNeue:
+chart-1-paragraphStyle_3*
+HelveticaNeue:
+chart-1-paragraphStyle_4*
+HelveticaNeue:
+chart-1-paragraphStyle_5*
+HelveticaNeue:
+chart-1-paragraphStyle_6*
+HelveticaNeue:
+chart-1-paragraphStyle_7*
+HelveticaNeue:
+chart-1-paragraphStyle_8*
+HelveticaNeue:
+chart-1-paragraphStyle_9*
+HelveticaNeue:
+chart-1-referenceLine_0*
+chart-1-series_0*
+chart-1-series_1*
+chart-1-series_2*
+chart-1-series_3*
+chart-1-series_4*
+chart-1-series_5*
+chart-1-valueaxis_0*
+chart-1-valueaxis_1*
+chart-2-categoryaxis_0*
+chart-2-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-2-legend*
+chart-2-paragraphStyle_0*
+Cambria:
+chart-2-paragraphStyle_1*
+Cambria:
+chart-2-paragraphStyle_10*
+HelveticaNeue:
+chart-2-paragraphStyle_11*
+HelveticaNeue:
+chart-2-paragraphStyle_12*
+HelveticaNeue:
+chart-2-paragraphStyle_13*
+HelveticaNeue:
+chart-2-paragraphStyle_14*
+HelveticaNeue:
+chart-2-paragraphStyle_15*
+HelveticaNeue:
+chart-2-paragraphStyle_16*
+HelveticaNeue:
+chart-2-paragraphStyle_17*
+HelveticaNeue:
+chart-2-paragraphStyle_18*
+HelveticaNeue:
+chart-2-paragraphStyle_19*
+HelveticaNeue:
+chart-2-paragraphStyle_2*
+HelveticaNeue:
+chart-2-paragraphStyle_20*
+HelveticaNeue:
+chart-2-paragraphStyle_21*
+HelveticaNeue:
+chart-2-paragraphStyle_22*
+HelveticaNeue:
+chart-2-paragraphStyle_23*
+HelveticaNeue:
+chart-2-paragraphStyle_24*
+HelveticaNeue:
+chart-2-paragraphStyle_25*
+HelveticaNeue:
+chart-2-paragraphStyle_26*
+HelveticaNeue:
+chart-2-paragraphStyle_27*
+HelveticaNeue:
+chart-2-paragraphStyle_28*
+HelveticaNeue:
+chart-2-paragraphStyle_29*
+HelveticaNeue:
+chart-2-paragraphStyle_3*
+HelveticaNeue:
+chart-2-paragraphStyle_4*
+HelveticaNeue:
+chart-2-paragraphStyle_5*
+HelveticaNeue:
+chart-2-paragraphStyle_6*
+HelveticaNeue:
+chart-2-paragraphStyle_7*
+HelveticaNeue:
+chart-2-paragraphStyle_8*
+HelveticaNeue:
+chart-2-paragraphStyle_9*
+HelveticaNeue:
+chart-2-referenceLine_0*
+chart-2-series_0*
+chart-2-series_1*
+chart-2-series_2*
+chart-2-series_3*
+chart-2-series_4*
+chart-2-series_5*
+chart-2-valueaxis_0*
+chart-2-valueaxis_1*
+chart-3-categoryaxis_0*
+chart-3-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-3-legend*
+chart-3-paragraphStyle_0*
+Cambria:
+chart-3-paragraphStyle_1*
+Cambria:
+chart-3-paragraphStyle_10*
+HelveticaNeue:
+chart-3-paragraphStyle_11*
+HelveticaNeue:
+chart-3-paragraphStyle_12*
+HelveticaNeue:
+chart-3-paragraphStyle_13*
+HelveticaNeue:
+chart-3-paragraphStyle_14*
+HelveticaNeue:
+chart-3-paragraphStyle_15*
+HelveticaNeue:
+chart-3-paragraphStyle_16*
+HelveticaNeue:
+chart-3-paragraphStyle_17*
+HelveticaNeue:
+chart-3-paragraphStyle_18*
+HelveticaNeue:
+chart-3-paragraphStyle_19*
+HelveticaNeue:
+chart-3-paragraphStyle_2*
+HelveticaNeue:
+chart-3-paragraphStyle_20*
+HelveticaNeue:
+chart-3-paragraphStyle_21*
+HelveticaNeue:
+chart-3-paragraphStyle_22*
+HelveticaNeue:
+chart-3-paragraphStyle_23*
+HelveticaNeue:
+chart-3-paragraphStyle_24*
+HelveticaNeue:
+chart-3-paragraphStyle_25*
+HelveticaNeue:
+chart-3-paragraphStyle_26*
+HelveticaNeue:
+chart-3-paragraphStyle_27*
+HelveticaNeue:
+chart-3-paragraphStyle_28*
+HelveticaNeue:
+chart-3-paragraphStyle_29*
+HelveticaNeue:
+chart-3-paragraphStyle_3*
+HelveticaNeue:
+chart-3-paragraphStyle_4*
+HelveticaNeue:
+chart-3-paragraphStyle_5*
+HelveticaNeue:
+chart-3-paragraphStyle_6*
+HelveticaNeue:
+chart-3-paragraphStyle_7*
+HelveticaNeue:
+chart-3-paragraphStyle_8*
+HelveticaNeue:
+chart-3-paragraphStyle_9*
+HelveticaNeue:
+chart-3-referenceLine_0*
+chart-3-series_0*
+chart-3-series_1*
+chart-3-series_2*
+chart-3-series_3*
+chart-3-series_4*
+chart-3-series_5*
+chart-3-valueaxis_0*
+chart-3-valueaxis_1*
+chart-4-categoryaxis_0*
+chart-4-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-4-legend*
+chart-4-paragraphStyle_0*
+Cambria:
+chart-4-paragraphStyle_1*
+Cambria:
+chart-4-paragraphStyle_10*
+HelveticaNeue:
+chart-4-paragraphStyle_11*
+HelveticaNeue:
+chart-4-paragraphStyle_12*
+HelveticaNeue:
+chart-4-paragraphStyle_13*
+HelveticaNeue:
+chart-4-paragraphStyle_14*
+HelveticaNeue:
+chart-4-paragraphStyle_15*
+HelveticaNeue:
+chart-4-paragraphStyle_16*
+HelveticaNeue:
+chart-4-paragraphStyle_17*
+HelveticaNeue:
+chart-4-paragraphStyle_18*
+HelveticaNeue:
+chart-4-paragraphStyle_19*
+HelveticaNeue:
+chart-4-paragraphStyle_2*
+HelveticaNeue:
+chart-4-paragraphStyle_20*
+HelveticaNeue:
+chart-4-paragraphStyle_21*
+HelveticaNeue:
+chart-4-paragraphStyle_22*
+HelveticaNeue:
+chart-4-paragraphStyle_23*
+HelveticaNeue:
+chart-4-paragraphStyle_24*
+HelveticaNeue:
+chart-4-paragraphStyle_25*
+HelveticaNeue:
+chart-4-paragraphStyle_26*
+HelveticaNeue:
+chart-4-paragraphStyle_27*
+HelveticaNeue:
+chart-4-paragraphStyle_28*
+HelveticaNeue:
+chart-4-paragraphStyle_29*
+HelveticaNeue:
+chart-4-paragraphStyle_3*
+HelveticaNeue:
+chart-4-paragraphStyle_4*
+HelveticaNeue:
+chart-4-paragraphStyle_5*
+HelveticaNeue:
+chart-4-paragraphStyle_6*
+HelveticaNeue:
+chart-4-paragraphStyle_7*
+HelveticaNeue:
+chart-4-paragraphStyle_8*
+HelveticaNeue:
+chart-4-paragraphStyle_9*
+HelveticaNeue:
+chart-4-referenceLine_0*
+chart-4-series_0*
+chart-4-series_1*
+chart-4-series_2*
+chart-4-series_3*
+chart-4-series_4*
+chart-4-series_5*
+chart-4-valueaxis_0*
+chart-4-valueaxis_1*
+chart-5-categoryaxis_0*
+chart-5-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-5-legend*
+chart-5-paragraphStyle_0*
+Cambria:
+chart-5-paragraphStyle_1*
+Cambria:
+chart-5-paragraphStyle_10*
+HelveticaNeue:
+chart-5-paragraphStyle_11*
+HelveticaNeue:
+chart-5-paragraphStyle_12*
+HelveticaNeue:
+chart-5-paragraphStyle_13*
+HelveticaNeue:
+chart-5-paragraphStyle_14*
+HelveticaNeue:
+chart-5-paragraphStyle_15*
+HelveticaNeue:
+chart-5-paragraphStyle_16*
+HelveticaNeue:
+chart-5-paragraphStyle_17*
+HelveticaNeue:
+chart-5-paragraphStyle_18*
+HelveticaNeue:
+chart-5-paragraphStyle_19*
+HelveticaNeue:
+chart-5-paragraphStyle_2*
+HelveticaNeue:
+chart-5-paragraphStyle_20*
+HelveticaNeue:
+chart-5-paragraphStyle_21*
+HelveticaNeue:
+chart-5-paragraphStyle_22*
+HelveticaNeue:
+chart-5-paragraphStyle_23*
+HelveticaNeue:
+chart-5-paragraphStyle_24*
+HelveticaNeue:
+chart-5-paragraphStyle_25*
+HelveticaNeue:
+chart-5-paragraphStyle_26*
+HelveticaNeue:
+chart-5-paragraphStyle_27*
+HelveticaNeue:
+chart-5-paragraphStyle_28*
+HelveticaNeue:
+chart-5-paragraphStyle_29*
+HelveticaNeue:
+chart-5-paragraphStyle_3*
+HelveticaNeue:
+chart-5-paragraphStyle_4*
+HelveticaNeue:
+chart-5-paragraphStyle_5*
+HelveticaNeue:
+chart-5-paragraphStyle_6*
+HelveticaNeue:
+chart-5-paragraphStyle_7*
+HelveticaNeue:
+chart-5-paragraphStyle_8*
+HelveticaNeue:
+chart-5-paragraphStyle_9*
+HelveticaNeue:
+chart-5-referenceLine_0*
+chart-5-series_0*
+chart-5-series_1*
+chart-5-series_2*
+chart-5-series_3*
+chart-5-series_4*
+chart-5-series_5*
+chart-5-valueaxis_0*
+chart-5-valueaxis_1*
+column-style-default*
+drawingline-0-drawinglineStyle*
+equation-0-imageStyle*
+image-0-imageStyle*
+image-1-imageStyle*
+image-2-imageStyle*
+image-3-imageStyle*
+image-4-imageStyle*
+image-5-imageStyle*
+Word Default Style
+imported-paragraph-style-0*
+TimesNewRomanPSMT:
+Heading 4
+imported-paragraph-style-10*
+TimesNewRomanPS-ItalicMT:
+Heading 5
+imported-paragraph-style-11*
+TimesNewRomanPSMT:
+Heading 6
+imported-paragraph-style-12*
+TimesNewRomanPSMT:
+imported-toc-entry-style-1*
+HelveticaNeue:
+imported-toc-entry-style-2*
+HelveticaNeue:
+imported-toc-entry-style-3*
+HelveticaNeue:
+imported-toc-entry-style-4*
+HelveticaNeue:
+imported-toc-entry-style-5*
+HelveticaNeue:
+imported-toc-entry-style-6*
+HelveticaNeue:
+imported-toc-entry-style-7*
+HelveticaNeue:
+imported-toc-entry-style-8*
+HelveticaNeue:
+imported-toc-entry-style-9*
+HelveticaNeue:
+line-0-shapestyle*
+text-23-paragraphstyle*
+Cambria:
+text-0-liststyle*
+line-1-shapestyle*
+line-2-shapestyle*
+line-3-shapestyle*
+line-4-shapestyle*
+line-5-shapestyle*
+movie-0-movieStyle*
+movie-1-movieStyle*
+movie-2-movieStyle*
+movie-3-movieStyle*
+movie-4-movieStyle*
+movie-5-movieStyle*
+paragraph-style-default*
+HelveticaNeue:
+shape-0-shapestyle*
+shape-1-shapestyle*
+text-24-paragraphstyle*
+Cambria:
+shape-2-shapestyle*
+shape-3-shapestyle*
+shape-4-shapestyle*
+shape-5-shapestyle*
+!stickyComment-0-paragraphstyle-12*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-13*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-14*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-15*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-16*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-18*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-22*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-24*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-28*
+HelveticaNeue:
+stickyComment-0-shapeStyle*
+svgimport-0-shapestyle*
+Etiqueta
+text-32-paragraphstyle-Label*
+HelveticaNeue-Medium:
+table-0-tableStyle*
+HelveticaNeue
+table-1-tableStyle*
+HelveticaNeue
+table-2-tableStyle*
+HelveticaNeue
+table-3-tableStyle*
+HelveticaNeue
+table-4-tableStyle*
+HelveticaNeue
+table-5-tableStyle*
+HelveticaNeue
+tableCell-0-bodyStyle*
+tableCell-0-categoryLevel1Row*
+tableCell-0-categoryLevel2Row*
+tableCell-0-categoryLevel3Row*
+tableCell-0-categoryLevel4Row*
+tableCell-0-categoryLevel5Row*
+tableCell-0-footerRowStyle*
+tableCell-0-headerColumnStyle*
+tableCell-0-headerRowStyle*
+tableCell-0-labelLevel1Row*
+tableCell-0-labelLevel2Row*
+tableCell-0-labelLevel3Row*
+tableCell-0-labelLevel4Row*
+tableCell-0-labelLevel5Row*
+"tableCell-0-pivotBodySummaryColumn*
+tableCell-0-pivotBodySummaryRow*
+$tableCell-0-pivotHeaderColumnSummary*
+tableCell-1-bodyStyle*
+tableCell-1-categoryLevel1Row*
+tableCell-1-categoryLevel2Row*
+tableCell-1-categoryLevel3Row*
+tableCell-1-categoryLevel4Row*
+tableCell-1-categoryLevel5Row*
+tableCell-1-footerRowStyle*
+tableCell-1-headerColumnStyle*
+tableCell-1-headerRowStyle*
+tableCell-1-labelLevel1Row*
+tableCell-1-labelLevel2Row*
+tableCell-1-labelLevel3Row*
+tableCell-1-labelLevel4Row*
+tableCell-1-labelLevel5Row*
+"tableCell-1-pivotBodySummaryColumn*
+tableCell-1-pivotBodySummaryRow*
+$tableCell-1-pivotHeaderColumnSummary*
+tableCell-2-bodyStyle*
+tableCell-2-categoryLevel1Row*
+tableCell-2-categoryLevel2Row*
+tableCell-2-categoryLevel3Row*
+tableCell-2-categoryLevel4Row*
+tableCell-2-categoryLevel5Row*
+tableCell-2-footerRowStyle*
+tableCell-2-headerColumnStyle*
+tableCell-2-headerRowStyle*
+tableCell-2-labelLevel1Row*
+tableCell-2-labelLevel2Row*
+tableCell-2-labelLevel3Row*
+tableCell-2-labelLevel4Row*
+tableCell-2-labelLevel5Row*
+"tableCell-2-pivotBodySummaryColumn*
+tableCell-2-pivotBodySummaryRow*
+$tableCell-2-pivotHeaderColumnSummary*
+tableCell-3-bodyStyle*
+tableCell-3-categoryLevel1Row*
+tableCell-3-categoryLevel2Row*
+tableCell-3-categoryLevel3Row*
+tableCell-3-categoryLevel4Row*
+tableCell-3-categoryLevel5Row*
+tableCell-3-footerRowStyle*
+tableCell-3-headerColumnStyle*
+tableCell-3-headerRowStyle*
+tableCell-3-labelLevel1Row*
+tableCell-3-labelLevel2Row*
+tableCell-3-labelLevel3Row*
+tableCell-3-labelLevel4Row*
+tableCell-3-labelLevel5Row*
+"tableCell-3-pivotBodySummaryColumn*
+tableCell-3-pivotBodySummaryRow*
+$tableCell-3-pivotHeaderColumnSummary*
+tableCell-4-bodyStyle*
+tableCell-4-categoryLevel1Row*
+tableCell-4-categoryLevel2Row*
+tableCell-4-categoryLevel3Row*
+tableCell-4-categoryLevel4Row*
+tableCell-4-categoryLevel5Row*
+tableCell-4-footerRowStyle*
+tableCell-4-headerColumnStyle*
+tableCell-4-headerRowStyle*
+tableCell-4-labelLevel1Row*
+tableCell-4-labelLevel2Row*
+tableCell-4-labelLevel3Row*
+tableCell-4-labelLevel4Row*
+tableCell-4-labelLevel5Row*
+"tableCell-4-pivotBodySummaryColumn*
+tableCell-4-pivotBodySummaryRow*
+$tableCell-4-pivotHeaderColumnSummary*
+tableCell-5-bodyStyle*
+tableCell-5-categoryLevel1Row*
+tableCell-5-categoryLevel2Row*
+tableCell-5-categoryLevel3Row*
+tableCell-5-categoryLevel4Row*
+tableCell-5-categoryLevel5Row*
+tableCell-5-footerRowStyle*
+tableCell-5-headerColumnStyle*
+tableCell-5-headerRowStyle*
+tableCell-5-labelLevel1Row*
+tableCell-5-labelLevel2Row*
+tableCell-5-labelLevel3Row*
+tableCell-5-labelLevel4Row*
+tableCell-5-labelLevel5Row*
+"tableCell-5-pivotBodySummaryColumn*
+tableCell-5-pivotBodySummaryRow*
+$tableCell-5-pivotHeaderColumnSummary*
+tableCellText-0-bodyStyle*
+Cambria:
+!tableCellText-0-categoryLevel1Row*
+Helvetica:
+!tableCellText-0-categoryLevel2Row*
+Helvetica:
+!tableCellText-0-categoryLevel3Row*
+Helvetica:
+!tableCellText-0-categoryLevel4Row*
+Helvetica:
+!tableCellText-0-categoryLevel5Row*
+Helvetica:
+tableCellText-0-footerRowStyle*
+Cambria:
+!tableCellText-0-headerColumnStyle*
+Cambria:
+tableCellText-0-headerRowStyle*
+Cambria:
+tableCellText-0-labelLevel1Row*
+Helvetica:
+tableCellText-0-labelLevel2Row*
+Helvetica:
+tableCellText-0-labelLevel3Row*
+Helvetica:
+tableCellText-0-labelLevel4Row*
+Helvetica:
+tableCellText-0-labelLevel5Row*
+Helvetica:
+tableCellText-1-bodyStyle*
+Cambria:
+!tableCellText-1-categoryLevel1Row*
+Helvetica:
+!tableCellText-1-categoryLevel2Row*
+Helvetica:
+!tableCellText-1-categoryLevel3Row*
+Helvetica:
+!tableCellText-1-categoryLevel4Row*
+Helvetica:
+!tableCellText-1-categoryLevel5Row*
+Helvetica:
+tableCellText-1-footerRowStyle*
+Cambria:
+!tableCellText-1-headerColumnStyle*
+Cambria:
+tableCellText-1-headerRowStyle*
+Cambria:
+tableCellText-1-labelLevel1Row*
+Helvetica:
+tableCellText-1-labelLevel2Row*
+Helvetica:
+tableCellText-1-labelLevel3Row*
+Helvetica:
+tableCellText-1-labelLevel4Row*
+Helvetica:
+tableCellText-1-labelLevel5Row*
+Helvetica:
+tableCellText-2-bodyStyle*
+Cambria:
+!tableCellText-2-categoryLevel1Row*
+Helvetica:
+!tableCellText-2-categoryLevel2Row*
+Helvetica:
+!tableCellText-2-categoryLevel3Row*
+Helvetica:
+!tableCellText-2-categoryLevel4Row*
+Helvetica:
+!tableCellText-2-categoryLevel5Row*
+Helvetica:
+tableCellText-2-footerRowStyle*
+Cambria:
+!tableCellText-2-headerColumnStyle*
+Cambria:
+tableCellText-2-headerRowStyle*
+Cambria:
+tableCellText-2-labelLevel1Row*
+Helvetica:
+tableCellText-2-labelLevel2Row*
+Helvetica:
+tableCellText-2-labelLevel3Row*
+Helvetica:
+tableCellText-2-labelLevel4Row*
+Helvetica:
+tableCellText-2-labelLevel5Row*
+Helvetica:
+tableCellText-3-bodyStyle*
+Cambria:
+!tableCellText-3-categoryLevel1Row*
+Helvetica:
+!tableCellText-3-categoryLevel2Row*
+Helvetica:
+!tableCellText-3-categoryLevel3Row*
+Helvetica:
+!tableCellText-3-categoryLevel4Row*
+Helvetica:
+!tableCellText-3-categoryLevel5Row*
+Helvetica:
+tableCellText-3-footerRowStyle*
+Cambria:
+!tableCellText-3-headerColumnStyle*
+Cambria:
+tableCellText-3-headerRowStyle*
+Cambria:
+tableCellText-3-labelLevel1Row*
+Helvetica:
+tableCellText-3-labelLevel2Row*
+Helvetica:
+tableCellText-3-labelLevel3Row*
+Helvetica:
+tableCellText-3-labelLevel4Row*
+Helvetica:
+tableCellText-3-labelLevel5Row*
+Helvetica:
+tableCellText-4-bodyStyle*
+Cambria:
+!tableCellText-4-categoryLevel1Row*
+Helvetica:
+!tableCellText-4-categoryLevel2Row*
+Helvetica:
+!tableCellText-4-categoryLevel3Row*
+Helvetica:
+!tableCellText-4-categoryLevel4Row*
+Helvetica:
+!tableCellText-4-categoryLevel5Row*
+Helvetica:
+tableCellText-4-footerRowStyle*
+Cambria:
+!tableCellText-4-headerColumnStyle*
+Cambria:
+tableCellText-4-headerRowStyle*
+Cambria:
+tableCellText-4-labelLevel1Row*
+Helvetica:
+tableCellText-4-labelLevel2Row*
+Helvetica:
+tableCellText-4-labelLevel3Row*
+Helvetica:
+tableCellText-4-labelLevel4Row*
+Helvetica:
+tableCellText-4-labelLevel5Row*
+Helvetica:
+tableCellText-5-bodyStyle*
+Cambria:
+!tableCellText-5-categoryLevel1Row*
+Helvetica:
+!tableCellText-5-categoryLevel2Row*
+Helvetica:
+!tableCellText-5-categoryLevel3Row*
+Helvetica:
+!tableCellText-5-categoryLevel4Row*
+Helvetica:
+!tableCellText-5-categoryLevel5Row*
+Helvetica:
+tableCellText-5-footerRowStyle*
+Cambria:
+!tableCellText-5-headerColumnStyle*
+Cambria:
+tableCellText-5-headerRowStyle*
+Cambria:
+tableCellText-5-labelLevel1Row*
+Helvetica:
+tableCellText-5-labelLevel2Row*
+Helvetica:
+tableCellText-5-labelLevel3Row*
+Helvetica:
+tableCellText-5-labelLevel4Row*
+Helvetica:
+tableCellText-5-labelLevel5Row*
+Helvetica:
+tableName-0-shapeStyle
+tableName-0-shapeStyle*
+tableName-0-textStyle*
+Cambria:
+tableName-1-shapeStyle
+tableName-1-shapeStyle*
+tableName-1-textStyle*
+Cambria:
+tableName-2-shapeStyle
+tableName-2-shapeStyle*
+tableName-2-textStyle*
+Cambria:
+tableName-3-shapeStyle
+tableName-3-shapeStyle*
+tableName-3-textStyle*
+Cambria:
+tableName-4-shapeStyle
+tableName-4-shapeStyle*
+tableName-4-textStyle*
+Cambria:
+tableName-5-shapeStyle
+tableName-5-shapeStyle*
+tableName-5-textStyle*
+Cambria:
+text-0-paragraphstyle-Title*
+HelveticaNeue-Bold:
+text-20-paragraphstyle-Body 1*
+HelveticaNeue:
+Marcadores
+text-1-liststyle*
+Marcador
+text-1-liststyle-Bullet*
+e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?m
+Cabeçalho 1 do Índice
+text-1-tocentrystyle*
+HelveticaNeue:
+Cabeçalho
+ text-11-paragraphstyle-Heading 1*
+Calibri-Bold:
+Cabeçalho 2
+ text-12-paragraphstyle-Heading 2*
+Calibri-Bold:
+Cabeçalho 3
+ text-13-paragraphstyle-Heading 3*
+TimesNewRomanPSMT:
+Cabeçalho Vermelho
+ text-14-paragraphstyle-Heading 4*
+HelveticaNeue-Bold:
+text-2-liststyle*
+Marcador Grande
+text-2-liststyle-Bullet Big*
+e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?m
+Cabeçalho Menor 2 do Índice
+text-2-tocentrystyle*
+HelveticaNeue:
+text-25-paragraphstyle*
+Cambria:
+ text-26-paragraphstyle-Caption 3*
+HelveticaNeue-Bold:
+Cabeçalho e Rodapé
+&text-29-paragraphstyle-Header & Footer*
+HelveticaNeue:
+text-3-liststyle*
+text-3-liststyle-Image*
+Cabeçalho 3 do Índice
+text-3-tocentrystyle*
+HelveticaNeue:
+Nota de rodapé
+$text-31-paragraphstyle-Footnote Text*
+HelveticaNeue:
+Etiqueta Escura
+!text-33-paragraphstyle-Label Dark*
+HelveticaNeue-Medium:
+Título de Tabela 1
+$text-34-paragraphstyle-Table Title 1*
+HelveticaNeue:
+Estilo de Tabela 1
+$text-35-paragraphstyle-Table Style 1*
+HelveticaNeue-Bold:
+Estilo de Tabela 2
+$text-36-paragraphstyle-Table Style 2*
+HelveticaNeue:
+Estilo de Tabela 3
+$text-37-paragraphstyle-Table Style 3*
+HelveticaNeue-Bold:
+Estilo de Tabela 4
+$text-38-paragraphstyle-Table Style 4*
+HelveticaNeue-Medium:
+Estilo de Tabela 5
+$text-39-paragraphstyle-Table Style 5*
+HelveticaNeue-Medium:
+text-4-liststyle*
+text-4-liststyle-Lettered*
+Cabeçalho do Índice 4
+text-4-tocentrystyle*
+HelveticaNeue:
+Estilo de Tabela 6
+$text-40-paragraphstyle-Table Style 6*
+HelveticaNeue-Medium:
+Estilo de Tabela 7
+$text-41-paragraphstyle-Table Style 7*
+HelveticaNeue:
+text-5-liststyle-Numbered*
+text-6-liststyle-Harvard*
+Subtítulo
+text-6-paragraphstyle-Subtitle*
+HelveticaNeue:
+text-7-liststyle-Dash*
+e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?m
+Anotações
+text-8-liststyle-Note Taking*
+textbox-0-shapestyle*
+toc-entry-style-default*
+HelveticaNeue:
+drop-cap-style-default*
+dropcap-style-0*
+dropcap-style-1*
+HelveticaNeue-Bold:
+dropcap-style-2*
+HelveticaNeue-Bold:
+dropcap-style-3*
+HelveticaNeue-Bold:
+dropcap-style-4*
+HelveticaNeue-Bold:
+dropcap-style-5*
+HelveticaNeue-Medium:
+TimesNewRomanPS-BoldMT
+TimesNewRomanPS-BoldMT:
+TimesNewRomanPSMT
+TimesNewRomanPSMT:
+TimesNewRomanPSMT
+TimesNewRomanPS-ItalicMT
+TimesNewRomanPS-BoldMT
+TimesNewRomanPSMT
+
+
+===== Index/Metadata.iwa (105254 bytes) =====
+
+$FD257C10-7EFF-42BF-A236-C387FB0F4C01
+Tables/DataList
+Tables/DataList-1734570-2"
+Tables/DataList
+Tables/DataList-1734572-2"
+Tables/DataList
+Tables/DataList-1734577-2"
+Tables/DataList
+Tables/DataList-1734569-2"
+Tables/DataList
+Tables/DataList-1734576-2"
+Tables/DataList
+Tables/DataList-1734571-2"
+Tables/DataList
+Tables/DataList-1734568-2"
+Tables/DataList
+Tables/DataList-1734567-2"
+Tables/Tile
+Tables/Tile-1734566-2"
+Tables/DataList
+Tables/DataList-1734249-2"
+Tables/DataList
+Tables/DataList-1734254-2"
+Tables/DataList
+Tables/DataList-1734253-2"
+Tables/DataList
+Tables/DataList-1734252-2"
+Tables/DataList
+Tables/DataList-1734251-2"
+Tables/DataList
+Tables/DataList-1734250-2"
+Tables/DataList
+Tables/DataList-1734245-2"
+Tables/DataList
+Tables/DataList-1734244-2"
+Tables/Tile
+Tables/Tile-1734243-2"
+Tables/DataList
+Tables/DataList-1734558-2"
+Tables/DataList
+Tables/DataList-1734560-2"
+Tables/DataList
+Tables/DataList-1734565-2"
+Tables/DataList
+Tables/DataList-1734564-2"
+Tables/DataList
+Tables/DataList-1734563-2"
+Tables/DataList
+Tables/DataList-1734562-2"
+Tables/DataList
+Tables/DataList-1734561-2"
+Tables/DataList
+Tables/DataList-1734559-2"
+Tables/DataList
+Tables/DataList-1734180-2"
+Tables/DataList
+Tables/DataList-1734182-2"
+Tables/DataList
+Tables/DataList-1734179-2"
+Tables/DataList
+Tables/DataList-1734185-2"
+Tables/DataList
+Tables/DataList-1734184-2"
+Tables/DataList
+Tables/DataList-1734183-2"
+Tables/DataList
+Tables/DataList-1734181-2"
+Tables/DataList
+Tables/DataList-1734178-2"
+Tables/DataList
+Tables/DataList-1734544-2"
+Tables/DataList
+Tables/DataList-1734543-2"
+Tables/Tile
+Tables/Tile-1734542-2"
+Tables/DataList
+Tables/DataList-1734104-2"
+Tables/DataList
+Tables/DataList-1734106-2"
+Tables/DataList
+Tables/DataList-1734111-2"
+Tables/DataList
+Tables/DataList-1734103-2"
+Tables/DataList
+Tables/DataList-1734110-2"
+Tables/DataList
+Tables/DataList-1734109-2"
+Tables/DataList
+Tables/DataList-1734108-2"
+Tables/DataList
+Tables/DataList-1734107-2"
+Tables/DataList
+Tables/DataList-1734105-2"
+Tables/DataList
+Tables/DataList-1734102-2"
+Tables/DataList
+Tables/DataList-1734101-2"
+Tables/DataList
+Tables/DataList-1734534-2"
+Tables/DataList
+Tables/DataList-1735870-2"
+Tables/DataList
+Tables/DataList-1734541-2"
+Tables/DataList
+Tables/DataList-1734533-2"
+Tables/DataList
+Tables/DataList-1734540-2"
+Tables/DataList
+Tables/DataList-1734539-2"
+Tables/DataList
+Tables/DataList-1734538-2"
+Tables/DataList
+Tables/DataList-1734532-2"
+Tables/DataList
+Tables/DataList-1734531-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735869-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735868-2"
+Tables/Tile
+Tables/Tile-1734530-2"
+Tables/DataList
+Tables/DataList-1734052-2"
+Tables/DataList
+Tables/DataList-1734054-2"
+Tables/DataList
+Tables/DataList-1735859-2"
+Tables/DataList
+Tables/DataList-1734051-2"
+Tables/DataList
+Tables/DataList-1734058-2"
+Tables/DataList
+Tables/DataList-1734057-2"
+Tables/DataList
+Tables/DataList-1734056-2"
+Tables/DataList
+Tables/DataList-1734055-2"
+Tables/DataList
+Tables/DataList-1734053-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735858-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735857-2"
+Tables/DataList
+Tables/DataList-1734522-2"
+Tables/DataList
+Tables/DataList-1734529-2"
+Tables/DataList
+Tables/DataList-1734521-2"
+Tables/DataList
+Tables/DataList-1734528-2"
+Tables/DataList
+Tables/DataList-1734527-2"
+Tables/DataList
+Tables/DataList-1734523-2"
+Tables/DataList
+Tables/DataList-1734520-2"
+Tables/DataList
+Tables/DataList-1734519-2"
+Tables/Tile
+Tables/Tile-1734518-2"
+Tables/DataList
+Tables/DataList-1733980-2"
+Tables/DataList
+Tables/DataList-1735810-2"
+Tables/DataList
+Tables/DataList-1733979-2"
+Tables/DataList
+Tables/DataList-1733978-2"
+Tables/DataList
+Tables/DataList-1733977-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735809-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735808-2"
+Tables/Tile
+Tables/Tile-1733976-2"
+Tables/DataList
+Tables/DataList-1734510-2"
+Tables/DataList
+Tables/DataList-1734512-2"
+Tables/DataList
+Tables/DataList-1734517-2"
+Tables/DataList
+Tables/DataList-1734509-2"
+Tables/DataList
+Tables/DataList-1734516-2"
+Tables/DataList
+Tables/DataList-1734515-2"
+Tables/DataList
+Tables/DataList-1734514-2"
+Tables/DataList
+Tables/DataList-1734513-2"
+Tables/DataList
+Tables/DataList-1734511-2"
+Tables/DataList
+Tables/DataList-1734508-2"
+Tables/DataList
+Tables/DataList-1734507-2"
+Tables/DataList
+Tables/DataList-1734187-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735781-2"
+Tables/DataList
+Tables/DataList-1734186-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735780-2"
+Tables/Tile
+Tables/Tile-1734506-2"
+Tables/DataList
+Tables/DataList-1734177-2"
+Tables/DataList
+Tables/DataList-1735771-2"
+Tables/DataList
+Tables/DataList-1733935-2"
+Tables/DataList
+Tables/DataList-1733927-2"
+Tables/DataList
+Tables/DataList-1733934-2"
+Tables/DataList
+Tables/DataList-1733933-2"
+Tables/DataList
+Tables/DataList-1733932-2"
+Tables/DataList
+Tables/DataList-1733931-2"
+Tables/DataList
+Tables/DataList-1733926-2"
+Tables/DataList
+Tables/DataList-1733925-2"
+Tables/Tile
+Tables/Tile-1734176-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735770-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735769-2"
+Tables/DataList
+Tables/DataList-1734498-2"
+Tables/DataList
+Tables/DataList-1734500-2"
+Tables/DataList
+Tables/DataList-1735743-2"
+Tables/DataList
+Tables/DataList-1734505-2"
+Tables/DataList
+Tables/DataList-1734504-2"
+Tables/DataList
+Tables/DataList-1734503-2"
+Tables/DataList
+Tables/DataList-1734502-2"
+Tables/DataList
+Tables/DataList-1734501-2"
+Tables/DataList
+Tables/DataList-1734499-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735742-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735741-2"
+Tables/DataList
+Tables/DataList-1735732-2"
+Tables/DataList
+Tables/DataList-1733883-2"
+Tables/DataList
+Tables/DataList-1733875-2"
+Tables/DataList
+Tables/DataList-1733882-2"
+Tables/DataList
+Tables/DataList-1733881-2"
+Tables/DataList
+Tables/DataList-1733880-2"
+Tables/DataList
+Tables/DataList-1733879-2"
+Tables/DataList
+Tables/DataList-1733874-2"
+Tables/DataList
+Tables/DataList-1733873-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735731-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735730-2"
+Tables/Tile
+Tables/Tile-1733872-2"
+Tables/Tile
+Tables/Tile-1734100-2"
+Tables/DataList
+Tables/DataList-1735694-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735693-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735692-2"
+Tables/DataList
+Tables/DataList-1733804-2"
+Tables/DataList
+Tables/DataList-1733803-2"
+Tables/DataList
+Tables/DataList-1733802-2"
+Tables/DataList
+Tables/DataList-1733801-2"
+Tables/Tile
+Tables/Tile-1733800-2"
+Tables/DataList
+Tables/DataList-1735655-2"
+Tables/DataList
+Tables/DataList-1734472-2"
+Tables/DataList
+Tables/DataList-1734471-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735654-2"
+Tables/DataList
+Tables/DataList-1734059-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735653-2"
+Tables/Tile
+Tables/Tile-1734470-2"
+Tables/DataList
+Tables/DataList-1734050-2"
+Tables/DataList
+Tables/DataList-1735644-2"
+Tables/DataList
+Tables/DataList-1734049-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735643-2"
+Tables/Tile
+Tables/Tile-1734048-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735642-2"
+Tables/DataList
+Tables/DataList-1734545-2"
+Tables/Tile
+Tables/Tile-1733748-2"
+Tables/DataList
+Tables/DataList-1734462-2"
+Tables/DataList
+Tables/DataList-1734464-2"
+Tables/DataList
+Tables/DataList-1735606-2"
+Tables/DataList
+Tables/DataList-1734469-2"
+Tables/DataList
+Tables/DataList-1734461-2"
+Tables/DataList
+Tables/DataList-1734468-2"
+Tables/DataList
+Tables/DataList-1734467-2"
+Tables/DataList
+Tables/DataList-1734466-2"
+Tables/DataList
+Tables/DataList-1734465-2"
+Tables/DataList
+Tables/DataList-1734463-2"
+Tables/DataList
+Tables/DataList-1734460-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735605-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735604-2"
+Tables/DataList
+Tables/DataList-1734477-2"
+Tables/DataList
+Tables/DataList-1733680-2"
+Tables/DataList
+Tables/DataList-1734479-2"
+Tables/DataList
+Tables/DataList-1733682-2"
+Tables/DataList
+Tables/DataList-1735595-2"
+Tables/DataList
+Tables/DataList-1734476-2"
+Tables/DataList
+Tables/DataList-1733679-2"
+Tables/Tile
+Tables/Tile-1734482-2"
+Tables/DataList
+Tables/DataList-1733685-2"
+Tables/DataList
+Tables/DataList-1734481-2"
+Tables/DataList
+Tables/DataList-1733684-2"
+Tables/DataList
+Tables/DataList-1734480-2"
+Tables/DataList
+Tables/DataList-1733683-2"
+Tables/DataList
+Tables/DataList-1734478-2"
+Tables/DataList
+Tables/DataList-1733681-2"
+Tables/DataList
+Tables/DataList-1734475-2"
+Tables/DataList
+Tables/DataList-1733678-2"
+Tables/DataList
+Tables/DataList-1734474-2"
+Tables/DataList
+Tables/DataList-1733677-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735594-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735593-2"
+Tables/DataList
+Tables/DataList-1734473-2"
+Tables/Tile
+Tables/Tile-1733676-2"
+Tables/DataList
+Tables/DataList-1734450-2"
+Tables/DataList
+Tables/DataList-1734452-2"
+Tables/DataList
+Tables/DataList-1735563-2"
+Tables/DataList
+Tables/DataList-1734449-2"
+Tables/DataList
+Tables/DataList-1734456-2"
+Tables/DataList
+Tables/DataList-1734455-2"
+Tables/DataList
+Tables/DataList-1734454-2"
+Tables/DataList
+Tables/DataList-1734453-2"
+Tables/DataList
+Tables/DataList-1734451-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735562-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735561-2"
+Tables/DataList
+Tables/DataList-1735552-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735551-2"
+ViewState"
+Tables/DataList
+Tables/DataList-1734438-2"
+Tables/DataList
+Tables/DataList-1734440-2"
+Tables/DataList
+Tables/DataList-1734445-2"
+Tables/DataList
+Tables/DataList-1734437-2"
+Tables/DataList
+Tables/DataList-1734444-2"
+Tables/DataList
+Tables/DataList-1734443-2"
+Tables/DataList
+Tables/DataList-1734442-2"
+Tables/DataList
+Tables/DataList-1734441-2"
+Tables/DataList
+Tables/DataList-1734439-2"
+Tables/DataList
+Tables/DataList-1734436-2"
+Tables/DataList
+Tables/DataList-1734435-2"
+Tables/DataList
+Tables/DataList-1733625-2"
+Tables/Tile
+Tables/Tile-1734422-2"
+Tables/DataList
+Tables/DataList-1733877-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735471-2"
+Tables/DataList
+Tables/DataList-1733876-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735470-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1736010-2"
+Tables/DataList
+Tables/DataList-1733619-2"
+Tables/DataList
+Tables/DataList-1734416-2"
+Tables/DataList
+Tables/DataList-1735426-2"
+Tables/DataList
+Tables/DataList-1733624-2"
+Tables/DataList
+Tables/DataList-1734421-2"
+Tables/DataList
+Tables/DataList-1733623-2"
+Tables/DataList
+Tables/DataList-1734420-2"
+Tables/DataList
+Tables/DataList-1733622-2"
+Tables/DataList
+Tables/DataList-1734419-2"
+Tables/DataList
+Tables/DataList-1733621-2"
+Tables/DataList
+Tables/DataList-1734418-2"
+Tables/DataList
+Tables/DataList-1736011-2"
+Tables/DataList
+Tables/DataList-1733620-2"
+Tables/DataList
+Tables/DataList-1734417-2"
+Tables/DataList
+Tables/DataList-1732818-2"
+Tables/DataList
+Tables/DataList-1735209-2"
+Tables/DataList
+Tables/DataList-1734412-2"
+Tables/DataList
+Tables/DataList-1732817-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735208-2"
+Tables/DataList
+Tables/DataList-1734411-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735425-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735424-2"
+Tables/DataList
+Tables/DataList-1732819-2"
+Tables/DataList
+Tables/DataList-1734413-2"
+Tables/Tile
+Tables/Tile-1733616-2"
+Tables/DataList
+Tables/DataList-1732816-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735207-2"
+Tables/Tile
+Tables/Tile-1734410-2"
+Tables/DataList
+Tables/DataList-1733424-2"
+Tables/DataList
+Tables/DataList-1733426-2"
+Tables/DataList
+Tables/DataList-1733431-2"
+Tables/DataList
+Tables/DataList-1733423-2"
+Tables/DataList
+Tables/DataList-1735415-2"
+Tables/DataList
+Tables/DataList-1735821-2"
+Tables/DataList
+Tables/DataList-1733430-2"
+Tables/DataList
+Tables/DataList-1733427-2"
+Tables/DataList
+Tables/DataList-1733425-2"
+Tables/DataList
+Tables/DataList-1733422-2"
+Tables/DataList
+Tables/DataList-1733421-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735820-2"
+Tables/DataList
+Tables/DataList-1733429-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735414-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735819-2"
+Tables/DataList
+Tables/DataList-1733428-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735413-2"
+Tables/Tile
+Tables/Tile-1733420-2"
+Tables/DataList
+Tables/DataList-1732815-2"
+Tables/DataList
+Tables/DataList-1734409-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735381-2"
+Tables/DataList
+Tables/DataList-1733364-2"
+Tables/DataList
+Tables/DataList-1733366-2"
+Tables/DataList
+Tables/DataList-1733371-2"
+Tables/DataList
+Tables/DataList-1733363-2"
+Tables/DataList
+Tables/DataList-1733370-2"
+Tables/DataList
+Tables/DataList-1733369-2"
+Tables/DataList
+Tables/DataList-1733368-2"
+Tables/DataList
+Tables/DataList-1733367-2"
+Tables/DataList
+Tables/DataList-1733365-2"
+Tables/DataList
+Tables/DataList-1733362-2"
+Tables/DataList
+Tables/DataList-1733361-2"
+Tables/DataList
+Tables/DataList-1734574-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735371-2"
+Tables/DataList
+Tables/DataList-1734573-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735370-2"
+Tables/DataList
+Tables/DataList-1734390-2"
+Tables/DataList
+Tables/DataList-1734392-2"
+Tables/DataList
+Tables/DataList-1734389-2"
+Tables/DataList
+Tables/DataList-1734396-2"
+Tables/DataList
+Tables/DataList-1734395-2"
+Tables/DataList
+Tables/DataList-1734394-2"
+Tables/DataList
+Tables/DataList-1734393-2"
+Tables/DataList
+Tables/DataList-1734391-2"
+Tables/DataList
+Tables/DataList-1734388-2"
+Tables/DataList
+Tables/DataList-1734387-2"
+Tables/DataList
+Tables/DataList-1734536-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735333-2"
+Tables/DataList
+Tables/DataList-1734535-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735332-2"
+Tables/DataList
+Tables/DataList-1734526-2"
+Tables/DataList
+Tables/DataList-1735323-2"
+Tables/DataList
+Tables/DataList-1734525-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735322-2"
+Tables/DataList
+Tables/DataList-1734524-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735321-2"
+Tables/Tile
+Tables/Tile-1733288-2"
+Tables/DataList
+Tables/DataList-1734496-2"
+Tables/DataList
+Tables/DataList-1732902-2"
+Tables/DataList
+Tables/DataList-1735293-2"
+Tables/DataList
+Tables/DataList-1734495-2"
+Tables/DataList
+Tables/DataList-1732901-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735292-2"
+Tables/Tile
+Tables/Tile-1734494-2"
+Tables/DataList
+Tables/DataList-1732900-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735291-2"
+Tables/DataList
+Tables/DataList-1734427-2"
+Tables/DataList
+Tables/DataList-1733236-2"
+Tables/DataList
+Tables/DataList-1734429-2"
+Tables/DataList
+Tables/DataList-1733238-2"
+Tables/Tile
+Tables/Tile-1734434-2"
+Tables/DataList
+Tables/DataList-1733243-2"
+Tables/DataList
+Tables/DataList-1734426-2"
+Tables/DataList
+Tables/DataList-1733235-2"
+Tables/DataList
+Tables/DataList-1734433-2"
+Tables/DataList
+Tables/DataList-1733242-2"
+Tables/DataList
+Tables/DataList-1734432-2"
+Tables/DataList
+Tables/DataList-1733241-2"
+Tables/DataList
+Tables/DataList-1734431-2"
+Tables/DataList
+Tables/DataList-1733240-2"
+Tables/DataList
+Tables/DataList-1734430-2"
+Tables/DataList
+Tables/DataList-1733239-2"
+Tables/DataList
+Tables/DataList-1734428-2"
+Tables/DataList
+Tables/DataList-1733237-2"
+Tables/DataList
+Tables/DataList-1734425-2"
+Tables/DataList
+Tables/DataList-1733234-2"
+Tables/DataList
+Tables/DataList-1733627-2"
+Tables/DataList
+Tables/DataList-1734424-2"
+Tables/DataList
+Tables/DataList-1733233-2"
+Tables/DataList
+Tables/DataList-1733626-2"
+Tables/DataList
+Tables/DataList-1734423-2"
+Tables/Tile
+Tables/Tile-1733232-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735166-2"
+Tables/DataList
+Tables/DataList-1734369-2"
+Tables/DataList
+Tables/DataList-1733572-2"
+Tables/DataList
+Tables/DataList-1735960-2"
+Tables/DataList
+Tables/DataList-1733569-2"
+Tables/DataList
+Tables/DataList-1734366-2"
+Tables/DataList
+Tables/DataList-1735168-2"
+Tables/DataList
+Tables/DataList-1734371-2"
+Tables/DataList
+Tables/DataList-1733574-2"
+Tables/DataList
+Tables/DataList-1733571-2"
+Tables/DataList
+Tables/DataList-1734368-2"
+Tables/DataList
+Tables/DataList-1734459-2"
+Tables/DataList
+Tables/DataList-1735256-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735959-2"
+Tables/DataList
+Tables/DataList-1733568-2"
+Tables/DataList
+Tables/DataList-1734365-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735167-2"
+Tables/DataList
+Tables/DataList-1733573-2"
+Tables/DataList
+Tables/DataList-1734370-2"
+Tables/DataList
+Tables/DataList-1734372-2"
+Tables/DataList
+Tables/DataList-1733575-2"
+Tables/DataList
+Tables/DataList-1734367-2"
+Tables/DataList
+Tables/DataList-1733570-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735958-2"
+Tables/DataList
+Tables/DataList-1733567-2"
+Tables/DataList
+Tables/DataList-1734364-2"
+Tables/Tile
+Tables/Tile-1734458-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735255-2"
+Tables/DataList
+Tables/DataList-1734457-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735254-2"
+Tables/DataList
+Tables/DataList-1734379-2"
+Tables/DataList
+Tables/DataList-1733985-2"
+Tables/DataList
+Tables/DataList-1733188-2"
+Tables/DataList
+Tables/DataList-1734381-2"
+Tables/DataList
+Tables/DataList-1733987-2"
+Tables/DataList
+Tables/DataList-1733190-2"
+Tables/DataList
+Tables/DataList-1734448-2"
+Tables/DataList
+Tables/DataList-1735245-2"
+Tables/Tile
+Tables/Tile-1734386-2"
+Tables/DataList
+Tables/DataList-1733195-2"
+Tables/DataList
+Tables/DataList-1734385-2"
+Tables/DataList
+Tables/DataList-1733194-2"
+Tables/DataList
+Tables/DataList-1734384-2"
+Tables/DataList
+Tables/DataList-1733193-2"
+Tables/DataList
+Tables/DataList-1734383-2"
+Tables/DataList
+Tables/DataList-1733192-2"
+Tables/DataList
+Tables/DataList-1734382-2"
+Tables/DataList
+Tables/DataList-1733191-2"
+Tables/DataList
+Tables/DataList-1734380-2"
+Tables/DataList
+Tables/DataList-1733986-2"
+Tables/DataList
+Tables/DataList-1733189-2"
+Tables/DataList
+Tables/DataList-1734447-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735244-2"
+Tables/Tile
+Tables/Tile-1734446-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735243-2"
+Tables/DataList
+Tables/DataList-1734375-2"
+Tables/DataList
+Tables/DataList-1733981-2"
+Tables/Tile
+Tables/Tile-1733184-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735948-2"
+Tables/DataList
+Tables/DataList-1734354-2"
+Tables/DataList
+Tables/DataList-1734356-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1736009-2"
+Tables/DataList
+Tables/DataList-1733618-2"
+Tables/DataList
+Tables/DataList-1734415-2"
+Tables/DataList
+Tables/DataList-1734358-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735155-2"
+Tables/Tile
+Tables/Tile-1733564-2"
+Tables/DataList
+Tables/DataList-1734361-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735947-2"
+Tables/DataList
+Tables/DataList-1734353-2"
+Tables/DataList
+Tables/DataList-1734363-2"
+Tables/DataList
+Tables/DataList-1733566-2"
+Tables/DataList
+Tables/DataList-1735157-2"
+Tables/DataList
+Tables/DataList-1734360-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735550-2"
+Tables/Tile
+Tables/Tile-1734362-2"
+Tables/DataList
+Tables/DataList-1733565-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735156-2"
+Tables/DataList
+Tables/DataList-1734359-2"
+Tables/DataList
+Tables/DataList-1734357-2"
+Tables/DataList
+Tables/DataList-1735949-2"
+Tables/DataList
+Tables/DataList-1734355-2"
+Tables/DataList
+Tables/DataList-1734352-2"
+Tables/DataList
+Tables/DataList-1734351-2"
+Tables/DataList
+Tables/DataList-1733617-2"
+Tables/DataList
+Tables/DataList-1732820-2"
+Tables/DataList
+Tables/DataList-1734414-2"
+Tables/Tile
+Tables/Tile-1734350-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735998-2"
+Tables/DataList"
+Tables/DataList
+Tables/DataList-1734404-2"
+Tables/DataList
+Tables/DataList-1734401-2"
+Tables/DataList
+Tables/DataList-1735198-2"
+Tables/Tile"
+Tables/DataList
+Tables/DataList-1734403-2"
+Tables/DataList
+Tables/DataList-1734400-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735197-2"
+Tables/DataList
+Tables/DataList-1734402-2"
+Tables/DataList
+Tables/DataList-1734408-2"
+Tables/DataList
+Tables/DataList-1732814-2"
+Tables/DataList
+Tables/DataList-1734399-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735196-2"
+Tables/DataList
+Tables/DataList-1734344-2"
+Tables/Tile
+Tables/Tile-1734374-2"
+Tables/DataList
+Tables/DataList-1734349-2"
+Tables/DataList
+Tables/DataList-1734348-2"
+Tables/DataList
+Tables/DataList-1734347-2"
+Tables/DataList
+Tables/DataList-1734346-2"
+Tables/DataList
+Tables/DataList-1734345-2"
+DocumentMetadata"
+Tables/DataList
+Tables/DataList-1734343-2"
+Tables/DataList
+Tables/DataList-1734373-2"
+Tables/DataList
+Tables/DataList-1733066-2"
+Tables/DataList
+Tables/DataList-1734378-2"
+Tables/DataList
+Tables/DataList-1733984-2"
+Tables/DataList
+Tables/DataList-1733187-2"
+Tables/DataList
+Tables/DataList-1733071-2"
+Tables/DataList
+Tables/DataList-1733070-2"
+Tables/DataList
+Tables/DataList-1733069-2"
+Tables/DataList
+Tables/DataList-1733068-2"
+Tables/DataList
+Tables/DataList-1733067-2"
+Tables/DataList
+Tables/DataList-1733065-2"
+Tables/DataList
+Tables/DataList-1733061-2"
+Tables/DataList
+Tables/DataList-1734377-2"
+Tables/DataList
+Tables/DataList-1733983-2"
+Tables/DataList
+Tables/DataList-1733186-2"
+Tables/DataList
+Tables/DataList-1734376-2"
+Tables/DataList
+Tables/DataList-1733982-2"
+Tables/DataList
+Tables/DataList-1733185-2"
+Tables/DataList
+Tables/DataList-1734248-2"
+Tables/DataList
+Tables/DataList-1735045-2"
+Tables/Tile
+Tables/Tile-1733060-2"
+Tables/DataList
+Tables/DataList-1734327-2"
+Tables/Tile
+Tables/Tile-1734326-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735127-2"
+Tables/DataList
+Tables/DataList-1734330-2"
+Tables/DataList
+Tables/DataList-1734324-2"
+Tables/DataList
+Tables/DataList-1734321-2"
+Tables/DataList
+Tables/DataList-1735118-2"
+Tables/DataList
+Tables/DataList-1733019-2"
+Tables/DataList
+Tables/DataList-1733018-2"
+Tables/DataList
+Tables/DataList-1734329-2"
+Tables/DataList
+Tables/DataList-1734323-2"
+Tables/DataList
+Tables/DataList-1734320-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735117-2"
+Tables/DataList
+Tables/DataList-1734328-2"
+Tables/DataList
+Tables/DataList-1733122-2"
+Tables/DataList
+Tables/DataList-1735513-2"
+Tables/DataList
+Tables/DataList-1734322-2"
+Tables/DataList
+Tables/DataList-1734319-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735116-2"
+Tables/DataList
+Tables/DataList-1734325-2"
+Tables/DataList
+Tables/DataList-1733123-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735908-2"
+Tables/DataList
+Tables/DataList-1733517-2"
+Tables/Tile
+Tables/Tile-1734314-2"
+Tables/DataList
+Tables/DataList-1734332-2"
+Tables/DataList
+Tables/DataList-1735129-2"
+Tables/DataList
+Tables/DataList-1734335-2"
+Tables/DataList
+Tables/DataList-1734550-2"
+Tables/DataList
+Tables/DataList-1733753-2"
+Tables/DataList
+Tables/DataList-1732956-2"
+Tables/DataList
+Tables/DataList-1733125-2"
+Tables/DataList
+Tables/DataList-1733519-2"
+Tables/DataList
+Tables/DataList-1734316-2"
+Tables/DataList
+Tables/DataList-1734337-2"
+Tables/DataList
+Tables/DataList-1734552-2"
+Tables/DataList
+Tables/DataList-1733755-2"
+Tables/DataList
+Tables/DataList-1732958-2"
+Tables/DataList
+Tables/DataList-1733121-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735512-2"
+Tables/DataList
+Tables/DataList-1734342-2"
+Tables/Tile
+Tables/Tile-1733360-2"
+Tables/DataList
+Tables/DataList-1734557-2"
+Tables/DataList
+Tables/DataList-1732963-2"
+Tables/DataList
+Tables/DataList-1733120-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735511-2"
+Tables/DataList
+Tables/DataList-1734341-2"
+Tables/DataList
+Tables/DataList-1734556-2"
+Tables/DataList
+Tables/DataList-1733759-2"
+Tables/DataList
+Tables/DataList-1732962-2"
+Tables/DataList
+Tables/DataList-1733124-2"
+Tables/DataList
+Tables/DataList-1735909-2"
+Tables/DataList
+Tables/DataList-1733518-2"
+Tables/DataList
+Tables/DataList-1734315-2"
+Tables/DataList
+Tables/DataList-1734336-2"
+Tables/DataList
+Tables/DataList-1734551-2"
+Tables/DataList
+Tables/DataList-1733754-2"
+Tables/DataList
+Tables/DataList-1732957-2"
+Tables/DataList
+Tables/DataList-1734331-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735128-2"
+Tables/DataList
+Tables/DataList-1734334-2"
+Tables/DataList
+Tables/DataList-1734549-2"
+Tables/DataList
+Tables/DataList-1733752-2"
+Tables/DataList
+Tables/DataList-1732955-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735907-2"
+Tables/DataList
+Tables/DataList-1733516-2"
+Tables/DataList
+Tables/DataList-1734313-2"
+Tables/DataList
+Tables/DataList-1734308-2"
+Tables/DataList
+Tables/DataList-1733511-2"
+Tables/Tile
+Tables/Tile-1733508-2"
+Tables/DataList
+Tables/DataList-1734305-2"
+Tables/DataList
+Tables/DataList-1734312-2"
+Tables/DataList
+Tables/DataList-1733515-2"
+Tables/DataList
+Tables/DataList-1733512-2"
+Tables/DataList
+Tables/DataList-1734309-2"
+Tables/DataList
+Tables/DataList-1733118-2"
+Tables/DataList
+Tables/DataList-1734300-2"
+Tables/DataList
+Tables/DataList-1734294-2"
+Tables/DataList
+Tables/DataList-1734291-2"
+Tables/DataList
+Tables/DataList-1735088-2"
+Tables/DataList
+Tables/DataList-1733930-2"
+Tables/DataList
+Tables/DataList-1735524-2"
+Tables/DataList
+Tables/DataList-1734333-2"
+Tables/DataList
+Tables/DataList-1734548-2"
+Tables/DataList
+Tables/DataList-1733751-2"
+Tables/DataList
+Tables/DataList-1732954-2"
+Tables/DataList
+Tables/DataList-1734311-2"
+Tables/DataList
+Tables/DataList-1733514-2"
+Tables/DataList
+Tables/DataList-1733117-2"
+Tables/DataList
+Tables/DataList-1734299-2"
+Tables/DataList
+Tables/DataList-1734293-2"
+Tables/Tile
+Tables/Tile-1734290-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735087-2"
+Tables/DataList
+Tables/DataList-1733929-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735523-2"
+Tables/DataList
+Tables/DataList-1734547-2"
+Tables/DataList
+Tables/DataList-1733750-2"
+Tables/DataList
+Tables/DataList-1732953-2"
+Tables/DataList
+Tables/DataList-1734310-2"
+Tables/DataList
+Tables/DataList-1733513-2"
+Tables/DataList
+Tables/DataList-1733510-2"
+Tables/DataList
+Tables/DataList-1734307-2"
+Tables/Tile
+Tables/Tile-1733116-2"
+Tables/DataList
+Tables/DataList-1734298-2"
+Tables/DataList
+Tables/DataList-1735483-2"
+Tables/DataList
+Tables/DataList-1734292-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735086-2"
+Tables/DataList
+Tables/DataList-1733928-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735522-2"
+Tables/DataList
+Tables/DataList-1734537-2"
+Tables/DataList
+Tables/DataList-1735334-2"
+Tables/DataList
+Tables/DataList-1734546-2"
+Tables/DataList
+Tables/DataList-1733749-2"
+Tables/Tile
+Tables/Tile-1732952-2"
+Tables/DataList
+Tables/DataList-1733119-2"
+Tables/DataList
+Tables/DataList-1734318-2"
+Tables/Tile
+Tables/Tile-1733924-2"
+Tables/DataList
+Tables/DataList-1733127-2"
+Tables/DataList
+Tables/DataList-1735898-2"
+Tables/DataList
+Tables/DataList-1734304-2"
+Tables/DataList
+Tables/DataList-1734306-2"
+Tables/DataList
+Tables/DataList-1733509-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735897-2"
+Tables/DataList
+Tables/DataList-1734303-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735896-2"
+Tables/Tile
+Tables/Tile-1734302-2"
+Tables/DataList
+Tables/DataList-1733293-2"
+Tables/DataList
+Tables/DataList-1734490-2"
+Tables/DataList
+Tables/DataList-1732896-2"
+Tables/DataList
+Tables/DataList-1733299-2"
+Tables/DataList
+Tables/DataList-1733298-2"
+Tables/DataList
+Tables/DataList-1733064-2"
+Tables/DataList
+Tables/DataList-1735034-2"
+Tables/DataList
+Tables/DataList-1733297-2"
+Tables/DataList
+Tables/DataList-1734485-2"
+Tables/DataList
+Tables/DataList-1735282-2"
+Tables/DataList
+Tables/DataList-1733063-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735033-2"
+Tables/DataList
+Tables/DataList-1733296-2"
+Tables/DataList
+Tables/DataList-1734484-2"
+Tables/DataList
+Tables/DataList-1733687-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735281-2"
+Tables/DataList
+Tables/DataList-1734493-2"
+Tables/DataList
+Tables/DataList-1732899-2"
+Tables/DataList
+Tables/DataList-1733294-2"
+Tables/DataList
+Tables/DataList-1734491-2"
+Tables/DataList
+Tables/DataList-1732897-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735682-2"
+Tables/DataList
+Tables/DataList-1733291-2"
+Tables/DataList
+Tables/DataList-1734488-2"
+Tables/DataList
+Tables/DataList-1732894-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735681-2"
+Tables/DataList
+Tables/DataList-1733290-2"
+Tables/DataList
+Tables/DataList-1734487-2"
+Tables/DataList
+Tables/DataList-1732893-2"
+Tables/DataList
+Tables/DataList-1733289-2"
+Tables/DataList
+Tables/DataList-1734486-2"
+Tables/Tile
+Tables/Tile-1732892-2"
+Tables/DataList
+Tables/DataList-1734340-2"
+Tables/DataList
+Tables/DataList-1734555-2"
+Tables/DataList
+Tables/DataList-1733758-2"
+Tables/DataList
+Tables/DataList-1732961-2"
+Tables/DataList
+Tables/DataList-1733810-2"
+Tables/DataList
+Tables/DataList-1733013-2"
+Tables/DataList
+Tables/DataList-1734998-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735076-2"
+Tables/DataList
+Tables/DataList-1733878-2"
+Tables/DataList
+Tables/DataList-1735472-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735075-2"
+Tables/DataList
+Tables/DataList-1734295-2"
+Tables/DataList
+Tables/DataList-1734247-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735044-2"
+DocumentStylesheet"
+TSWPAdvancedTextStyles
+Tables/DataList
+Tables/DataList-1733807-2"
+Tables/DataList
+Tables/DataList-1733010-2"
+Document"
+Tables/DataList
+Tables/DataList-1734407-2"
+Tables/DataList
+Tables/DataList-1732813-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1734997-2"
+Tables/DataList
+Tables/DataList-1733809-2"
+Tables/DataList
+Tables/DataList-1733012-2"
+Tables/DataList
+Tables/DataList-1734317-2"
+Tables/DataList
+Tables/DataList-1733126-2"
+Tables/DataList
+Tables/DataList-1733017-2"
+Tables/DataList
+Tables/DataList-1734987-2"
+Tables/DataList
+Tables/DataList-1734339-2"
+Tables/Tile
+Tables/Tile-1734554-2"
+Tables/DataList
+Tables/DataList-1733757-2"
+Tables/DataList
+Tables/DataList-1732960-2"
+Tables/DataList
+Tables/DataList-1734246-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735043-2"
+Tables/DataList
+Tables/DataList-1733806-2"
+Tables/DataList
+Tables/DataList-1733009-2"
+Tables/DataList
+Tables/DataList-1736000-2"
+Tables/DataList
+Tables/DataList-1734406-2"
+Tables/DataList
+Tables/DataList-1732812-2"
+Tables/DataList
+Tables/DataList-1733016-2"
+Tables/DataList
+Tables/DataList-1735383-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1734986-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735481-2"
+Tables/DataList
+Tables/DataList-1733015-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735382-2"
+Tables/DataList
+Tables/DataList-1735782-2"
+Tables/HeaderStorageBucket"
+Tables/DataList
+Tables/DataList-1733811-2"
+Tables/DataList
+Tables/DataList-1733014-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735999-2"
+Tables/DataList
+Tables/DataList-1732811-2"
+Tables/DataList
+Tables/DataList-1734405-2"
+Tables/Tile
+Tables/Tile-1734398-2"
+Tables/DataList
+Tables/DataList-1733805-2"
+Tables/Tile
+Tables/Tile-1733008-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1734996-2"
+Tables/DataList
+Tables/DataList-1733808-2"
+Tables/DataList
+Tables/DataList-1733011-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735482-2"
+Tables/Tile
+Tables/Tile-1734338-2"
+Tables/DataList
+Tables/DataList-1734553-2"
+Tables/DataList
+Tables/DataList-1733756-2"
+Tables/DataList
+Tables/DataList-1732959-2"
+Tables/DataList
+Tables/DataList-1734297-2"
+CalculationEngine"
+TSCEReduceCalcEngineMsgSize
+Tables/DataList
+Tables/DataList-1733295-2"
+Tables/DataList
+Tables/DataList-1734483-2"
+Tables/DataList
+Tables/DataList-1733686-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735280-2"
+Tables/DataList
+Tables/DataList-1734492-2"
+Tables/DataList
+Tables/DataList-1732898-2"
+Tables/DataList
+Tables/DataList-1733062-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1735032-2"
+Tables/DataList
+Tables/DataList-1734296-2"
+Tables/DataList
+Tables/DataList-1734575-2"
+Tables/DataList
+Tables/DataList-1735372-2"
+AnnotationAuthorStorage"
+Tables/DataList
+Tables/DataList-1735683-2"
+Tables/DataList
+Tables/DataList-1733292-2"
+Tables/DataList
+Tables/DataList-1734489-2"
+Tables/DataList
+Tables/DataList-1732895-2"
+Tables/DataList
+Tables/DataList-1734497-2"
+Tables/DataList
+Tables/DataList-1732903-2"
+Tables/DataList
+Tables/DataList-1734397-2"
+Tables/DataList
+Tables/DataList-1735077-2"
+Tables/DataList
+Tables/DataList-1734301-2"
+bullet_circle-blk-resize.pdf"
+bullet_circle-blk-resize"L
+PresetImageFill5.jpg"
+PresetImageFill5-29.jpg
+#Aj:s)BeH
+PresetImageFill2.jpg"
+PresetImageFill2-26.jpg
+PresetImageFill4.jpg"
+PresetImageFill4-28.jpg
+PresetImageFill0.jpg"
+PresetImageFill0-24.jpg
+PresetImageFill1.jpg"
+PresetImageFill1-25.jpg
+PresetImageFill3.jpg"
+PresetImageFill3-27.jpg
+hardcover_bullet_black.png"
+*&ginger/01_theme/hardcover_bullet_black"Q
+bullet_gbutton_gray.png"
+bullet_gbutton_gray-30.png
+
+
+===== Index/Tables/DataList-1732817-2.iwa (8193 bytes) =====
+
+Descrição*
+Possíveis respostas*
+nomeCompleto*
+2destina-se a informar o nome completo do paciente.*
+texto livre.*
+documento*
+tdestina-se a informar o documento de identificação do paciente, usado na verificação de duplicidade de cadastro.*
+texto formatado (numérico).*
+dataNascimento*
+destina-se a informar a data de nascimento do paciente, usada na verificação de duplicidade e no enquadramento em prioridade legal por idade.*
+texto formatado: __/__/____.*
+contatoTelefone*
+8destina-se a informar o telefone de contato do paciente.*
+!texto formatado: (__) _____-____.*
+contatoEmail*
+Edestina-se a informar o endereço eletrônico de contato do paciente.*
+texto livre.*
+vinculo*
+Ddestina-se a classificar o vínculo do paciente com a instituição.*
+"• Externo
+• Servidor*
+restricaoAtiva*
+destina-se a apontar se o paciente possui restrição vigente decorrente de reincidência de ausências. É calculado pelo sistema, não informado pelo usuário.*
+restricaoAte*
+udestina-se a indicar até quando vigora a restrição. Este dado depende da indicação positiva da referência ID07.*
+texto formatado: __/__/____.*
+ydestina-se a apontar se o cadastro está ativo. Cadastro com vínculo em atendimento não é excluído, apenas inativado.*
+
+
+===== Index/Tables/DataList-1732900-2.iwa (6654 bytes) =====
+
+Descrição*
+Possíveis respostas*
+7destina-se a informar o nome do estudante ou atendente.*
+texto livre.*
+especialidade*
+destina-se a indicar a especialidade ou serviço a que o estudante está vinculado, usada na verificação de compatibilidade com o atendimento.*
+.seleção entre as especialidades cadastradas.*
+nivelFormacao*
+zdestina-se a informar o estágio de formação do estudante, usado na verificação de compatibilidade com o procedimento.*
+5texto livre ou seleção definida pela coordenação.*
+habilitacoes*
+ldestina-se a relacionar as habilitações que o estudante possui, comparadas às exigidas pelo procedimento.*
+8seleção múltipla entre as habilitações cadastradas.*
+procedimentosAutorizados*
+Udestina-se a relacionar os procedimentos que o estudante está autorizado a executar.*
+7seleção múltipla entre os procedimentos cadastrados.*
+disponibilidade*
+Zdestina-se a informar em que dias e turnos o estudante está disponível para atendimento.*
+Acombinação de dia da semana com:
+/destina-se a apontar se o cadastro está ativo.*
+
+
+===== Index/Tables/DataList-1732960-2.iwa (5728 bytes) =====
+
+Descrição*
+Possíveis respostas*
++destina-se a informar o nome do supervisor.*
+texto livre.*
+especialidadesHabilitadas*
+\destina-se a relacionar as especialidades que o supervisor está habilitado a supervisionar.*
+8seleção múltipla entre as especialidades cadastradas.*
+procedimentosHabilitados*
+[destina-se a relacionar os procedimentos que o supervisor está habilitado a supervisionar.*
+7seleção múltipla entre os procedimentos cadastrados.*
+disponibilidade*
+Jdestina-se a informar em que dias e turnos o supervisor está disponível.*
+Acombinação de dia da semana com:
+limiteEstudantesSimultaneos*
+xdestina-se a informar quantos estudantes o supervisor pode acompanhar ao mesmo tempo. Impede alocação acima do limite.*
+número inteiro positivo.*
+/destina-se a apontar se o cadastro está ativo.*
+
+
+===== Index/Tables/DataList-1733016-2.iwa (4810 bytes) =====
+
+Descrição*
+Possíveis respostas*
+identificacao*
+Wdestina-se a informar a identificação da sala, exibida na chamada e na tela pública.*
+texto livre.*
+caracteristicas*
+Zdestina-se a descrever as características físicas da sala relevantes para o atendimento.*
+texto livre.*
+recursos*
+tdestina-se a relacionar os equipamentos e recursos disponíveis na sala, comparados aos exigidos pela especialidade.*
+2seleção múltipla entre os recursos cadastrados.*
+situacao*
+1destina-se a informar a situação atual da sala.*
+5• Disponível
+• Em manutenção
+• Indisponível*
+/destina-se a apontar se o cadastro está ativo.*
+
+
+===== Index/Tables/DataList-1733068-2.iwa (5752 bytes) =====
+
+Descrição*
+Possíveis respostas*
+pdestina-se a informar o nome da especialidade ou serviço, exibido inclusive na tela pública da sala de espera.*
+texto livre.*
+descricao*
+3destina-se a descrever a especialidade ou serviço.*
+texto livre.*
+exigeSupervisaoDocente*
+destina-se a apontar se o atendimento nesta especialidade exige supervisor habilitado. Quando negativo, a alocação dispensa a etapa de supervisor.*
+exigeValidacaoEncerramento*
+[destina-se a apontar se o encerramento do atendimento precisa ser validado pelo supervisor.*
+recursosExigidos*
+\destina-se a relacionar os recursos que a sala precisa possuir para atender a especialidade.*
+2seleção múltipla entre os recursos cadastrados.*
+destina-se a apontar se a especialidade está ativa. Especialidade inativa não recebe encaminhamento interno nem emissão de senha.*
+
+
+===== Index/Tables/DataList-1733124-2.iwa (8053 bytes) =====
+
+Descrição*
+Possíveis respostas*
+]destina-se a informar o nome do usuário, exibido na barra superior e na trilha de auditoria.*
+texto livre.*
+identificacao*
+zdestina-se a informar a matrícula ou o endereço eletrônico institucional usado na autenticação. É único no sistema.*
+texto livre.*
+destina-se a autenticar o usuário. É armazenada apenas em forma irreversível e nunca é devolvida pelo sistema em nenhuma consulta.*
+?texto livre, com política mínima definida pela instituição.*
+Ddestina-se a indicar o perfil que define as permissões do usuário.*
+&seleção entre os perfis cadastrados.*
+unidade*
+8destina-se a vincular o usuário à unidade em que atua.*
+(seleção entre as unidades cadastradas.*
+tentativasFalhas*
+destina-se a contar as tentativas de autenticação malsucedidas consecutivas, para aplicar o bloqueio temporário após a quinta.*
+número inteiro positivo.*
+bloqueadoAte*
+[destina-se a indicar até quando vigora o bloqueio temporário por tentativas malsucedidas.*
+data e hora, com fuso horário.*
+ultimoLoginEm*
+?destina-se a registrar o momento do último acesso do usuário.*
+data e hora, com fuso horário.*
+:destina-se a apontar se o usuário pode acessar o sistema.*
+
+
+===== Index/Tables/DataList-1733192-2.iwa (4138 bytes) =====
+
+Descrição*
+Possíveis respostas*
+fdestina-se a informar o nome do perfil, único no sistema. Exemplos: Recepção, Triagem, Supervisão.*
+texto livre.*
+descricao*
+;destina-se a descrever a que função o perfil corresponde.*
+texto livre.*
+permissoes*
+destina-se a relacionar as operações que o perfil pode executar, agrupadas por módulo. Determina os módulos exibidos no menu e as ações oferecidas em cada tela.*
+seleção múltipla na matriz de permissões, combinando cada módulo com: consultar, criar, editar, excluir e as operações próprias do módulo.*
+sistema*
+fdestina-se a apontar se o perfil é do sistema. Perfil do sistema não pode ser editado nem excluído.*
+
+
+===== Index/Tables/DataList-1733240-2.iwa (5820 bytes) =====
+
+Descrição*
+Possíveis respostas*
+toleranciaMinutos*
+kdestina-se a definir quanto tempo o paciente chamado tem para comparecer antes de ser marcado como ausente.*
+/número inteiro positivo. Valor provisório: 5.*
+slaMinutos*
+Zdestina-se a definir o tempo de espera a partir do qual a fila gera alerta para a gestão.*
+0número inteiro positivo. Valor provisório: 25.*
+reincidenciasRestricao*
+Idestina-se a definir quantas ausências disparam restrição ao paciente.*
+/número inteiro positivo. Valor provisório: 3.*
+janelaReincidenciaDias*
+jdestina-se a definir em que intervalo de dias as ausências são contadas para efeito da referência ID03.*
+0número inteiro positivo. Valor provisório: 90.*
+limiteEstudantesSupervisor*
+~destina-se a definir o limite geral de estudantes por supervisor, quando o cadastro do supervisor não trouxer valor próprio.*
+/número inteiro positivo. Valor provisório: 3.*
+justificativaMinCaracteres*
+cdestina-se a definir o tamanho mínimo exigido da justificativa de reclassificação de prioridade.*
+0número inteiro positivo. Valor provisório: 20.*
+
+
+===== Index/Tables/DataList-1733296-2.iwa (9356 bytes) =====
+
+Descrição*
+Possíveis respostas*
+paciente*
+bdestina-se a vincular a triagem ao paciente atendido, localizado pela busca por nome ou documento.*
+)seleção entre os pacientes cadastrados.*
+profissional*
+/destina-se a registrar quem realizou a triagem.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+especialidadeDestino*
+Zdestina-se a indicar a especialidade ou serviço para o qual o paciente será encaminhado.*
+>seleção entre as especialidades ativas com fila configurada.*
+tipoAtendimento*
+>destina-se a classificar a natureza do atendimento solicitado.*
+-• Primeira consulta
+• Retorno
+• Encaixe*
+prioridade*
+adestina-se a classificar a prioridade do atendimento, que determina a posição da senha na fila.*
+'• Normal
+• Preferencial
+• Urgente*
+`destina-se a descrever o motivo do atendimento relatado pelo paciente. Dado sensível de saúde.*
+texto livre.*
+enquadramentoLegal*
+destina-se a indicar o enquadramento em prioridade prevista em norma. Este dado depende de a referência ID05 resultar em Preferencial, e ao ser preenchido sinaliza automaticamente essa prioridade. Dado sensível de saúde.*
+• Gestante
+• Lactante
+• Pessoa com deficiência
+• Outro previsto em norma* 
+justificativaClinica*
+destina-se a registrar o critério clínico que motivou a prioridade urgente. Este dado é obrigatório quando a referência ID05 resultar em Urgente. Dado sensível de saúde.*
+texto livre.*
+observacoes*
+idestina-se a complementar o encaminhamento clínico com informação adicional. Dado sensível de saúde.*
+texto livre.*
+concluidaEm*
+Adestina-se a registrar o momento em que a triagem foi concluída.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733368-2.iwa (6541 bytes) =====
+
+Descrição*
+Possíveis respostas*
+ destina-se a identificar a fila.*
+texto livre.*
+especialidade*
+Idestina-se a vincular a fila à especialidade ou serviço correspondente.*
+.seleção entre as especialidades cadastradas.*
+pdestina-se a apontar se a fila está em operação. Especialidade sem fila ativa não permite emissão de senha.*
+bloqueada*
+destina-se a apontar se as chamadas da fila estão suspensas por ausência de supervisor habilitado. O bloqueio é por especialidade, nunca geral.*
+bloqueadaMotivo*
+destina-se a informar a causa do bloqueio, exibida no aviso da tela e na lista de alertas. Este dado depende da indicação positiva da referência ID04.*
+texto livre.*
+bloqueadaDesde*
+zdestina-se a registrar desde quando a fila está bloqueada. Este dado depende da indicação positiva da referência ID04.*
+data e hora, com fuso horário.*
+slaMinutos*
+pdestina-se a definir um limite de tempo de espera próprio desta fila, sobrepondo o parâmetro geral da unidade.*
+número inteiro positivo.*
+
+
+===== Index/Tables/DataList-1733428-2.iwa (12600 bytes) =====
+
+Descrição*
+Possíveis respostas*
+~destina-se a identificar a senha de forma visível ao paciente, inclusive na tela pública. É único por dia e especialidade.*
+Qtexto formatado: letra da especialidade seguida de três dígitos. Exemplo: F014.*
+Adestina-se a vincular a senha à fila em que aguarda atendimento.*
+Fseleção automática a partir da especialidade de destino da triagem.*
+triagem*
+8destina-se a vincular a senha à triagem que a originou.*
+preenchido pelo sistema.*
+paciente*
+destina-se a vincular a senha ao paciente. Nunca é exposto na tela pública; em listagens, apenas as iniciais do nome são exibidas.*
+preenchido pelo sistema.*
+prioridade*
+^destina-se a indicar a prioridade vigente da senha, primeiro critério de ordenação da fila.*
+'• Normal
+• Preferencial
+• Urgente*
+tipoAtendimento*
+Tdestina-se a indicar a natureza do atendimento, usada como filtro no painel de fila.*
+-• Primeira consulta
+• Retorno
+• Encaixe*
+Idestina-se a indicar a situação atual da senha no ciclo de atendimento.*
+• Aguardando
+• Chamada
+• Aguardando recurso
+• Em atendimento
+• Pausado
+• Pendente de validação
+• Encerrado
+• Ausente
+• Desistência*0
+temAgendamentoPrevio*
+pdestina-se a apontar se o paciente possuía agendamento, terceiro critério de desempate na ordenação da fila.*
+chegadaEm*
+Wdestina-se a registrar o horário de chegada, segundo critério de ordenação da fila.*
+data e hora, com fuso horário.*
+chamadaEm*
+?destina-se a registrar o horário da primeira chamada da senha.*
+data e hora, com fuso horário.*
+toleranciaAte*
+fdestina-se a indicar até quando o paciente chamado pode comparecer antes de ser marcado como ausente.*
+data e hora, com fuso horário.*
+iniciadaEm*
+<destina-se a registrar o horário de início do atendimento.*
+data e hora, com fuso horário.*
+encerradaEm*
+Adestina-se a registrar o horário de encerramento do atendimento.*
+data e hora, com fuso horário.*
+senhaOrigem*
+bdestina-se a vincular a senha à senha anterior, quando ela foi gerada por encaminhamento interno.*
+preenchido pelo sistema.*
+
+
+===== Index/Tables/DataList-1733516-2.iwa (5731 bytes) =====
+
+Descrição*
+Possíveis respostas*
+<destina-se a vincular a reclassificação à senha alterada.*
+preenchido pelo sistema.*
+dePrioridade*
+<destina-se a registrar a prioridade anterior à alteração.*
+'• Normal
+• Preferencial
+• Urgente*
+paraPrioridade*
+Udestina-se a registrar a nova prioridade, que deve ser diferente da referência ID02.*
+'• Normal
+• Preferencial
+• Urgente*
+justificativa*
+destina-se a registrar o motivo da alteração, obrigatório e copiado para a trilha de auditoria. Costuma descrever agravamento clínico, sendo tratado como dado sensível.*
+7texto livre, com tamanho mínimo definido pela unidade.*
+usuario*
+9destina-se a registrar quem realizou a reclassificação.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+ocorridoEm*
+6destina-se a registrar o momento da reclassificação.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733572-2.iwa (4659 bytes) =====
+
+Descrição*
+Possíveis respostas*
+1destina-se a vincular a chamada à senha chamada.*
+preenchido pelo sistema.*
+usuario*
+.destina-se a registrar quem acionou a chamada.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+localExibicao*
+Pdestina-se a informar onde o paciente deve comparecer, exibido na tela pública.*
+%seleção entre as salas cadastradas.*
+sequencia*
+Idestina-se a distinguir a primeira chamada das rechamadas da mesma senha.*
+,número inteiro, sendo 1 a primeira chamada.*
+chamadoEm*
+,destina-se a registrar o momento da chamada.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733624-2.iwa (6516 bytes) =====
+
+Descrição*
+Possíveis respostas*
+5destina-se a vincular a alocação à senha atendida.*
+preenchido pelo sistema.*
+estudante*
+destina-se a indicar o estudante ou atendente que conduzirá o atendimento, verificado quanto a disponibilidade e compatibilidade.*
+>seleção entre os estudantes aptos apresentados pelo sistema.*
+supervisor*
+~destina-se a indicar o supervisor responsável. Este dado só é preenchido quando a especialidade exigir supervisão docente.*
+@seleção entre os supervisores aptos apresentados pelo sistema.*
+rdestina-se a indicar a sala onde o atendimento ocorrerá, verificada quanto a disponibilidade e recursos exigidos.*
+9seleção entre as salas aptas apresentadas pelo sistema.*
+confirmadaPor*
+3destina-se a registrar quem confirmou a alocação.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+confirmadaEm*
+2destina-se a registrar o momento da confirmação.*
+data e hora, com fuso horário.*
+liberadaEm*
+ldestina-se a registrar quando os recursos foram liberados, seja por encerramento, ausência ou desistência.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733684-2.iwa (9055 bytes) =====
+
+Descrição*
+Possíveis respostas*
+[destina-se a vincular o atendimento à senha. Cada senha origina no máximo um atendimento.*
+preenchido pelo sistema.*
+alocacao*
+:destina-se a vincular o atendimento aos recursos alocados.*
+preenchido pelo sistema.*
+iniciadoEm*
+Pdestina-se a registrar o horário de início, base para o cálculo da duração.*
+data e hora, com fuso horário.*
+encerradoEm*
+2destina-se a registrar o horário de encerramento.*
+data e hora, com fuso horário.*
+desfecho*
+kdestina-se a registrar a conclusão do atendimento, obrigatória no encerramento. Dado sensível de saúde.*
+• Retorno agendado
+• Encaminhamento interno
+• Encaminhamento externo*
+observacoes*
+Tdestina-se a registrar o que foi realizado no atendimento. Dado sensível de saúde.*
+texto livre.*
+validacaoExigida*
+destina-se a apontar se o encerramento precisa de validação do supervisor. É copiado da especialidade no início do atendimento, para que alteração posterior no cadastro não afete atendimento em curso.*
+parecerSupervisor*
+destina-se a registrar a manifestação do supervisor na validação ou na recusa do encerramento. Este dado depende da indicação positiva da referência ID07. Dado sensível de saúde.*
+texto livre.*
+validadoPor*
+>destina-se a registrar qual supervisor validou o encerramento.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+validadoEm*
+0destina-se a registrar o momento da validação.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733756-2.iwa (4653 bytes) =====
+
+Descrição*
+Possíveis respostas*
+atendimento*
+:destina-se a vincular a pausa ao atendimento interrompido.*
+preenchido pelo sistema.*
+qdestina-se a informar a razão da interrupção. É obrigatório quando o protocolo do serviço assim determinar.*
+texto livre.*
+pausadoPor*
+6destina-se a registrar quem interrompeu o atendimento.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+pausadoEm*
+2destina-se a registrar o momento da interrupção.*
+data e hora, com fuso horário.*
+retomadoEm*
+-destina-se a registrar o momento da retomada.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733808-2.iwa (8930 bytes) =====
+
+Descrição*
+Possíveis respostas*
+atendimento*
+@destina-se a vincular o encaminhamento ao atendimento de origem.*
+preenchido pelo sistema.*
+5destina-se a classificar o destino do encaminhamento.*
+• Interno
+• Externo*
+especialidadeDestino*
+destina-se a indicar para qual especialidade da clínica o paciente é encaminhado. Este dado depende de a referência ID02 resultar em Interno. Dado sensível de saúde.*
+)seleção entre as especialidades ativas.*
+instituicaoDestino*
+destina-se a informar a instituição ou serviço externo de destino. Este dado depende de a referência ID02 resultar em Externo. Dado sensível de saúde.*
+texto livre.*
+Ldestina-se a registrar a razão do encaminhamento. Dado sensível de saúde.*
+texto livre.*
+prioridadeSugerida*
+tdestina-se a sugerir a prioridade da nova senha gerada. Este dado depende de a referência ID02 resultar em Interno.*
+'• Normal
+• Preferencial
+• Urgente*
+senhaGerada*
+Wdestina-se a vincular o encaminhamento interno à nova senha criada na fila de destino.*
+preenchido pelo sistema.*
+observacoes*
+Qdestina-se a complementar o registro do encaminhamento. Dado sensível de saúde.*
+texto livre.*
+criadoPor*
+6destina-se a registrar quem realizou o encaminhamento.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+criadoEm*
+3destina-se a registrar o momento do encaminhamento.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733880-2.iwa (4748 bytes) =====
+
+Descrição*
+Possíveis respostas*
+9destina-se a vincular a ausência à senha não atendida.*
+preenchido pelo sistema.*
+automatica*
+destina-se a distinguir a ausência gerada pelo sistema, por expiração do prazo de tolerância, daquela marcada manualmente pela equipe.*
+observacao*
+2destina-se a complementar o registro da ausência.*
+texto livre.*
+registradoPor*
+bdestina-se a registrar quem marcou a ausência. Fica vazio quando a referência ID02 for positiva.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+registradoEm*
+.destina-se a registrar o momento da ausência.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733932-2.iwa (4719 bytes) =====
+
+Descrição*
+Possíveis respostas*
+?destina-se a vincular a desistência à senha retirada da fila.*
+preenchido pelo sistema.*
+3destina-se a apontar quem solicitou a desistência.*
+• Paciente
+• Equipe*
+destina-se a informar a razão da desistência, cujo registro é opcional. Motivos frequentes alimentam a análise de tempo de espera.*
+texto livre.*
+registradoPor*
+>destina-se a registrar quem lançou a desistência no sistema.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+registradoEm*
+1destina-se a registrar o momento da desistência.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1733984-2.iwa (8734 bytes) =====
+
+Descrição*
+Possíveis respostas*
+,destina-se a classificar a origem do alerta.*
+K• Tempo de espera excedido
+• Fila bloqueada por ausência de supervisor*
+5destina-se a indicar a fila a que o alerta se refere.*
+preenchido pelo sistema.*
+2destina-se a indicar a situação atual do alerta.*
+• Reconhecido
+• Normalizado*
+tempoEsperaMinutos*
+Jdestina-se a registrar o tempo de espera verificado no momento do disparo.*
+número inteiro positivo.*
+limiteMinutos*
+Ldestina-se a registrar o limite vigente contra o qual o tempo foi comparado.*
+número inteiro positivo.*
+senhasAfetadas*
+Hdestina-se a informar quantas senhas estavam aguardando acima do limite.*
+número inteiro positivo.*
+disparadoEm*
+6destina-se a registrar o momento do disparo do alerta.*
+data e hora, com fuso horário.*
+reconhecidoPor*
+7destina-se a registrar qual gestor reconheceu o alerta.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+reconhecidoEm*
+3destina-se a registrar o momento do reconhecimento.*
+data e hora, com fuso horário.*
+normalizadoEm*
+fdestina-se a registrar quando o tempo de espera voltou ao limite, encerrando o alerta automaticamente.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1734056-2.iwa (4644 bytes) =====
+
+Descrição*
+Possíveis respostas*
+7destina-se a vincular a medida ao alerta que a motivou.*
+preenchido pelo sistema.*
+8destina-se a identificar a medida acionada pela gestão.*
+5• Reforço de atendentes
+• Abertura de vaga extra*
+observacao*
+/destina-se a complementar o registro da medida.*
+texto livre.*
+acionadoPor*
+4destina-se a registrar qual gestor acionou a medida.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+acionadoEm*
+0destina-se a registrar o momento do acionamento.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1734108-2.iwa (9942 bytes) =====
+
+Descrição*
+Possíveis respostas*
+usuario*
+4destina-se a identificar quem realizou a operação.*
+9preenchido pelo sistema a partir do usuário autenticado.*
+perfilNoMomento*
+destina-se a registrar o nome do perfil vigente no instante da ação, preservando a informação mesmo que o perfil do usuário mude depois.*
+preenchido pelo sistema.*
+operacao*
+)destina-se a classificar o que foi feito.*
+• Editar
+• Excluir
+• Consultar informação sensível
+• Exportar
+• Entrar no sistema
+• Sair do sistema*(
+9destina-se a indicar em que módulo a operação ocorreu.*
+'seleção entre os módulos do sistema.*
+entidade*
+Edestina-se a indicar sobre que tipo de registro a operação incidiu.*
+texto preenchido pelo sistema.*
+entidadeId*
+|destina-se a identificar o registro específico afetado, permitindo reconstruir o histórico de um paciente ou de uma senha.*
+preenchido pelo sistema.*
+sensivel*
+destina-se a marcar as consultas a dado de saúde, atendendo à exigência legal de trilha de consultas a prontuário. Essas linhas recebem marcação distinta na tela de auditoria.*
+justificativa*
+destina-se a preservar o motivo declarado pelo usuário, quando a operação exige justificativa. É o caso da reclassificação de prioridade.*
+texto livre.*
+origemIp*
+\destina-se a registrar de qual origem partiu o acesso, para apuração em caso de incidente.*
+preenchido pelo sistema.*
+userAgent*
+Ldestina-se a registrar qual navegador e dispositivo realizaram a operação.*
+preenchido pelo sistema.*
+ocorridoEm*
+5destina-se a registrar o momento exato da operação.*
+data e hora, com fuso horário.*
+
+
+===== Index/Tables/DataList-1734184-2.iwa (7678 bytes) =====
+
+Onde pode ser consultado*
+Triagem*
+1Ficha individual da triagem e tela de atendimento*
+enquadramentoLegal*
+Triagem*
+aFicha individual da triagem; na fila aparece apenas como etiqueta de prioridade, sem detalhamento*
+justificativaClinica*
+Triagem*
+1Ficha individual da triagem e tela de atendimento*
+observacoes*
+Triagem*
+1Ficha individual da triagem e tela de atendimento*
+justificativa*
+Reclassificação de prioridade*
+JHistórico de reclassificações da senha e detalhe da trilha de auditoria*
+desfecho*
+Atendimento*
+&Tela de atendimento e ficha individual*
+observacoes*
+Atendimento*
+&Tela de atendimento e ficha individual*
+parecerSupervisor*
+Atendimento*
+4Tela de validação do supervisor e ficha individual*
+especialidadeDestino*
+Encaminhamento*
+BTela de encaminhamento e ficha individual do atendimento de origem*
+instituicaoDestino*
+Encaminhamento*
+BTela de encaminhamento e ficha individual do atendimento de origem*
+Encaminhamento*
+BTela de encaminhamento e ficha individual do atendimento de origem*
+observacoes*
+Encaminhamento*
+BTela de encaminhamento e ficha individual do atendimento de origem*
+
+
+===== Index/Tables/DataList-1734251-2.iwa (3677 bytes) =====
+
+Categoria*
+Ao fim do prazo*
+Triagem e atendimento*
+A definir com a coordenação*
+SDepende da política da instituição para registro clínico em contexto acadêmico*
+Senha, chamada e alocação*
+Dois anos*
+wO vínculo com o paciente é substituído por identificador irreversível, preservando os totais usados nos indicadores*
+Trilha de auditoria*
+Mínimo de cinco anos*
+%Nunca removida por rotina automática*
+Indicadores agregados*
+Indefinido*
+8Permanecem, por não conterem identificação individual*
+Cadastros base*
+Enquanto houver vínculo*
+XRegistro com vínculo ativo não é excluído; a alternativa oferecida é a inativação*
+
+
+===== Index/ViewState.iwa (4785 bytes) =====
+
+%TPMacInspectorSegmentIdentifierFormat

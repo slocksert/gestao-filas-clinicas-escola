@@ -1,0 +1,2186 @@
+
+
+===== Index/CalculationEngine.iwa (8656 bytes) =====
+
+America/Maceioj
+$1A11672C-2DE9-4C51-B7B1-BA44D5A52282
+Tabela 1
+ffffffW@
+
+
+===== Index/Document.iwa (37004 bytes) =====
+
+gregorian
+janeiro"
+fevereiro"
+setembro"
+outubro"
+novembro"
+dezembro*
+janeiro*
+fevereiro*
+setembro*
+outubro*
+novembro*
+dezembro2
+domingoB
+segunda-feiraB
+terça-feiraB
+quarta-feiraB
+quinta-feiraB
+sexta-feiraB
+domingoJ
+segunda-feiraJ
+terça-feiraJ
+quarta-feiraJ
+quinta-feiraJ
+sexta-feiraJ
+1º trimestre
+2º trimestre
+3º trimestre
+4º trimestre
+1º trimestre
+2º trimestre
+3º trimestre
+4º trimestre
+antes de Cristo
+depois de Cristo
+d 'de' MMM 'de' y
+d 'de' MMMM 'de' y
+EEEE, d 'de' MMMM 'de' y
+HH:mm:ss
+HH:mm:ss z
+HH:mm:ss zzzz
+na-letter
+Formato Personalizado 1
+%?%VVV?-dcc?5
+Sistema de Gestão de Filas para Atendimento em Clínicas-Escola
+Especificação de Funcionalidades (Casos de Uso) — Versão Enxuta
+20 casos de uso (reduzido de 33) — consolidação de cadastros e fluxos espelhados; seções "Não se aplica" removidas.
+1. Cadastros Base
+Os UC-01 a UC-03 abaixo são genéricos e se aplicam às cinco entidades de cadastro base (Paciente, Estudante/Atendente, Supervisor, Sala, Especialidade/Serviço). O que varia entre elas — ator responsável, campos do formulário e regra de duplicidade — está na tabela ao final desta seção.
+UC-01 | Cadastrar registro base
+Varia por entidade — ver tabela ao final da seção.
+Pré-condição
+Usuário autenticado com permissão para cadastrar a entidade correspondente.
+Fluxo Principal
+1. Usuário acessa o menu da entidade desejada.
+2. Usuário clica em "Novo [Entidade]".
+3. Sistema exibe o formulário de cadastro específico da entidade (ver tabela).
+4. Usuário preenche os campos obrigatórios.
+5. Usuário clica em "Salvar".
+6. Sistema valida os campos obrigatórios.
+7. Sistema salva o novo registro.
+8. Sistema exibe mensagem de sucesso e retorna à lista.
+Fluxo Alternativo
+• Usuário clica em "Cancelar" a qualquer momento → sistema descarta os dados e retorna à lista.
+Fluxo de Exceção
+• Campo obrigatório vazio → sistema exibe mensagem de erro e mantém a tela.
+• Registro já cadastrado (para entidades com verificação de duplicidade) → sistema exibe mensagem de duplicidade e não salva.
+Pós-condição
+Novo registro cadastrado e disponível para uso nos módulos relacionados (triagem, filas, alocação).
+UC-02 | Editar registro base
+Varia por entidade — mesmo ator responsável pelo cadastro (ver tabela).
+Pré-condição
+Registro já cadastrado; usuário autenticado com permissão.
+Fluxo Principal
+1. Usuário acessa a lista da entidade.
+2. Usuário seleciona o registro e clica em "Editar".
+3. Sistema exibe o formulário preenchido com os dados atuais.
+4. Usuário altera os campos desejados.
+5. Usuário clica em "Salvar".
+6. Sistema valida e atualiza o registro.
+7. Sistema exibe mensagem de sucesso.
+Fluxo Alternativo
+• Usuário clica em "Cancelar" → sistema descarta as alterações e retorna à lista.
+Fluxo de Exceção
+• Campo obrigatório apagado → sistema exibe mensagem de erro e mantém a tela.
+Pós-condição
+Cadastro do registro atualizado.
+UC-03 | Consultar/listar registros base
+Varia por entidade — inclui também perfis de alocação (ex.: atendente responsável pela alocação).
+Pré-condição
+Usuário autenticado com permissão de consulta.
+Fluxo Principal
+1. Usuário acessa o menu da entidade.
+2. Sistema exibe a lista paginada de registros cadastrados.
+3. Usuário aplica filtro relevante à entidade (nome, especialidade, disponibilidade), se desejar.
+4. Sistema exibe o resultado filtrado.
+Fluxo Alternativo
+• Usuário não aplica filtro → sistema mantém a lista completa.
+Fluxo de Exceção
+• Nenhum resultado encontrado para o filtro → sistema exibe mensagem correspondente.
+Pós-condição
+Lista de registros exibida conforme critério de busca.
+Variações por entidade (UC-01 a UC-03):
+UC-04 | Cadastrar perfil de usuário e definir permissões
+Administrador do sistema
+Pré-condição
+Usuário autenticado com permissão administrativa.
+Fluxo Principal
+1. Usuário acessa o menu "Perfis de Usuário".
+2. Usuário clica em "Novo Perfil".
+3. Sistema exibe formulário com a lista de operações/módulos disponíveis.
+4. Usuário nomeia o perfil e seleciona as permissões correspondentes.
+5. Usuário clica em "Salvar".
+6. Sistema valida os dados.
+7. Sistema salva o perfil.
+Fluxo Alternativo
+• Usuário clica em "Cancelar" → sistema descarta os dados.
+Fluxo de Exceção
+• Nome de perfil já existente → sistema exibe mensagem de duplicidade.
+Pós-condição
+Perfil de usuário criado e disponível para vinculação a usuários do sistema.
+2. Triagem e Emissão de Senha
+UC-05 | Realizar triagem do paciente
+Profissional de triagem
+Pré-condição
+Paciente cadastrado no sistema; usuário autenticado.
+Fluxo Principal
+1. Usuário busca o paciente no sistema.
+2. Sistema exibe os dados do paciente.
+3. Usuário seleciona "Nova Triagem".
+4. Sistema exibe o formulário de triagem (motivo do atendimento, especialidade de destino).
+5. Usuário preenche o motivo do atendimento e demais dados solicitados.
+6. Usuário classifica a prioridade do atendimento.
+7. Usuário clica em "Concluir Triagem".
+8. Sistema valida os dados obrigatórios.
+9. Sistema registra a triagem, tratando os dados de saúde como informação sensível.
+10. Sistema encaminha o paciente para emissão de senha.
+Fluxo Alternativo
+• Paciente enquadrado em prioridade legal (idoso, gestante, PcD) → sistema sinaliza automaticamente a prioridade preferencial.
+• Triagem identifica urgência clínica → usuário registra a justificativa e o sistema marca a senha como urgente.
+Fluxo de Exceção
+• Campo obrigatório não preenchido → sistema exibe mensagem de erro e mantém a tela.
+Pós-condição
+Triagem registrada e disponível para emissão de senha.
+UC-06 | Emitir senha
+Profissional de triagem / Sistema
+Pré-condição
+Triagem concluída para o paciente.
+Fluxo Principal
+1. Sistema exibe o resumo da triagem realizada.
+2. Usuário confirma a emissão da senha.
+3. Sistema gera a senha, vinculando-a à especialidade e à classificação de prioridade definida na triagem.
+4. Sistema posiciona a senha na fila conforme os critérios de ordenação.
+5. Sistema exibe a senha gerada ao usuário/paciente.
+Fluxo Alternativo
+• Usuário ajusta o tipo de atendimento (primeira consulta, retorno, encaixe) antes de confirmar a emissão.
+Fluxo de Exceção
+• Especialidade sem fila configurada → sistema exibe erro e impede a emissão da senha.
+Pós-condição
+Senha emitida com status "aguardando" e inserida na fila correspondente.
+UC-07 | Reclassificar prioridade de senha
+Profissional de triagem / Supervisor
+Pré-condição
+Senha emitida e ainda não atendida.
+Fluxo Principal
+1. Usuário acessa a senha na fila.
+2. Usuário seleciona "Reclassificar Prioridade".
+3. Sistema solicita o registro de uma justificativa.
+4. Usuário informa a justificativa e a nova classificação de prioridade.
+5. Usuário confirma a alteração.
+6. Sistema atualiza a posição da senha na fila.
+7. Sistema registra a alteração para fins de auditoria.
+Fluxo de Exceção
+• Usuário não informa justificativa → sistema impede a confirmação da reclassificação.
+Pós-condição
+Senha reposicionada na fila com a nova prioridade e justificativa registradas.
+3. Gestão de Fila
+UC-08 | Consultar fila e posição de espera
+Atendente / Recepcionista / Gestão / Paciente
+Pré-condição
+Usuário autenticado com permissão de consulta (equipe) ou senha emitida presente na fila (paciente).
+Fluxo Principal
+1. Equipe acessa o "Painel de Filas" e seleciona a especialidade — ou paciente consulta a senha no sistema/painel.
+2. Sistema exibe a lista de senhas aguardando, ordenada por prioridade, horário de chegada e agendamento — ou, para o paciente, calcula e exibe a posição atual e o tempo médio estimado de espera.
+3. Equipe aplica filtro adicional por tipo de atendimento (primeira consulta, retorno, encaixe), se desejar.
+Fluxo de Exceção
+• Fila vazia → sistema exibe mensagem "Nenhuma senha aguardando".
+• Dados insuficientes para estimar o tempo → sistema exibe apenas a posição na fila.
+Pós-condição
+Fila e/ou posição/tempo estimado exibidos conforme o critério e o ator.
+4. Chamada e Alocação de Recursos
+UC-09 | Chamar próxima senha
+Atendente / Recepcionista
+Pré-condição
+Existe ao menos uma senha com status "aguardando" na fila da especialidade.
+Fluxo Principal
+1. Usuário acessa o "Painel de Filas".
+2. Usuário clica em "Chamar Próxima".
+3. Sistema identifica a próxima senha conforme os critérios de ordenação da fila.
+4. Sistema exibe a chamada (paciente, senha) no painel público.
+5. Usuário confirma a chamada.
+6. Sistema atualiza o status da senha para "chamada".
+Fluxo Alternativo
+• Existe senha marcada como urgência clínica → sistema a prioriza automaticamente sobre as demais.
+Fluxo de Exceção
+• Paciente não comparece dentro do prazo de tolerância → sistema retorna a senha à fila ou a marca como ausente.
+Pós-condição
+Senha com status "chamada", exibida no painel público de atendimento.
+UC-10 | Alocar recursos ao atendimento (estudante, supervisor e sala)
+Atendente / Sistema
+Pré-condição
+Senha com status "chamada".
+Fluxo Principal
+1. Sistema verifica a disponibilidade e a compatibilidade do estudante/atendente com o atendimento.
+2. Sistema verifica a disponibilidade do supervisor e o limite de estudantes supervisionados.
+3. Sistema verifica a disponibilidade e a compatibilidade da sala.
+4. Sistema associa estudante, supervisor e sala à senha.
+5. Usuário confirma a alocação.
+6. Sistema registra o vínculo do atendimento aos recursos alocados.
+Fluxo Alternativo
+• Atendimento não exige supervisão docente → sistema não realiza a verificação de supervisor e segue para a verificação de sala.
+Fluxo de Exceção
+• Nenhum supervisor disponível para a especialidade → sistema bloqueia novas chamadas para a especialidade e notifica a gestão.
+• Nenhuma sala compatível disponível → sistema mantém a senha aguardando alocação de recurso.
+Pós-condição
+Estudante, supervisor e sala alocados e vinculados ao atendimento.
+5. Atendimento
+UC-11 | Iniciar atendimento
+Estudante/Atendente
+Pré-condição
+Recursos (estudante, supervisor, sala) alocados à senha.
+Fluxo Principal
+1. Usuário acessa a senha alocada.
+2. Usuário clica em "Iniciar Atendimento".
+3. Sistema registra o horário de início.
+4. Sistema atualiza o status para "em atendimento".
+Fluxo de Exceção
+• Recurso alocado não está mais disponível no momento do início → sistema impede o início e solicita nova alocação.
+Pós-condição
+Atendimento em andamento, com horário de início registrado.
+UC-12 | Pausar / retomar atendimento
+Estudante/Atendente
+Pré-condição
+Atendimento em andamento (para pausar) ou pausado (para retomar).
+Fluxo Principal
+1. Pausar: usuário clica em "Pausar Atendimento".
+2. Sistema solicita o motivo da pausa; usuário informa.
+3. Sistema registra a pausa e o horário, atualizando o status para "pausado".
+4. Retomar: usuário acessa o atendimento pausado e clica em "Retomar".
+5. Sistema registra o horário de retomada e atualiza o status para "em atendimento".
+Fluxo de Exceção
+• Motivo não informado, quando exigido pelo protocolo → sistema impede a confirmação da pausa.
+• Sala ou estudante originalmente alocados não estão mais disponíveis na retomada → sistema solicita nova alocação de recurso.
+Pós-condição
+Atendimento pausado (com motivo registrado) ou retomado (status "em atendimento"), conforme a ação.
+UC-13 | Encerrar atendimento
+Estudante/Atendente / Supervisor
+Pré-condição
+Atendimento com status "em atendimento".
+Fluxo Principal
+1. Usuário clica em "Encerrar Atendimento".
+2. Sistema solicita o registro do desfecho (alta, retorno agendado, encaminhamento interno ou externo).
+3. Usuário informa o desfecho.
+4. Sistema verifica se o protocolo do serviço exige validação do supervisor.
+5. Supervisor valida o encerramento, quando exigido.
+6. Sistema registra o horário de encerramento.
+7. Sistema atualiza o status para "encerrado".
+Fluxo Alternativo
+• Protocolo do serviço não exige validação de supervisor → sistema conclui o encerramento sem a etapa de validação.
+Fluxo de Exceção
+• Supervisor não valida ou recusa o encerramento → sistema mantém o atendimento com status "pendente de validação".
+Pós-condição
+Atendimento encerrado (ou pendente de validação do supervisor), com desfecho registrado.
+6. Encaminhamento
+UC-14 | Registrar encaminhamento interno
+Estudante/Atendente / Supervisor
+Pré-condição
+Atendimento encerrado com desfecho "encaminhamento interno".
+Fluxo Principal
+1. Usuário seleciona a especialidade de destino.
+2. Sistema valida se a especialidade está ativa.
+3. Usuário confirma o encaminhamento.
+4. Sistema gera uma nova entrada de fila vinculada ao atendimento original.
+5. Sistema registra o encaminhamento.
+Fluxo de Exceção
+• Especialidade de destino inexistente ou inativa → sistema exibe mensagem de erro e impede o encaminhamento.
+Pós-condição
+Nova entrada de fila criada na especialidade de destino, vinculada ao atendimento original.
+UC-15 | Registrar encaminhamento externo
+Estudante/Atendente / Supervisor
+Pré-condição
+Atendimento encerrado com desfecho "encaminhamento externo".
+Fluxo Principal
+1. Usuário informa os dados do encaminhamento externo (instituição/serviço de destino, motivo).
+2. Usuário confirma o registro.
+3. Sistema registra o encaminhamento externo, sem gerar nova entrada de fila.
+Fluxo de Exceção
+• Dados obrigatórios não preenchidos → sistema exibe mensagem de erro.
+Pós-condição
+Encaminhamento externo registrado e vinculado ao atendimento original.
+7. Ausências e Desistências
+UC-16 | Registrar ausência (no-show)
+Sistema / Atendente
+Pré-condição
+Senha chamada e prazo de tolerância expirado sem comparecimento do paciente.
+Fluxo Principal
+1. Sistema identifica que o prazo de tolerância da senha chamada expirou.
+2. Sistema marca a senha com status "ausente".
+3. Sistema libera os recursos alocados para o próximo atendimento da fila.
+4. Sistema registra a ausência no histórico do paciente.
+Fluxo Alternativo
+• Usuário marca a ausência manualmente, antes do prazo de tolerância expirar.
+Fluxo de Exceção
+• Paciente atinge o número de reincidências definido em política → sistema aplica restrição temporária ou exige confirmação prévia para novos agendamentos.
+Pós-condição
+Senha marcada como ausente; recursos alocados liberados para novo atendimento.
+UC-17 | Registrar desistência voluntária
+Atendente / Paciente
+Pré-condição
+Senha com status "aguardando" ou "em atendimento".
+Fluxo Principal
+1. Paciente ou usuário solicita a desistência do atendimento.
+2. Sistema solicita o motivo da desistência (opcional).
+3. Usuário informa o motivo, caso deseje.
+4. Sistema registra a desistência, distinguindo-a de uma ausência.
+5. Sistema remove a senha da fila ativa.
+Pós-condição
+Senha com status "desistência"; recursos eventualmente alocados são liberados.
+8. Indicadores, Alertas e Auditoria
+UC-18 | Consultar indicadores de atendimento
+Gestão da unidade
+Pré-condição
+Usuário autenticado com permissão de gestão.
+Fluxo Principal
+1. Usuário acessa o menu "Indicadores".
+2. Usuário seleciona o período e a especialidade desejados.
+3. Sistema calcula e exibe os indicadores (tempo médio de espera, tempo médio de atendimento, taxa de ausência, volume de atendimentos).
+Fluxo de Exceção
+• Não há dados suficientes no período selecionado → sistema exibe mensagem "Sem dados disponíveis".
+Pós-condição
+Indicadores exibidos conforme o filtro selecionado.
+UC-19 | Visualizar alertas de SLA
+Gestão da unidade
+Pré-condição
+Existe fila com tempo de espera sendo monitorado pelo sistema.
+Fluxo Principal
+1. Sistema monitora continuamente o tempo de espera das filas ativas.
+2. Sistema identifica fila com tempo de espera acima do limite definido (SLA).
+3. Sistema gera um alerta e notifica a gestão da unidade.
+4. Usuário (gestor) visualiza o alerta no painel de gestão.
+Fluxo Alternativo
+• Gestor aciona medida de escalonamento (reforço de atendente, abertura de vaga extra) a partir do alerta.
+Pós-condição
+Alerta de SLA emitido e visível à gestão da unidade.
+UC-20 | Consultar trilha de auditoria
+Administrador do sistema / Gestão
+Pré-condição
+Usuário autenticado com permissão de auditoria.
+Fluxo Principal
+1. Usuário acessa o menu "Auditoria".
+2. Usuário aplica filtros (usuário, período, tipo de operação).
+3. Sistema exibe os registros de auditoria correspondentes ao filtro.
+Fluxo de Exceção
+• Nenhum registro encontrado para o filtro aplicado → sistema exibe mensagem correspondente.
+Pós-condição
+Registros de auditoria exibidos conforme o filtro selecionado.*
+Capítulo 1
+
+
+===== Index/DocumentMetadata.iwa (352 bytes) =====
+
+#Aj:s)BeH
+
+
+===== Index/DocumentStylesheet.iwa (388223 bytes) =====
+
+'captions-0-shapestyle-Legenda do Objeto
+$captions-0-shapestyle-Object Caption
+"captions-0-shapestyle-Object Title
+'captions-0-shapestyle-Título do Objeto
+character-style-hyperlink
+character-style-null
+chart-0-categoryaxis_0
+chart-0-chart
+chart-0-legend
+chart-0-paragraphStyle_0
+chart-0-paragraphStyle_1
+chart-0-paragraphStyle_10
+chart-0-paragraphStyle_11
+chart-0-paragraphStyle_12
+chart-0-paragraphStyle_13
+chart-0-paragraphStyle_14
+chart-0-paragraphStyle_15
+chart-0-paragraphStyle_16
+chart-0-paragraphStyle_17
+chart-0-paragraphStyle_18
+chart-0-paragraphStyle_19
+chart-0-paragraphStyle_2
+chart-0-paragraphStyle_20
+chart-0-paragraphStyle_21
+chart-0-paragraphStyle_22
+chart-0-paragraphStyle_23
+chart-0-paragraphStyle_24
+chart-0-paragraphStyle_25
+chart-0-paragraphStyle_26
+chart-0-paragraphStyle_27
+chart-0-paragraphStyle_28
+chart-0-paragraphStyle_29
+chart-0-paragraphStyle_3
+chart-0-paragraphStyle_4
+chart-0-paragraphStyle_5
+chart-0-paragraphStyle_6
+chart-0-paragraphStyle_7
+chart-0-paragraphStyle_8
+chart-0-paragraphStyle_9
+chart-0-referenceLine_0
+chart-0-series_0
+chart-0-series_1
+chart-0-series_2
+chart-0-series_3
+chart-0-series_4
+chart-0-series_5
+chart-0-valueaxis_0
+chart-0-valueaxis_1
+chart-1-categoryaxis_0
+chart-1-chart
+chart-1-legend
+chart-1-paragraphStyle_0
+chart-1-paragraphStyle_1
+chart-1-paragraphStyle_10
+chart-1-paragraphStyle_11
+chart-1-paragraphStyle_12
+chart-1-paragraphStyle_13
+chart-1-paragraphStyle_14
+chart-1-paragraphStyle_15
+chart-1-paragraphStyle_16
+chart-1-paragraphStyle_17
+chart-1-paragraphStyle_18
+chart-1-paragraphStyle_19
+chart-1-paragraphStyle_2
+chart-1-paragraphStyle_20
+chart-1-paragraphStyle_21
+chart-1-paragraphStyle_22
+chart-1-paragraphStyle_23
+chart-1-paragraphStyle_24
+chart-1-paragraphStyle_25
+chart-1-paragraphStyle_26
+chart-1-paragraphStyle_27
+chart-1-paragraphStyle_28
+chart-1-paragraphStyle_29
+chart-1-paragraphStyle_3
+chart-1-paragraphStyle_4
+chart-1-paragraphStyle_5
+chart-1-paragraphStyle_6
+chart-1-paragraphStyle_7
+chart-1-paragraphStyle_8
+chart-1-paragraphStyle_9
+chart-1-referenceLine_0
+chart-1-series_0
+chart-1-series_1
+chart-1-series_2
+chart-1-series_3
+chart-1-series_4
+chart-1-series_5
+chart-1-valueaxis_0
+chart-1-valueaxis_1
+chart-2-categoryaxis_0
+chart-2-chart
+chart-2-legend
+chart-2-paragraphStyle_0
+chart-2-paragraphStyle_1
+chart-2-paragraphStyle_10
+chart-2-paragraphStyle_11
+chart-2-paragraphStyle_12
+chart-2-paragraphStyle_13
+chart-2-paragraphStyle_14
+chart-2-paragraphStyle_15
+chart-2-paragraphStyle_16
+chart-2-paragraphStyle_17
+chart-2-paragraphStyle_18
+chart-2-paragraphStyle_19
+chart-2-paragraphStyle_2
+chart-2-paragraphStyle_20
+chart-2-paragraphStyle_21
+chart-2-paragraphStyle_22
+chart-2-paragraphStyle_23
+chart-2-paragraphStyle_24
+chart-2-paragraphStyle_25
+chart-2-paragraphStyle_26
+chart-2-paragraphStyle_27
+chart-2-paragraphStyle_28
+chart-2-paragraphStyle_29
+chart-2-paragraphStyle_3
+chart-2-paragraphStyle_4
+chart-2-paragraphStyle_5
+chart-2-paragraphStyle_6
+chart-2-paragraphStyle_7
+chart-2-paragraphStyle_8
+chart-2-paragraphStyle_9
+chart-2-referenceLine_0
+chart-2-series_0
+chart-2-series_1
+chart-2-series_2
+chart-2-series_3
+chart-2-series_4
+chart-2-series_5
+chart-2-valueaxis_0
+chart-2-valueaxis_1
+chart-3-categoryaxis_0
+chart-3-chart
+chart-3-legend
+chart-3-paragraphStyle_0
+chart-3-paragraphStyle_1
+chart-3-paragraphStyle_10
+chart-3-paragraphStyle_11
+chart-3-paragraphStyle_12
+chart-3-paragraphStyle_13
+chart-3-paragraphStyle_14
+chart-3-paragraphStyle_15
+chart-3-paragraphStyle_16
+chart-3-paragraphStyle_17
+chart-3-paragraphStyle_18
+chart-3-paragraphStyle_19
+chart-3-paragraphStyle_2
+chart-3-paragraphStyle_20
+chart-3-paragraphStyle_21
+chart-3-paragraphStyle_22
+chart-3-paragraphStyle_23
+chart-3-paragraphStyle_24
+chart-3-paragraphStyle_25
+chart-3-paragraphStyle_26
+chart-3-paragraphStyle_27
+chart-3-paragraphStyle_28
+chart-3-paragraphStyle_29
+chart-3-paragraphStyle_3
+chart-3-paragraphStyle_4
+chart-3-paragraphStyle_5
+chart-3-paragraphStyle_6
+chart-3-paragraphStyle_7
+chart-3-paragraphStyle_8
+chart-3-paragraphStyle_9
+chart-3-referenceLine_0
+chart-3-series_0
+chart-3-series_1
+chart-3-series_2
+chart-3-series_3
+chart-3-series_4
+chart-3-series_5
+chart-3-valueaxis_0
+chart-3-valueaxis_1
+chart-4-categoryaxis_0
+chart-4-chart
+chart-4-legend
+chart-4-paragraphStyle_0
+chart-4-paragraphStyle_1
+chart-4-paragraphStyle_10
+chart-4-paragraphStyle_11
+chart-4-paragraphStyle_12
+chart-4-paragraphStyle_13
+chart-4-paragraphStyle_14
+chart-4-paragraphStyle_15
+chart-4-paragraphStyle_16
+chart-4-paragraphStyle_17
+chart-4-paragraphStyle_18
+chart-4-paragraphStyle_19
+chart-4-paragraphStyle_2
+chart-4-paragraphStyle_20
+chart-4-paragraphStyle_21
+chart-4-paragraphStyle_22
+chart-4-paragraphStyle_23
+chart-4-paragraphStyle_24
+chart-4-paragraphStyle_25
+chart-4-paragraphStyle_26
+chart-4-paragraphStyle_27
+chart-4-paragraphStyle_28
+chart-4-paragraphStyle_29
+chart-4-paragraphStyle_3
+chart-4-paragraphStyle_4
+chart-4-paragraphStyle_5
+chart-4-paragraphStyle_6
+chart-4-paragraphStyle_7
+chart-4-paragraphStyle_8
+chart-4-paragraphStyle_9
+chart-4-referenceLine_0
+chart-4-series_0
+chart-4-series_1
+chart-4-series_2
+chart-4-series_3
+chart-4-series_4
+chart-4-series_5
+chart-4-valueaxis_0
+chart-4-valueaxis_1
+chart-5-categoryaxis_0
+chart-5-chart
+chart-5-legend
+chart-5-paragraphStyle_0
+chart-5-paragraphStyle_1
+chart-5-paragraphStyle_10
+chart-5-paragraphStyle_11
+chart-5-paragraphStyle_12
+chart-5-paragraphStyle_13
+chart-5-paragraphStyle_14
+chart-5-paragraphStyle_15
+chart-5-paragraphStyle_16
+chart-5-paragraphStyle_17
+chart-5-paragraphStyle_18
+chart-5-paragraphStyle_19
+chart-5-paragraphStyle_2
+chart-5-paragraphStyle_20
+chart-5-paragraphStyle_21
+chart-5-paragraphStyle_22
+chart-5-paragraphStyle_23
+chart-5-paragraphStyle_24
+chart-5-paragraphStyle_25
+chart-5-paragraphStyle_26
+chart-5-paragraphStyle_27
+chart-5-paragraphStyle_28
+chart-5-paragraphStyle_29
+chart-5-paragraphStyle_3
+chart-5-paragraphStyle_4
+chart-5-paragraphStyle_5
+chart-5-paragraphStyle_6
+chart-5-paragraphStyle_7
+chart-5-paragraphStyle_8
+chart-5-paragraphStyle_9
+chart-5-referenceLine_0
+chart-5-series_0
+chart-5-series_1
+chart-5-series_2
+chart-5-series_3
+chart-5-series_4
+chart-5-series_5
+chart-5-valueaxis_0
+chart-5-valueaxis_1
+column-style-default
+drawingline-0-drawinglineStyle
+equation-0-imageStyle
+image-0-imageStyle
+image-1-imageStyle
+image-2-imageStyle
+image-3-imageStyle
+image-4-imageStyle
+image-5-imageStyle
+imported-paragraph-style-0
+imported-paragraph-style-10
+imported-paragraph-style-11
+imported-paragraph-style-12
+imported-paragraph-style-13
+imported-toc-entry-style-1
+imported-toc-entry-style-2
+imported-toc-entry-style-3
+imported-toc-entry-style-4
+imported-toc-entry-style-5
+imported-toc-entry-style-6
+imported-toc-entry-style-7
+imported-toc-entry-style-8
+imported-toc-entry-style-9
+line-0-shapestyle
+line-1-shapestyle
+line-2-shapestyle
+line-3-shapestyle
+line-4-shapestyle
+line-5-shapestyle
+movie-0-movieStyle
+movie-1-movieStyle
+movie-2-movieStyle
+movie-3-movieStyle
+movie-4-movieStyle
+movie-5-movieStyle
+paragraph-style-default
+shape-0-shapestyle
+shape-1-shapestyle
+shape-2-shapestyle
+shape-3-shapestyle
+shape-4-shapestyle
+shape-5-shapestyle
+!stickyComment-0-paragraphstyle-12
+!stickyComment-0-paragraphstyle-13
+!stickyComment-0-paragraphstyle-14
+!stickyComment-0-paragraphstyle-15
+!stickyComment-0-paragraphstyle-16
+!stickyComment-0-paragraphstyle-18
+!stickyComment-0-paragraphstyle-22
+!stickyComment-0-paragraphstyle-24
+!stickyComment-0-paragraphstyle-28
+stickyComment-0-shapeStyle
+svgimport-0-shapestyle
+table-0-tableStyle
+table-1-tableStyle
+table-2-tableStyle
+table-3-tableStyle
+table-4-tableStyle
+table-5-tableStyle
+tableCell-0-bodyStyle
+tableCell-0-categoryLevel1Row
+tableCell-0-categoryLevel2Row
+tableCell-0-categoryLevel3Row
+tableCell-0-categoryLevel4Row
+tableCell-0-categoryLevel5Row
+tableCell-0-footerRowStyle
+tableCell-0-headerColumnStyle
+tableCell-0-headerRowStyle
+tableCell-0-labelLevel1Row
+tableCell-0-labelLevel2Row
+tableCell-0-labelLevel3Row
+tableCell-0-labelLevel4Row
+tableCell-0-labelLevel5Row
+"tableCell-0-pivotBodySummaryColumn
+tableCell-0-pivotBodySummaryRow
+$tableCell-0-pivotHeaderColumnSummary
+tableCell-1-bodyStyle
+tableCell-1-categoryLevel1Row
+tableCell-1-categoryLevel2Row
+tableCell-1-categoryLevel3Row
+tableCell-1-categoryLevel4Row
+tableCell-1-categoryLevel5Row
+tableCell-1-footerRowStyle
+tableCell-1-headerColumnStyle
+tableCell-1-headerRowStyle
+tableCell-1-labelLevel1Row
+tableCell-1-labelLevel2Row
+tableCell-1-labelLevel3Row
+tableCell-1-labelLevel4Row
+tableCell-1-labelLevel5Row
+"tableCell-1-pivotBodySummaryColumn
+tableCell-1-pivotBodySummaryRow
+$tableCell-1-pivotHeaderColumnSummary
+tableCell-2-bodyStyle
+tableCell-2-categoryLevel1Row
+tableCell-2-categoryLevel2Row
+tableCell-2-categoryLevel3Row
+tableCell-2-categoryLevel4Row
+tableCell-2-categoryLevel5Row
+tableCell-2-footerRowStyle
+tableCell-2-headerColumnStyle
+tableCell-2-headerRowStyle
+tableCell-2-labelLevel1Row
+tableCell-2-labelLevel2Row
+tableCell-2-labelLevel3Row
+tableCell-2-labelLevel4Row
+tableCell-2-labelLevel5Row
+"tableCell-2-pivotBodySummaryColumn
+tableCell-2-pivotBodySummaryRow
+$tableCell-2-pivotHeaderColumnSummary
+tableCell-3-bodyStyle
+tableCell-3-categoryLevel1Row
+tableCell-3-categoryLevel2Row
+tableCell-3-categoryLevel3Row
+tableCell-3-categoryLevel4Row
+tableCell-3-categoryLevel5Row
+tableCell-3-footerRowStyle
+tableCell-3-headerColumnStyle
+tableCell-3-headerRowStyle
+tableCell-3-labelLevel1Row
+tableCell-3-labelLevel2Row
+tableCell-3-labelLevel3Row
+tableCell-3-labelLevel4Row
+tableCell-3-labelLevel5Row
+"tableCell-3-pivotBodySummaryColumn
+tableCell-3-pivotBodySummaryRow
+$tableCell-3-pivotHeaderColumnSummary
+tableCell-4-bodyStyle
+tableCell-4-categoryLevel1Row
+tableCell-4-categoryLevel2Row
+tableCell-4-categoryLevel3Row
+tableCell-4-categoryLevel4Row
+tableCell-4-categoryLevel5Row
+tableCell-4-footerRowStyle
+tableCell-4-headerColumnStyle
+tableCell-4-headerRowStyle
+tableCell-4-labelLevel1Row
+tableCell-4-labelLevel2Row
+tableCell-4-labelLevel3Row
+tableCell-4-labelLevel4Row
+tableCell-4-labelLevel5Row
+"tableCell-4-pivotBodySummaryColumn
+tableCell-4-pivotBodySummaryRow
+$tableCell-4-pivotHeaderColumnSummary
+tableCell-5-bodyStyle
+tableCell-5-categoryLevel1Row
+tableCell-5-categoryLevel2Row
+tableCell-5-categoryLevel3Row
+tableCell-5-categoryLevel4Row
+tableCell-5-categoryLevel5Row
+tableCell-5-footerRowStyle
+tableCell-5-headerColumnStyle
+tableCell-5-headerRowStyle
+tableCell-5-labelLevel1Row
+tableCell-5-labelLevel2Row
+tableCell-5-labelLevel3Row
+tableCell-5-labelLevel4Row
+tableCell-5-labelLevel5Row
+"tableCell-5-pivotBodySummaryColumn
+tableCell-5-pivotBodySummaryRow
+$tableCell-5-pivotHeaderColumnSummary
+tableCellText-0-bodyStyle
+!tableCellText-0-categoryLevel1Row
+!tableCellText-0-categoryLevel2Row
+!tableCellText-0-categoryLevel3Row
+!tableCellText-0-categoryLevel4Row
+!tableCellText-0-categoryLevel5Row
+tableCellText-0-footerRowStyle
+!tableCellText-0-headerColumnStyle
+tableCellText-0-headerRowStyle
+tableCellText-0-labelLevel1Row
+tableCellText-0-labelLevel2Row
+tableCellText-0-labelLevel3Row
+tableCellText-0-labelLevel4Row
+tableCellText-0-labelLevel5Row
+tableCellText-1-bodyStyle
+!tableCellText-1-categoryLevel1Row
+!tableCellText-1-categoryLevel2Row
+!tableCellText-1-categoryLevel3Row
+!tableCellText-1-categoryLevel4Row
+!tableCellText-1-categoryLevel5Row
+tableCellText-1-footerRowStyle
+!tableCellText-1-headerColumnStyle
+tableCellText-1-headerRowStyle
+tableCellText-1-labelLevel1Row
+tableCellText-1-labelLevel2Row
+tableCellText-1-labelLevel3Row
+tableCellText-1-labelLevel4Row
+tableCellText-1-labelLevel5Row
+tableCellText-2-bodyStyle
+!tableCellText-2-categoryLevel1Row
+!tableCellText-2-categoryLevel2Row
+!tableCellText-2-categoryLevel3Row
+!tableCellText-2-categoryLevel4Row
+!tableCellText-2-categoryLevel5Row
+tableCellText-2-footerRowStyle
+!tableCellText-2-headerColumnStyle
+tableCellText-2-headerRowStyle
+tableCellText-2-labelLevel1Row
+tableCellText-2-labelLevel2Row
+tableCellText-2-labelLevel3Row
+tableCellText-2-labelLevel4Row
+tableCellText-2-labelLevel5Row
+tableCellText-3-bodyStyle
+!tableCellText-3-categoryLevel1Row
+!tableCellText-3-categoryLevel2Row
+!tableCellText-3-categoryLevel3Row
+!tableCellText-3-categoryLevel4Row
+!tableCellText-3-categoryLevel5Row
+tableCellText-3-footerRowStyle
+!tableCellText-3-headerColumnStyle
+tableCellText-3-headerRowStyle
+tableCellText-3-labelLevel1Row
+tableCellText-3-labelLevel2Row
+tableCellText-3-labelLevel3Row
+tableCellText-3-labelLevel4Row
+tableCellText-3-labelLevel5Row
+tableCellText-4-bodyStyle
+!tableCellText-4-categoryLevel1Row
+!tableCellText-4-categoryLevel2Row
+!tableCellText-4-categoryLevel3Row
+!tableCellText-4-categoryLevel4Row
+!tableCellText-4-categoryLevel5Row
+tableCellText-4-footerRowStyle
+!tableCellText-4-headerColumnStyle
+tableCellText-4-headerRowStyle
+tableCellText-4-labelLevel1Row
+tableCellText-4-labelLevel2Row
+tableCellText-4-labelLevel3Row
+tableCellText-4-labelLevel4Row
+tableCellText-4-labelLevel5Row
+tableCellText-5-bodyStyle
+!tableCellText-5-categoryLevel1Row
+!tableCellText-5-categoryLevel2Row
+!tableCellText-5-categoryLevel3Row
+!tableCellText-5-categoryLevel4Row
+!tableCellText-5-categoryLevel5Row
+tableCellText-5-footerRowStyle
+!tableCellText-5-headerColumnStyle
+tableCellText-5-headerRowStyle
+tableCellText-5-labelLevel1Row
+tableCellText-5-labelLevel2Row
+tableCellText-5-labelLevel3Row
+tableCellText-5-labelLevel4Row
+tableCellText-5-labelLevel5Row
+tableName-0-shapeStyle
+tableName-0-textStyle
+tableName-1-shapeStyle
+tableName-1-textStyle
+tableName-2-shapeStyle
+tableName-2-textStyle
+tableName-3-shapeStyle
+tableName-3-textStyle
+tableName-4-shapeStyle
+tableName-4-textStyle
+tableName-5-shapeStyle
+tableName-5-textStyle
+text-0-liststyle
+text-0-liststyle-None
+text-0-paragraphstyle-Title
+text-1-liststyle
+text-1-liststyle-Bullet
+text-1-tocentrystyle
+ text-11-paragraphstyle-Heading 1
+ text-12-paragraphstyle-Heading 2
+ text-13-paragraphstyle-Heading 3
+ text-14-paragraphstyle-Heading 4
+text-2-liststyle
+text-2-liststyle-Bullet Big
+text-2-tocentrystyle
+text-20-paragraphstyle-Body 1
+text-23-paragraphstyle
+text-24-paragraphstyle
+text-25-paragraphstyle
+ text-26-paragraphstyle-Caption 3
+&text-29-paragraphstyle-Header & Footer
+text-3-liststyle
+text-3-liststyle-Image
+text-3-tocentrystyle
+$text-31-paragraphstyle-Footnote Text
+text-32-paragraphstyle-Label
+!text-33-paragraphstyle-Label Dark
+$text-34-paragraphstyle-Table Title 1
+$text-35-paragraphstyle-Table Style 1
+$text-36-paragraphstyle-Table Style 2
+$text-37-paragraphstyle-Table Style 3
+$text-38-paragraphstyle-Table Style 4
+$text-39-paragraphstyle-Table Style 5
+text-4-liststyle
+text-4-liststyle-Lettered
+text-4-tocentrystyle
+$text-40-paragraphstyle-Table Style 6
+$text-41-paragraphstyle-Table Style 7
+text-5-liststyle-Numbered
+text-6-liststyle-Harvard
+text-6-paragraphstyle-Subtitle
+text-7-liststyle-Dash
+text-8-liststyle-Note Taking
+textbox-0-shapestyle
+toc-entry-style-default
+drop-cap-style-default
+dropcap-style-0
+dropcap-style-1
+dropcap-style-2
+dropcap-style-3
+dropcap-style-4
+dropcap-style-5
+&captions-0-paragraphstyle-Caption Text
+'captions-0-paragraphstyle-Caption Title
+'captions-0-shapestyle-Legenda do Objeto*
+Legenda do Objeto
+&captions-0-paragraphstyle-Caption Text*
+HelveticaNeue-Light:
+text-0-liststyle-None*
+$captions-0-shapestyle-Object Caption*
+"captions-0-shapestyle-Object Title*
+Título do Objeto
+'captions-0-paragraphstyle-Caption Title*
+HelveticaNeue:
+'captions-0-shapestyle-Título do Objeto*
+character-style-hyperlink*
+character-style-null*
+chart-0-categoryaxis_0*
+chart-0-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-0-legend*
+chart-0-paragraphStyle_0*
+Cambria:
+chart-0-paragraphStyle_1*
+Cambria:
+chart-0-paragraphStyle_10*
+HelveticaNeue:
+chart-0-paragraphStyle_11*
+HelveticaNeue:
+chart-0-paragraphStyle_12*
+HelveticaNeue:
+chart-0-paragraphStyle_13*
+HelveticaNeue:
+chart-0-paragraphStyle_14*
+HelveticaNeue:
+chart-0-paragraphStyle_15*
+HelveticaNeue:
+chart-0-paragraphStyle_16*
+HelveticaNeue:
+chart-0-paragraphStyle_17*
+HelveticaNeue:
+chart-0-paragraphStyle_18*
+HelveticaNeue:
+chart-0-paragraphStyle_19*
+HelveticaNeue:
+chart-0-paragraphStyle_2*
+HelveticaNeue:
+chart-0-paragraphStyle_20*
+HelveticaNeue:
+chart-0-paragraphStyle_21*
+HelveticaNeue:
+chart-0-paragraphStyle_22*
+HelveticaNeue:
+chart-0-paragraphStyle_23*
+HelveticaNeue:
+chart-0-paragraphStyle_24*
+HelveticaNeue:
+chart-0-paragraphStyle_25*
+HelveticaNeue:
+chart-0-paragraphStyle_26*
+HelveticaNeue:
+chart-0-paragraphStyle_27*
+HelveticaNeue:
+chart-0-paragraphStyle_28*
+HelveticaNeue:
+chart-0-paragraphStyle_29*
+HelveticaNeue:
+chart-0-paragraphStyle_3*
+HelveticaNeue:
+chart-0-paragraphStyle_4*
+HelveticaNeue:
+chart-0-paragraphStyle_5*
+HelveticaNeue:
+chart-0-paragraphStyle_6*
+HelveticaNeue:
+chart-0-paragraphStyle_7*
+HelveticaNeue:
+chart-0-paragraphStyle_8*
+HelveticaNeue:
+chart-0-paragraphStyle_9*
+HelveticaNeue:
+chart-0-referenceLine_0*
+chart-0-series_0*
+chart-0-series_1*
+chart-0-series_2*
+chart-0-series_3*
+chart-0-series_4*
+chart-0-series_5*
+chart-0-valueaxis_0*
+chart-0-valueaxis_1*
+chart-1-categoryaxis_0*
+chart-1-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-1-legend*
+chart-1-paragraphStyle_0*
+Cambria:
+chart-1-paragraphStyle_1*
+Cambria:
+chart-1-paragraphStyle_10*
+HelveticaNeue:
+chart-1-paragraphStyle_11*
+HelveticaNeue:
+chart-1-paragraphStyle_12*
+HelveticaNeue:
+chart-1-paragraphStyle_13*
+HelveticaNeue:
+chart-1-paragraphStyle_14*
+HelveticaNeue:
+chart-1-paragraphStyle_15*
+HelveticaNeue:
+chart-1-paragraphStyle_16*
+HelveticaNeue:
+chart-1-paragraphStyle_17*
+HelveticaNeue:
+chart-1-paragraphStyle_18*
+HelveticaNeue:
+chart-1-paragraphStyle_19*
+HelveticaNeue:
+chart-1-paragraphStyle_2*
+HelveticaNeue:
+chart-1-paragraphStyle_20*
+HelveticaNeue:
+chart-1-paragraphStyle_21*
+HelveticaNeue:
+chart-1-paragraphStyle_22*
+HelveticaNeue:
+chart-1-paragraphStyle_23*
+HelveticaNeue:
+chart-1-paragraphStyle_24*
+HelveticaNeue:
+chart-1-paragraphStyle_25*
+HelveticaNeue:
+chart-1-paragraphStyle_26*
+HelveticaNeue:
+chart-1-paragraphStyle_27*
+HelveticaNeue:
+chart-1-paragraphStyle_28*
+HelveticaNeue:
+chart-1-paragraphStyle_29*
+HelveticaNeue:
+chart-1-paragraphStyle_3*
+HelveticaNeue:
+chart-1-paragraphStyle_4*
+HelveticaNeue:
+chart-1-paragraphStyle_5*
+HelveticaNeue:
+chart-1-paragraphStyle_6*
+HelveticaNeue:
+chart-1-paragraphStyle_7*
+HelveticaNeue:
+chart-1-paragraphStyle_8*
+HelveticaNeue:
+chart-1-paragraphStyle_9*
+HelveticaNeue:
+chart-1-referenceLine_0*
+chart-1-series_0*
+chart-1-series_1*
+chart-1-series_2*
+chart-1-series_3*
+chart-1-series_4*
+chart-1-series_5*
+chart-1-valueaxis_0*
+chart-1-valueaxis_1*
+chart-2-categoryaxis_0*
+chart-2-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-2-legend*
+chart-2-paragraphStyle_0*
+Cambria:
+chart-2-paragraphStyle_1*
+Cambria:
+chart-2-paragraphStyle_10*
+HelveticaNeue:
+chart-2-paragraphStyle_11*
+HelveticaNeue:
+chart-2-paragraphStyle_12*
+HelveticaNeue:
+chart-2-paragraphStyle_13*
+HelveticaNeue:
+chart-2-paragraphStyle_14*
+HelveticaNeue:
+chart-2-paragraphStyle_15*
+HelveticaNeue:
+chart-2-paragraphStyle_16*
+HelveticaNeue:
+chart-2-paragraphStyle_17*
+HelveticaNeue:
+chart-2-paragraphStyle_18*
+HelveticaNeue:
+chart-2-paragraphStyle_19*
+HelveticaNeue:
+chart-2-paragraphStyle_2*
+HelveticaNeue:
+chart-2-paragraphStyle_20*
+HelveticaNeue:
+chart-2-paragraphStyle_21*
+HelveticaNeue:
+chart-2-paragraphStyle_22*
+HelveticaNeue:
+chart-2-paragraphStyle_23*
+HelveticaNeue:
+chart-2-paragraphStyle_24*
+HelveticaNeue:
+chart-2-paragraphStyle_25*
+HelveticaNeue:
+chart-2-paragraphStyle_26*
+HelveticaNeue:
+chart-2-paragraphStyle_27*
+HelveticaNeue:
+chart-2-paragraphStyle_28*
+HelveticaNeue:
+chart-2-paragraphStyle_29*
+HelveticaNeue:
+chart-2-paragraphStyle_3*
+HelveticaNeue:
+chart-2-paragraphStyle_4*
+HelveticaNeue:
+chart-2-paragraphStyle_5*
+HelveticaNeue:
+chart-2-paragraphStyle_6*
+HelveticaNeue:
+chart-2-paragraphStyle_7*
+HelveticaNeue:
+chart-2-paragraphStyle_8*
+HelveticaNeue:
+chart-2-paragraphStyle_9*
+HelveticaNeue:
+chart-2-referenceLine_0*
+chart-2-series_0*
+chart-2-series_1*
+chart-2-series_2*
+chart-2-series_3*
+chart-2-series_4*
+chart-2-series_5*
+chart-2-valueaxis_0*
+chart-2-valueaxis_1*
+chart-3-categoryaxis_0*
+chart-3-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-3-legend*
+chart-3-paragraphStyle_0*
+Cambria:
+chart-3-paragraphStyle_1*
+Cambria:
+chart-3-paragraphStyle_10*
+HelveticaNeue:
+chart-3-paragraphStyle_11*
+HelveticaNeue:
+chart-3-paragraphStyle_12*
+HelveticaNeue:
+chart-3-paragraphStyle_13*
+HelveticaNeue:
+chart-3-paragraphStyle_14*
+HelveticaNeue:
+chart-3-paragraphStyle_15*
+HelveticaNeue:
+chart-3-paragraphStyle_16*
+HelveticaNeue:
+chart-3-paragraphStyle_17*
+HelveticaNeue:
+chart-3-paragraphStyle_18*
+HelveticaNeue:
+chart-3-paragraphStyle_19*
+HelveticaNeue:
+chart-3-paragraphStyle_2*
+HelveticaNeue:
+chart-3-paragraphStyle_20*
+HelveticaNeue:
+chart-3-paragraphStyle_21*
+HelveticaNeue:
+chart-3-paragraphStyle_22*
+HelveticaNeue:
+chart-3-paragraphStyle_23*
+HelveticaNeue:
+chart-3-paragraphStyle_24*
+HelveticaNeue:
+chart-3-paragraphStyle_25*
+HelveticaNeue:
+chart-3-paragraphStyle_26*
+HelveticaNeue:
+chart-3-paragraphStyle_27*
+HelveticaNeue:
+chart-3-paragraphStyle_28*
+HelveticaNeue:
+chart-3-paragraphStyle_29*
+HelveticaNeue:
+chart-3-paragraphStyle_3*
+HelveticaNeue:
+chart-3-paragraphStyle_4*
+HelveticaNeue:
+chart-3-paragraphStyle_5*
+HelveticaNeue:
+chart-3-paragraphStyle_6*
+HelveticaNeue:
+chart-3-paragraphStyle_7*
+HelveticaNeue:
+chart-3-paragraphStyle_8*
+HelveticaNeue:
+chart-3-paragraphStyle_9*
+HelveticaNeue:
+chart-3-referenceLine_0*
+chart-3-series_0*
+chart-3-series_1*
+chart-3-series_2*
+chart-3-series_3*
+chart-3-series_4*
+chart-3-series_5*
+chart-3-valueaxis_0*
+chart-3-valueaxis_1*
+chart-4-categoryaxis_0*
+chart-4-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-4-legend*
+chart-4-paragraphStyle_0*
+Cambria:
+chart-4-paragraphStyle_1*
+Cambria:
+chart-4-paragraphStyle_10*
+HelveticaNeue:
+chart-4-paragraphStyle_11*
+HelveticaNeue:
+chart-4-paragraphStyle_12*
+HelveticaNeue:
+chart-4-paragraphStyle_13*
+HelveticaNeue:
+chart-4-paragraphStyle_14*
+HelveticaNeue:
+chart-4-paragraphStyle_15*
+HelveticaNeue:
+chart-4-paragraphStyle_16*
+HelveticaNeue:
+chart-4-paragraphStyle_17*
+HelveticaNeue:
+chart-4-paragraphStyle_18*
+HelveticaNeue:
+chart-4-paragraphStyle_19*
+HelveticaNeue:
+chart-4-paragraphStyle_2*
+HelveticaNeue:
+chart-4-paragraphStyle_20*
+HelveticaNeue:
+chart-4-paragraphStyle_21*
+HelveticaNeue:
+chart-4-paragraphStyle_22*
+HelveticaNeue:
+chart-4-paragraphStyle_23*
+HelveticaNeue:
+chart-4-paragraphStyle_24*
+HelveticaNeue:
+chart-4-paragraphStyle_25*
+HelveticaNeue:
+chart-4-paragraphStyle_26*
+HelveticaNeue:
+chart-4-paragraphStyle_27*
+HelveticaNeue:
+chart-4-paragraphStyle_28*
+HelveticaNeue:
+chart-4-paragraphStyle_29*
+HelveticaNeue:
+chart-4-paragraphStyle_3*
+HelveticaNeue:
+chart-4-paragraphStyle_4*
+HelveticaNeue:
+chart-4-paragraphStyle_5*
+HelveticaNeue:
+chart-4-paragraphStyle_6*
+HelveticaNeue:
+chart-4-paragraphStyle_7*
+HelveticaNeue:
+chart-4-paragraphStyle_8*
+HelveticaNeue:
+chart-4-paragraphStyle_9*
+HelveticaNeue:
+chart-4-referenceLine_0*
+chart-4-series_0*
+chart-4-series_1*
+chart-4-series_2*
+chart-4-series_3*
+chart-4-series_4*
+chart-4-series_5*
+chart-4-valueaxis_0*
+chart-4-valueaxis_1*
+chart-5-categoryaxis_0*
+chart-5-chart*
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Left
+Top Light
+Fill Center High
+Fill Right
+Fill Center Low
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Soft Light
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Fill Center
+Directional Key
+Fill Right
+Fill Left
+Medium Center
+Fill Center
+Directional Key
+Edge Right
+Edge Left
+chart-5-legend*
+chart-5-paragraphStyle_0*
+Cambria:
+chart-5-paragraphStyle_1*
+Cambria:
+chart-5-paragraphStyle_10*
+HelveticaNeue:
+chart-5-paragraphStyle_11*
+HelveticaNeue:
+chart-5-paragraphStyle_12*
+HelveticaNeue:
+chart-5-paragraphStyle_13*
+HelveticaNeue:
+chart-5-paragraphStyle_14*
+HelveticaNeue:
+chart-5-paragraphStyle_15*
+HelveticaNeue:
+chart-5-paragraphStyle_16*
+HelveticaNeue:
+chart-5-paragraphStyle_17*
+HelveticaNeue:
+chart-5-paragraphStyle_18*
+HelveticaNeue:
+chart-5-paragraphStyle_19*
+HelveticaNeue:
+chart-5-paragraphStyle_2*
+HelveticaNeue:
+chart-5-paragraphStyle_20*
+HelveticaNeue:
+chart-5-paragraphStyle_21*
+HelveticaNeue:
+chart-5-paragraphStyle_22*
+HelveticaNeue:
+chart-5-paragraphStyle_23*
+HelveticaNeue:
+chart-5-paragraphStyle_24*
+HelveticaNeue:
+chart-5-paragraphStyle_25*
+HelveticaNeue:
+chart-5-paragraphStyle_26*
+HelveticaNeue:
+chart-5-paragraphStyle_27*
+HelveticaNeue:
+chart-5-paragraphStyle_28*
+HelveticaNeue:
+chart-5-paragraphStyle_29*
+HelveticaNeue:
+chart-5-paragraphStyle_3*
+HelveticaNeue:
+chart-5-paragraphStyle_4*
+HelveticaNeue:
+chart-5-paragraphStyle_5*
+HelveticaNeue:
+chart-5-paragraphStyle_6*
+HelveticaNeue:
+chart-5-paragraphStyle_7*
+HelveticaNeue:
+chart-5-paragraphStyle_8*
+HelveticaNeue:
+chart-5-paragraphStyle_9*
+HelveticaNeue:
+chart-5-referenceLine_0*
+chart-5-series_0*
+chart-5-series_1*
+chart-5-series_2*
+chart-5-series_3*
+chart-5-series_4*
+chart-5-series_5*
+chart-5-valueaxis_0*
+chart-5-valueaxis_1*
+column-style-default*
+drawingline-0-drawinglineStyle*
+equation-0-imageStyle*
+image-0-imageStyle*
+image-1-imageStyle*
+image-2-imageStyle*
+image-3-imageStyle*
+image-4-imageStyle*
+image-5-imageStyle*
+Word Default Style
+imported-paragraph-style-0*
+TimesNewRomanPSMT:
+Heading 4
+imported-paragraph-style-10*
+TimesNewRomanPS-ItalicMT:
+Heading 5
+imported-paragraph-style-11*
+TimesNewRomanPSMT:
+Heading 6
+imported-paragraph-style-12*
+TimesNewRomanPSMT:
+imported-paragraph-style-13*
+TimesNewRomanPSMT:
+imported-toc-entry-style-1*
+HelveticaNeue:
+imported-toc-entry-style-2*
+HelveticaNeue:
+imported-toc-entry-style-3*
+HelveticaNeue:
+imported-toc-entry-style-4*
+HelveticaNeue:
+imported-toc-entry-style-5*
+HelveticaNeue:
+imported-toc-entry-style-6*
+HelveticaNeue:
+imported-toc-entry-style-7*
+HelveticaNeue:
+imported-toc-entry-style-8*
+HelveticaNeue:
+imported-toc-entry-style-9*
+HelveticaNeue:
+line-0-shapestyle*
+text-23-paragraphstyle*
+Cambria:
+text-0-liststyle*
+line-1-shapestyle*
+line-2-shapestyle*
+line-3-shapestyle*
+line-4-shapestyle*
+line-5-shapestyle*
+movie-0-movieStyle*
+movie-1-movieStyle*
+movie-2-movieStyle*
+movie-3-movieStyle*
+movie-4-movieStyle*
+movie-5-movieStyle*
+paragraph-style-default*
+HelveticaNeue:
+shape-0-shapestyle*
+shape-1-shapestyle*
+text-24-paragraphstyle*
+Cambria:
+shape-2-shapestyle*
+shape-3-shapestyle*
+shape-4-shapestyle*
+shape-5-shapestyle*
+!stickyComment-0-paragraphstyle-12*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-13*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-14*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-15*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-16*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-18*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-22*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-24*
+HelveticaNeue:
+!stickyComment-0-paragraphstyle-28*
+HelveticaNeue:
+stickyComment-0-shapeStyle*
+svgimport-0-shapestyle*
+Etiqueta
+text-32-paragraphstyle-Label*
+HelveticaNeue-Medium:
+table-0-tableStyle*
+HelveticaNeue
+table-1-tableStyle*
+HelveticaNeue
+table-2-tableStyle*
+HelveticaNeue
+table-3-tableStyle*
+HelveticaNeue
+table-4-tableStyle*
+HelveticaNeue
+table-5-tableStyle*
+HelveticaNeue
+tableCell-0-bodyStyle*
+tableCell-0-categoryLevel1Row*
+tableCell-0-categoryLevel2Row*
+tableCell-0-categoryLevel3Row*
+tableCell-0-categoryLevel4Row*
+tableCell-0-categoryLevel5Row*
+tableCell-0-footerRowStyle*
+tableCell-0-headerColumnStyle*
+tableCell-0-headerRowStyle*
+tableCell-0-labelLevel1Row*
+tableCell-0-labelLevel2Row*
+tableCell-0-labelLevel3Row*
+tableCell-0-labelLevel4Row*
+tableCell-0-labelLevel5Row*
+"tableCell-0-pivotBodySummaryColumn*
+tableCell-0-pivotBodySummaryRow*
+$tableCell-0-pivotHeaderColumnSummary*
+tableCell-1-bodyStyle*
+tableCell-1-categoryLevel1Row*
+tableCell-1-categoryLevel2Row*
+tableCell-1-categoryLevel3Row*
+tableCell-1-categoryLevel4Row*
+tableCell-1-categoryLevel5Row*
+tableCell-1-footerRowStyle*
+tableCell-1-headerColumnStyle*
+tableCell-1-headerRowStyle*
+tableCell-1-labelLevel1Row*
+tableCell-1-labelLevel2Row*
+tableCell-1-labelLevel3Row*
+tableCell-1-labelLevel4Row*
+tableCell-1-labelLevel5Row*
+"tableCell-1-pivotBodySummaryColumn*
+tableCell-1-pivotBodySummaryRow*
+$tableCell-1-pivotHeaderColumnSummary*
+tableCell-2-bodyStyle*
+tableCell-2-categoryLevel1Row*
+tableCell-2-categoryLevel2Row*
+tableCell-2-categoryLevel3Row*
+tableCell-2-categoryLevel4Row*
+tableCell-2-categoryLevel5Row*
+tableCell-2-footerRowStyle*
+tableCell-2-headerColumnStyle*
+tableCell-2-headerRowStyle*
+tableCell-2-labelLevel1Row*
+tableCell-2-labelLevel2Row*
+tableCell-2-labelLevel3Row*
+tableCell-2-labelLevel4Row*
+tableCell-2-labelLevel5Row*
+"tableCell-2-pivotBodySummaryColumn*
+tableCell-2-pivotBodySummaryRow*
+$tableCell-2-pivotHeaderColumnSummary*
+tableCell-3-bodyStyle*
+tableCell-3-categoryLevel1Row*
+tableCell-3-categoryLevel2Row*
+tableCell-3-categoryLevel3Row*
+tableCell-3-categoryLevel4Row*
+tableCell-3-categoryLevel5Row*
+tableCell-3-footerRowStyle*
+tableCell-3-headerColumnStyle*
+tableCell-3-headerRowStyle*
+tableCell-3-labelLevel1Row*
+tableCell-3-labelLevel2Row*
+tableCell-3-labelLevel3Row*
+tableCell-3-labelLevel4Row*
+tableCell-3-labelLevel5Row*
+"tableCell-3-pivotBodySummaryColumn*
+tableCell-3-pivotBodySummaryRow*
+$tableCell-3-pivotHeaderColumnSummary*
+tableCell-4-bodyStyle*
+tableCell-4-categoryLevel1Row*
+tableCell-4-categoryLevel2Row*
+tableCell-4-categoryLevel3Row*
+tableCell-4-categoryLevel4Row*
+tableCell-4-categoryLevel5Row*
+tableCell-4-footerRowStyle*
+tableCell-4-headerColumnStyle*
+tableCell-4-headerRowStyle*
+tableCell-4-labelLevel1Row*
+tableCell-4-labelLevel2Row*
+tableCell-4-labelLevel3Row*
+tableCell-4-labelLevel4Row*
+tableCell-4-labelLevel5Row*
+"tableCell-4-pivotBodySummaryColumn*
+tableCell-4-pivotBodySummaryRow*
+$tableCell-4-pivotHeaderColumnSummary*
+tableCell-5-bodyStyle*
+tableCell-5-categoryLevel1Row*
+tableCell-5-categoryLevel2Row*
+tableCell-5-categoryLevel3Row*
+tableCell-5-categoryLevel4Row*
+tableCell-5-categoryLevel5Row*
+tableCell-5-footerRowStyle*
+tableCell-5-headerColumnStyle*
+tableCell-5-headerRowStyle*
+tableCell-5-labelLevel1Row*
+tableCell-5-labelLevel2Row*
+tableCell-5-labelLevel3Row*
+tableCell-5-labelLevel4Row*
+tableCell-5-labelLevel5Row*
+"tableCell-5-pivotBodySummaryColumn*
+tableCell-5-pivotBodySummaryRow*
+$tableCell-5-pivotHeaderColumnSummary*
+tableCellText-0-bodyStyle*
+Cambria:
+!tableCellText-0-categoryLevel1Row*
+Helvetica:
+!tableCellText-0-categoryLevel2Row*
+Helvetica:
+!tableCellText-0-categoryLevel3Row*
+Helvetica:
+!tableCellText-0-categoryLevel4Row*
+Helvetica:
+!tableCellText-0-categoryLevel5Row*
+Helvetica:
+tableCellText-0-footerRowStyle*
+Cambria:
+!tableCellText-0-headerColumnStyle*
+Cambria:
+tableCellText-0-headerRowStyle*
+Cambria:
+tableCellText-0-labelLevel1Row*
+Helvetica:
+tableCellText-0-labelLevel2Row*
+Helvetica:
+tableCellText-0-labelLevel3Row*
+Helvetica:
+tableCellText-0-labelLevel4Row*
+Helvetica:
+tableCellText-0-labelLevel5Row*
+Helvetica:
+tableCellText-1-bodyStyle*
+Cambria:
+!tableCellText-1-categoryLevel1Row*
+Helvetica:
+!tableCellText-1-categoryLevel2Row*
+Helvetica:
+!tableCellText-1-categoryLevel3Row*
+Helvetica:
+!tableCellText-1-categoryLevel4Row*
+Helvetica:
+!tableCellText-1-categoryLevel5Row*
+Helvetica:
+tableCellText-1-footerRowStyle*
+Cambria:
+!tableCellText-1-headerColumnStyle*
+Cambria:
+tableCellText-1-headerRowStyle*
+Cambria:
+tableCellText-1-labelLevel1Row*
+Helvetica:
+tableCellText-1-labelLevel2Row*
+Helvetica:
+tableCellText-1-labelLevel3Row*
+Helvetica:
+tableCellText-1-labelLevel4Row*
+Helvetica:
+tableCellText-1-labelLevel5Row*
+Helvetica:
+tableCellText-2-bodyStyle*
+Cambria:
+!tableCellText-2-categoryLevel1Row*
+Helvetica:
+!tableCellText-2-categoryLevel2Row*
+Helvetica:
+!tableCellText-2-categoryLevel3Row*
+Helvetica:
+!tableCellText-2-categoryLevel4Row*
+Helvetica:
+!tableCellText-2-categoryLevel5Row*
+Helvetica:
+tableCellText-2-footerRowStyle*
+Cambria:
+!tableCellText-2-headerColumnStyle*
+Cambria:
+tableCellText-2-headerRowStyle*
+Cambria:
+tableCellText-2-labelLevel1Row*
+Helvetica:
+tableCellText-2-labelLevel2Row*
+Helvetica:
+tableCellText-2-labelLevel3Row*
+Helvetica:
+tableCellText-2-labelLevel4Row*
+Helvetica:
+tableCellText-2-labelLevel5Row*
+Helvetica:
+tableCellText-3-bodyStyle*
+Cambria:
+!tableCellText-3-categoryLevel1Row*
+Helvetica:
+!tableCellText-3-categoryLevel2Row*
+Helvetica:
+!tableCellText-3-categoryLevel3Row*
+Helvetica:
+!tableCellText-3-categoryLevel4Row*
+Helvetica:
+!tableCellText-3-categoryLevel5Row*
+Helvetica:
+tableCellText-3-footerRowStyle*
+Cambria:
+!tableCellText-3-headerColumnStyle*
+Cambria:
+tableCellText-3-headerRowStyle*
+Cambria:
+tableCellText-3-labelLevel1Row*
+Helvetica:
+tableCellText-3-labelLevel2Row*
+Helvetica:
+tableCellText-3-labelLevel3Row*
+Helvetica:
+tableCellText-3-labelLevel4Row*
+Helvetica:
+tableCellText-3-labelLevel5Row*
+Helvetica:
+tableCellText-4-bodyStyle*
+Cambria:
+!tableCellText-4-categoryLevel1Row*
+Helvetica:
+!tableCellText-4-categoryLevel2Row*
+Helvetica:
+!tableCellText-4-categoryLevel3Row*
+Helvetica:
+!tableCellText-4-categoryLevel4Row*
+Helvetica:
+!tableCellText-4-categoryLevel5Row*
+Helvetica:
+tableCellText-4-footerRowStyle*
+Cambria:
+!tableCellText-4-headerColumnStyle*
+Cambria:
+tableCellText-4-headerRowStyle*
+Cambria:
+tableCellText-4-labelLevel1Row*
+Helvetica:
+tableCellText-4-labelLevel2Row*
+Helvetica:
+tableCellText-4-labelLevel3Row*
+Helvetica:
+tableCellText-4-labelLevel4Row*
+Helvetica:
+tableCellText-4-labelLevel5Row*
+Helvetica:
+tableCellText-5-bodyStyle*
+Cambria:
+!tableCellText-5-categoryLevel1Row*
+Helvetica:
+!tableCellText-5-categoryLevel2Row*
+Helvetica:
+!tableCellText-5-categoryLevel3Row*
+Helvetica:
+!tableCellText-5-categoryLevel4Row*
+Helvetica:
+!tableCellText-5-categoryLevel5Row*
+Helvetica:
+tableCellText-5-footerRowStyle*
+Cambria:
+!tableCellText-5-headerColumnStyle*
+Cambria:
+tableCellText-5-headerRowStyle*
+Cambria:
+tableCellText-5-labelLevel1Row*
+Helvetica:
+tableCellText-5-labelLevel2Row*
+Helvetica:
+tableCellText-5-labelLevel3Row*
+Helvetica:
+tableCellText-5-labelLevel4Row*
+Helvetica:
+tableCellText-5-labelLevel5Row*
+Helvetica:
+tableName-0-shapeStyle
+tableName-0-shapeStyle*
+tableName-0-textStyle*
+Cambria:
+tableName-1-shapeStyle
+tableName-1-shapeStyle*
+tableName-1-textStyle*
+Cambria:
+tableName-2-shapeStyle
+tableName-2-shapeStyle*
+tableName-2-textStyle*
+Cambria:
+tableName-3-shapeStyle
+tableName-3-shapeStyle*
+tableName-3-textStyle*
+Cambria:
+tableName-4-shapeStyle
+tableName-4-shapeStyle*
+tableName-4-textStyle*
+Cambria:
+tableName-5-shapeStyle
+tableName-5-shapeStyle*
+tableName-5-textStyle*
+Cambria:
+text-0-paragraphstyle-Title*
+HelveticaNeue-Bold:
+text-20-paragraphstyle-Body 1*
+HelveticaNeue:
+Marcadores
+text-1-liststyle*
+Marcador
+text-1-liststyle-Bullet*
+e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?e]tQ?m
+Cabeçalho 1 do Índice
+text-1-tocentrystyle*
+HelveticaNeue:
+Cabeçalho
+ text-11-paragraphstyle-Heading 1*
+TimesNewRomanPSMT:
+Cabeçalho 2
+ text-12-paragraphstyle-Heading 2*
+TimesNewRomanPSMT:
+Cabeçalho 3
+ text-13-paragraphstyle-Heading 3*
+TimesNewRomanPSMT:
+Cabeçalho Vermelho
+ text-14-paragraphstyle-Heading 4*
+HelveticaNeue-Bold:
+text-2-liststyle*
+Marcador Grande
+text-2-liststyle-Bullet Big*
+e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?m
+Cabeçalho Menor 2 do Índice
+text-2-tocentrystyle*
+HelveticaNeue:
+text-25-paragraphstyle*
+Cambria:
+ text-26-paragraphstyle-Caption 3*
+HelveticaNeue-Bold:
+Cabeçalho e Rodapé
+&text-29-paragraphstyle-Header & Footer*
+HelveticaNeue:
+text-3-liststyle*
+text-3-liststyle-Image*
+Cabeçalho 3 do Índice
+text-3-tocentrystyle*
+HelveticaNeue:
+Nota de rodapé
+$text-31-paragraphstyle-Footnote Text*
+HelveticaNeue:
+Etiqueta Escura
+!text-33-paragraphstyle-Label Dark*
+HelveticaNeue-Medium:
+Título de Tabela 1
+$text-34-paragraphstyle-Table Title 1*
+HelveticaNeue:
+Estilo de Tabela 1
+$text-35-paragraphstyle-Table Style 1*
+HelveticaNeue-Bold:
+Estilo de Tabela 2
+$text-36-paragraphstyle-Table Style 2*
+HelveticaNeue:
+Estilo de Tabela 3
+$text-37-paragraphstyle-Table Style 3*
+HelveticaNeue-Bold:
+Estilo de Tabela 4
+$text-38-paragraphstyle-Table Style 4*
+HelveticaNeue-Medium:
+Estilo de Tabela 5
+$text-39-paragraphstyle-Table Style 5*
+HelveticaNeue-Medium:
+text-4-liststyle*
+text-4-liststyle-Lettered*
+Cabeçalho do Índice 4
+text-4-tocentrystyle*
+HelveticaNeue:
+Estilo de Tabela 6
+$text-40-paragraphstyle-Table Style 6*
+HelveticaNeue-Medium:
+Estilo de Tabela 7
+$text-41-paragraphstyle-Table Style 7*
+HelveticaNeue:
+text-5-liststyle-Numbered*
+text-6-liststyle-Harvard*
+Subtítulo
+text-6-paragraphstyle-Subtitle*
+HelveticaNeue:
+text-7-liststyle-Dash*
+e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?e颋?m
+Anotações
+text-8-liststyle-Note Taking*
+textbox-0-shapestyle*
+toc-entry-style-default*
+HelveticaNeue:
+drop-cap-style-default*
+dropcap-style-0*
+dropcap-style-1*
+HelveticaNeue-Bold:
+dropcap-style-2*
+HelveticaNeue-Bold:
+dropcap-style-3*
+HelveticaNeue-Bold:
+dropcap-style-4*
+HelveticaNeue-Bold:
+dropcap-style-5*
+HelveticaNeue-Medium:
+TimesNewRomanPS-ItalicMT
+TimesNewRomanPS-BoldMT:
+TimesNewRomanPSMT
+TimesNewRomanPS-BoldMT
+TimesNewRomanPSMT
+
+
+===== Index/Metadata.iwa (26892 bytes) =====
+
+$264912BE-72D5-4001-9868-BCADEC4B930C
+Tables/DataList
+Tables/DataList-1732885-2"
+Tables/DataList
+Tables/DataList-1732887-2"
+Tables/DataList
+Tables/DataList-1732892-2"
+Tables/DataList
+Tables/DataList-1732890-2"
+Tables/DataList
+Tables/DataList-1732889-2"
+Tables/DataList
+Tables/DataList-1732888-2"
+Tables/DataList
+Tables/DataList-1732886-2"
+CalculationEngine"
+TSCEReduceCalcEngineMsgSize
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1732941-2"
+Tables/DataList
+Tables/DataList-1732822-2"
+Tables/DataList
+Tables/DataList-1732819-2"
+Tables/DataList
+Tables/DataList-1732818-2"
+ViewState"
+Tables/DataList
+Tables/DataList-1732813-2"
+Tables/Tile
+Tables/Tile-1732881-2"
+Tables/DataList"
+Tables/DataList
+Tables/DataList-1732814-2"
+Tables/DataList
+Tables/DataList-1732882-2"
+Tables/HeaderStorageBucket"
+AnnotationAuthorStorage"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1732940-2"
+Tables/DataList
+Tables/DataList-1732884-2"
+Tables/DataList
+Tables/DataList-1732931-2"
+Tables/DataList
+Tables/DataList-1732816-2"
+Tables/Tile"
+DocumentMetadata"
+Tables/DataList
+Tables/DataList-1732820-2"
+Tables/DataList
+Tables/DataList-1732942-2"
+DocumentStylesheet"
+TSWPAdvancedTextStyles
+Tables/DataList
+Tables/DataList-1732817-2"
+Tables/DataList
+Tables/DataList-1732815-2"
+Tables/DataList
+Tables/DataList-1732883-2"
+Tables/HeaderStorageBucket
+$Tables/HeaderStorageBucket-1732930-2"
+Tables/DataList
+Tables/DataList-1732821-2"
+Tables/DataList
+Tables/DataList-1732891-2"
+Document"
+bullet_circle-blk-resize.pdf"
+bullet_circle-blk-resize"L
+PresetImageFill5.jpg"
+PresetImageFill5-29.jpg
+#Aj:s)BeH
+PresetImageFill2.jpg"
+PresetImageFill2-26.jpg
+PresetImageFill4.jpg"
+PresetImageFill4-28.jpg
+PresetImageFill0.jpg"
+PresetImageFill0-24.jpg
+PresetImageFill1.jpg"
+PresetImageFill1-25.jpg
+PresetImageFill3.jpg"
+PresetImageFill3-27.jpg
+hardcover_bullet_black.png"
+*&ginger/01_theme/hardcover_bullet_black"Q
+bullet_gbutton_gray.png"
+bullet_gbutton_gray-30.png
+
+
+===== Index/Tables/DataList-1732819-2.iwa (5668 bytes) =====
+
+Entidade*
+Campos do formulário*
+Duplicidade?*
+Implementa*
+Paciente*
+(Recepcionista / Atendente administrativo*
+%Nome, contato, vínculo institucional*
+Estudante/Atendente*
+%Coordenação / Secretaria acadêmica*
+9Nome, especialidade, nível de formação, habilitações*
+Supervisor*
+Coordenação acadêmica*
+;Nome, especialidades habilitadas, disponibilidade por turno*
+Administração da unidade*
+9Identificação, características, equipamentos, recursos*
+Especialidade/Serviço*
+Coordenação acadêmica*
+7Nome, descrição, exige supervisão docente (sim/não)*
+
+
+===== Index/ViewState.iwa (2617 bytes) =====
+
+%TPMacInspectorSegmentIdentifierFormat
